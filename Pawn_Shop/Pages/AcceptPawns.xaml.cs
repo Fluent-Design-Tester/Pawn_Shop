@@ -23,6 +23,7 @@ namespace Pawn_Shop.Pages
     /// </summary>
     public sealed partial class AcceptPawns : Page
     {
+
         public AcceptPawns()
         {
             this.InitializeComponent();
@@ -35,11 +36,44 @@ namespace Pawn_Shop.Pages
 
         private void Category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int a = Category_ComboBox.SelectedIndex;
-            Debug.WriteLine(a);
+            int selectedCategory = Category_ComboBox.SelectedIndex;
 
-            String b = Category_ComboBox.SelectedItem.ToString();
-            Debug.WriteLine(b);
+            // if category is gold, show weight.
+            if (selectedCategory == 0)
+            {
+                weight.Visibility = Visibility.Visible;
+                currentNameForCategory.Visibility = Visibility.Collapsed;
+                boardNumber.Visibility = Visibility.Collapsed;
+
+                pawnNameAndCount.PlaceholderText = "လက်စွပ် ၁ ကွင်း";
+            }
+
+            // if category is cycle and car, show.
+            if (selectedCategory == 1 || selectedCategory == 2)
+            {
+                weight.Visibility = Visibility.Collapsed;
+                currentNameForCategory.Visibility = Visibility.Visible;
+                boardNumber.Visibility = Visibility.Visible;
+
+                if (selectedCategory == 1)
+                {
+                    pawnNameAndCount.PlaceholderText = "Kenbo ၁ စီး";
+                }
+                else
+                {
+                    pawnNameAndCount.PlaceholderText = "Parjido ၁ စီး";
+                }
+
+            }
+
+            // if category is house, show.
+            if (selectedCategory == 3)
+            {
+                weight.Visibility = Visibility.Collapsed;
+                boardNumber.Visibility = Visibility.Collapsed;
+
+                pawnNameAndCount.PlaceholderText = "လုံးချင်း ၁ ထပ်အိပ်";
+            }
         }
     }
 }

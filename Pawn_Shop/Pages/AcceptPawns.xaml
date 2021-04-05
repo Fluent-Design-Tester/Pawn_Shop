@@ -240,12 +240,39 @@
                     </ComboBox>
 
                     <TextBox
+                        x:Name="pawnNameAndCount"
                         Height="100"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Header="ပစ္စည်းအမျိုးအမည်နှင့်အရေအတွက်"
                         PlaceholderText="လက်စွပ် ၂ ကွင်း" />
+
+                    <TextBox
+                        x:Name="weight"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အလေးချိန်"
+                        Visibility="Collapsed" />
+
+                    <!--  Cycle and Car  -->
+                    <TextBox
+                        x:Name="currentNameForCategory"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အမည်ပေါက်"
+                        Visibility="Collapsed" />
+
+                    <!--  Cycle and Car  -->
+                    <TextBox
+                        x:Name="boardNumber"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="နံပါတ်"
+                        Visibility="Collapsed" />
 
                     <TextBox
                         Margin="0,20,0,0"

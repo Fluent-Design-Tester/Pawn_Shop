@@ -55,43 +55,92 @@
             </muxc:NavigationView.Resources>-->
 
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="အပေါင်ပစ္စည်းများ"
-                    Icon="Home"
-                    Tag="accept_pawn" />
+                <muxc:NavigationViewItem Width="320" Tag="accept_pawn">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE74C;" />
+                        <TextBlock Margin="13,0,0,0">အပေါင်ပစ္စည်းများ</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
                 <muxc:NavigationViewItemSeparator />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="အတိုးသတ်"
-                    Icon="MoveToFolder"
-                    Tag="kill_interest" />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="အပေါင်ထပ်တိုးငွေ"
-                    Icon="ContactPresence"
-                    Tag="reports" />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="ပစ္စည်းရွေး"
-                    Icon="AddFriend"
-                    Tag="return_pawns" />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="ပစ္စည်းရောင်း"
-                    Icon="Print"
-                    Tag="print" />
+                <muxc:NavigationViewItem Width="320" Tag="kill_interest">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xEA99;" />
+                        <TextBlock Margin="13,0,0,0">အတိုးသတ်</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Width="320" Tag="reports">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE948;" />
+                        <TextBlock Margin="13,0,0,0">အပေါင်ထပ်တိုးငွေ</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Width="320" Tag="return_pawns">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE7C1;" />
+                        <TextBlock Margin="13,0,0,0">ပစ္စည်းရွေး</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Width="320" Tag="print">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xF71A;" />
+                        <TextBlock Margin="13,0,0,0">ပစ္စည်းရောင်း</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
                 <muxc:NavigationViewItemSeparator />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="အပေါင်ဆုံးပစ္စည်းများ"
-                    Icon="Download"
-                    Tag="print" />
-                <muxc:NavigationViewItem
-                    Width="320"
-                    Content="အပေါင်ဆုံးရောင်း"
-                    Icon="Redo"
-                    Tag="print" />
+                <muxc:NavigationViewItem Width="320" Tag="print">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE7B8;" />
+                        <TextBlock Margin="13,0,0,0">အပေါင်ဆုံးပစ္စည်းများ</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Width="320" Tag="print">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE7BF;" />
+                        <TextBlock Margin="13,0,0,0">အပေါင်ဆုံးရောင်း</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
                 <muxc:NavigationViewItemSeparator />
                 <muxc:NavigationViewItem
                     Width="320"
