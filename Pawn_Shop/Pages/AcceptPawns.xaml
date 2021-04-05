@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
-    <!--  FINISHED - TASK - 1: To hide 3rd column in medium and small devices.  -->
+    <!--  FINISHE - TASK - 1: To hide 3rd column in medium and small devices.  -->
     <!--  TASK - 2: To preserve bouncher number  -->
     <!--  TASK - 3: To investigate how glazy have done for generating bouncher number  -->
 
