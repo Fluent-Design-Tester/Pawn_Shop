@@ -1,0 +1,137 @@
+﻿<Page
+    x:Class="Pawn_Shop.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Pawn_Shop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <ScrollViewer>
+            <Grid Margin="20,0,20,70">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Theme Mode" />
+                    <ToggleSwitch
+                        Name="tglAppTheme"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        CacheMode="BitmapCache"
+                        Header="Choose between Light and Dark theme"
+                        IsOn="False"
+                        OffContent="Light"
+                        OnContent="Dark"
+                        Toggled="ThemeToggleSwitch_Toggled" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="0,15,0,0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Sound" />
+                    <ToggleSwitch
+                        Name="tglAppSound"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        CacheMode="BitmapCache"
+                        Header="Controls provide audible feedback"
+                        IsOn="False"
+                        OffContent="Off"
+                        OnContent="On"
+                        Toggled="SoundToggleSwitch_Toggled" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="0,15,0,0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Color" />
+                    <TextBlock Margin="0,15,20,0" Text="Application accent color will automatically apply from windows's accent color." />
+                    <HyperlinkButton
+                        Margin="0,5,0,0"
+                        Content="Choose colors from settings"
+                        NavigateUri="ms:settings"
+                        Style="{StaticResource TextBlockButtonStyle}" />
+                </StackPanel>
+
+                <Rectangle
+                    Grid.Row="3"
+                    Width="Auto"
+                    Height="0.1"
+                    Margin="0,30,0,0"
+                    Fill="LightGray" />
+
+                <StackPanel Grid.Row="4" Margin="0,15,0,0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="About" />
+                    <TextBlock
+                        Margin="0,15,20,0"
+                        Text="This is about the application."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock
+                        Margin="0,10,20,0"
+                        Text="This app is the interactive companion to the Fluent Design System web site ."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock Margin="0,10,20,0" TextWrapping="WrapWholeWords">
+                        <Span xml:space="preserve">Source code: <Hyperlink NavigateUri="http://www.github.com">Github</Hyperlink></Span>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" Margin="0,15,0,0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Developer Contact" />
+                    <TextBlock
+                        Margin="0,15,20,0"
+                        Text="This is about the contact information of the developer."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock
+                        Margin="0,10,20,0"
+                        Text="This app is the interactive companion to the Fluent Design System web site ."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock Margin="0,10,20,0" TextWrapping="WrapWholeWords">
+                        <Span xml:space="preserve">Email: <Hyperlink NavigateUri="http://www.github.com">mr.htetphyonaing@gmail.com</Hyperlink></Span>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Margin="0,15,0,0">
+                    <TextBlock
+                        Margin="0,20,20,0"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="Disclaimer" />
+                    <TextBlock
+                        Margin="0,15,20,0"
+                        Text="THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock
+                        Margin="0,10,20,0"
+                        Text="Copyright (c) Htet Phyo Corporation. All rights reserved."
+                        TextWrapping="WrapWholeWords" />
+                    <TextBlock Margin="0,10,0,0" TextWrapping="WrapWholeWords">
+                        <Span xml:space="preserve"><Run>Email: </Run><Hyperlink NavigateUri="http://www.github.com"> mr.htetphyonaing@gmail.com</Hyperlink></Span>
+                    </TextBlock>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

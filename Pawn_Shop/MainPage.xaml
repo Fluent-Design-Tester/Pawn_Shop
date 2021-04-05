@@ -1,0 +1,117 @@
+﻿<Page
+    x:Class="Pawn_Shop.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Pawn_Shop"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Thickness x:Key="NavigationViewHeaderMargin">25,40,0,20</Thickness>
+    </Page.Resources>
+
+    <Grid x:Name="AppTitleBar" Background="Transparent">
+        <Grid.Resources>
+            <AcrylicBrush
+                x:Key="NavigationViewExpandedPaneBackground"
+                BackgroundSource="HostBackdrop"
+                FallbackColor="#E4E4E4"
+                TintColor="Azure"
+                TintOpacity="0.4" />
+        </Grid.Resources>
+
+        <muxc:NavigationView
+            x:Name="navView"
+            AlwaysShowHeader="True"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            Header="အပေါင်ပစ္စည်းများ"
+            IsBackButtonVisible="Auto"
+            IsBackEnabled="False"
+            IsSettingsVisible="True"
+            IsTitleBarAutoPaddingEnabled="False"
+            Loaded="NavigationView_Loaded"
+            OpenPaneLength="320"
+            PaneDisplayMode="Auto"
+            PaneTitle="PAWN SHOP"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectionChanged="NavigationView_SelectionChanged"
+            SelectionFollowsFocus="Disabled"
+            UseLayoutRounding="False">
+
+            <!--<muxc:NavigationView.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <AppBar x:Name="A" Background="White" />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Dark">
+                            <AppBar x:Name="B" Background="White" />
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </muxc:NavigationView.Resources>-->
+
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="အပေါင်ပစ္စည်းများ"
+                    Icon="Home"
+                    Tag="accept_pawn" />
+                <muxc:NavigationViewItemSeparator />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="အတိုးသတ်"
+                    Icon="MoveToFolder"
+                    Tag="kill_interest" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="အပေါင်ထပ်တိုးငွေ"
+                    Icon="ContactPresence"
+                    Tag="reports" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="ပစ္စည်းရွေး"
+                    Icon="AddFriend"
+                    Tag="return_pawns" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="ပစ္စည်းရောင်း"
+                    Icon="Print"
+                    Tag="print" />
+                <muxc:NavigationViewItemSeparator />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="အပေါင်ဆုံးပစ္စည်းများ"
+                    Icon="Download"
+                    Tag="print" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="အပေါင်ဆုံးရောင်း"
+                    Icon="Redo"
+                    Tag="print" />
+                <muxc:NavigationViewItemSeparator />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="Trash"
+                    Icon="Delete"
+                    Tag="users" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="App Settings"
+                    Icon="Setting"
+                    Tag="users" />
+                <muxc:NavigationViewItem
+                    Width="320"
+                    Content="Users"
+                    Icon="People"
+                    Tag="users" />
+            </muxc:NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame" />
+
+        </muxc:NavigationView>
+    </Grid>
+</Page>
