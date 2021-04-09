@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Pawn_Shop.Utilities;
 using System.Diagnostics;
+using Pawn_Shop.Pages.AppData;
 
 namespace Pawn_Shop
 {
@@ -62,6 +63,10 @@ namespace Pawn_Shop
                     case "kill_interest":
                         sender.Header = "အတိုးသတ်ခြင်း";
                         ContentFrame.Navigate(typeof(KillInterest));
+                        break;
+                    case "app_data":
+                        sender.Header = "Setup Data";
+                        ContentFrame.Navigate(typeof(IndexPage));
                         break;
                 }
             }

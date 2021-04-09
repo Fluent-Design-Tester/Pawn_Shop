@@ -149,9 +149,9 @@
                     Tag="users" />
                 <muxc:NavigationViewItem
                     Width="320"
-                    Content="App Settings"
+                    Content="App Data"
                     Icon="Setting"
-                    Tag="users" />
+                    Tag="app_data" />
                 <muxc:NavigationViewItem
                     Width="320"
                     Content="Users"

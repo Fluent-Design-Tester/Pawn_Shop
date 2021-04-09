@@ -130,6 +130,18 @@
     <Compile Include="Pages\AcceptPawns.xaml.cs">
       <DependentUpon>AcceptPawns.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AppData\Gold.xaml.cs">
+      <DependentUpon>Gold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppData\IndexPage.xaml.cs">
+      <DependentUpon>IndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppData\NRC.xaml.cs">
+      <DependentUpon>NRC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppData\Vehicles.xaml.cs">
+      <DependentUpon>Vehicles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\KillInterest.xaml.cs">
       <DependentUpon>KillInterest.xaml</DependentUpon>
     </Compile>
@@ -170,6 +182,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\AcceptPawns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AppData\Gold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AppData\IndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AppData\NRC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AppData\Vehicles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

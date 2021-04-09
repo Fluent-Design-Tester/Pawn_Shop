@@ -303,7 +303,8 @@
                             Margin="0,20,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            Header="သက်တမ်းတိုးကာလ" />
+                            Header="သက်တမ်းတိုးလအရေအတွက်"
+                            PlaceholderText="2" />
 
                         <TextBox
                             Margin="0,20,0,0"

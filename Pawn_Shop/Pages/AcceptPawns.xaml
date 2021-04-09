@@ -254,7 +254,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Header="အလေးချိန်"
-                        Visibility="Collapsed" />
+                        Visibility="Visible" />
 
                     <!--  Cycle and Car  -->
                     <TextBox

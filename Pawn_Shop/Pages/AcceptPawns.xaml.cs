@@ -23,10 +23,17 @@ namespace Pawn_Shop.Pages
     /// </summary>
     public sealed partial class AcceptPawns : Page
     {
+        private Dictionary<string, string> categoryPlaceholderStrings;
 
         public AcceptPawns()
         {
             this.InitializeComponent();
+
+            this.categoryPlaceholderStrings = new Dictionary<string, string>();
+            categoryPlaceholderStrings.Add("gold", "လက်စွပ် ၁ ကွင်း");
+            categoryPlaceholderStrings.Add("cycle", "Kenbo ၁ စီး");
+            categoryPlaceholderStrings.Add("car", "Parjido ၁ စီး");
+            categoryPlaceholderStrings.Add("house", "လုံးချင်း ၁ ထပ်အိပ်");
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -45,7 +52,7 @@ namespace Pawn_Shop.Pages
                 currentNameForCategory.Visibility = Visibility.Collapsed;
                 boardNumber.Visibility = Visibility.Collapsed;
 
-                pawnNameAndCount.PlaceholderText = "လက်စွပ် ၁ ကွင်း";
+                pawnNameAndCount.PlaceholderText = categoryPlaceholderStrings["gold"];
             }
 
             // if category is cycle and car, show.
@@ -57,11 +64,11 @@ namespace Pawn_Shop.Pages
 
                 if (selectedCategory == 1)
                 {
-                    pawnNameAndCount.PlaceholderText = "Kenbo ၁ စီး";
+                    pawnNameAndCount.PlaceholderText = categoryPlaceholderStrings["cycle"];
                 }
                 else
                 {
-                    pawnNameAndCount.PlaceholderText = "Parjido ၁ စီး";
+                    pawnNameAndCount.PlaceholderText = categoryPlaceholderStrings["car"];
                 }
 
             }
@@ -72,7 +79,7 @@ namespace Pawn_Shop.Pages
                 weight.Visibility = Visibility.Collapsed;
                 boardNumber.Visibility = Visibility.Collapsed;
 
-                pawnNameAndCount.PlaceholderText = "လုံးချင်း ၁ ထပ်အိပ်";
+                pawnNameAndCount.PlaceholderText = categoryPlaceholderStrings["house"];
             }
         }
     }
