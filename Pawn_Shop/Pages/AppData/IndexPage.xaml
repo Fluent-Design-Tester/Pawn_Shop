@@ -20,8 +20,7 @@
             PaneDisplayMode="Top"
             SelectionChanged="AppDataTopNav_SelectionChanged">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Content="Gold" Tag="gold" />
-                <muxc:NavigationViewItem Content="Vehicles" Tag="vehicles" />
+                <muxc:NavigationViewItem Content="Categories and Types" Tag="categories" />
                 <muxc:NavigationViewItem Content="NRC" Tag="nrc" />
             </muxc:NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" />

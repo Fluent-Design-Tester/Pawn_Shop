@@ -9,7 +9,7 @@ namespace Pawn_Shop.Database
 {
     class DatabaseConnection
     {
-        private string _connectionString = "server=localhost;user id=root;password=root;database=edulink";
+        private string _connectionString = "server=localhost;user id=root;password=root;database=pawn_shop";
 
         public MySqlConnection GetDbConnection()
         {

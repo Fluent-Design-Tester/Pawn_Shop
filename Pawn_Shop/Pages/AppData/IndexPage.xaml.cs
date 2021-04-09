@@ -33,11 +33,8 @@ namespace Pawn_Shop.Pages.AppData
 
             switch (item.Tag.ToString())
             {
-                case "gold":
-                    ContentFrame.Navigate(typeof(Gold));
-                    break;
-                case "vehicles":
-                    ContentFrame.Navigate(typeof(Vehicles));
+                case "categories":
+                    ContentFrame.Navigate(typeof(PawnCategories));
                     break;
                 case "nrc":
                     ContentFrame.Navigate(typeof(NRC));

@@ -31,8 +31,8 @@ namespace Pawn_Shop.Pages
         {
             this.InitializeComponent();
 
-            MajorModel major = new MajorModel();
-            MajorList = major.getMajors();
+            /*MajorModel major = new MajorModel();
+            MajorList = major.getMajors();*/
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -42,7 +42,7 @@ namespace Pawn_Shop.Pages
                 e.Column.Header = descriptor.DisplayName ?? descriptor.Name;
             }*/
 
-            switch (e.PropertyName)
+           /* switch (e.PropertyName)
             {
                 case nameof(Major.major_id):
                     e.Column.Header = "No.";
@@ -51,7 +51,7 @@ namespace Pawn_Shop.Pages
                 case nameof(Major.short_name):
                     e.Column.Header = "Short Name";
                     break;
-            }
+            }*/
         }
     }
 }

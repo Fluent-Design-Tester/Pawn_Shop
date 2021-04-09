@@ -32,8 +32,8 @@ namespace Pawn_Shop.Pages
         {
             this.InitializeComponent();
 
-            StudentModel student = new StudentModel();
-            StudentList = student.getStudent();
+           /* StudentModel student = new StudentModel();
+            StudentList = student.getStudent();*/
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -43,7 +43,7 @@ namespace Pawn_Shop.Pages
                 e.Column.Header = descriptor.DisplayName ?? descriptor.Name;
             }*/
 
-            switch (e.PropertyName)
+            /*switch (e.PropertyName)
             {
                 case nameof(Student.student_id):
                     e.Column.Header = "No.";
@@ -76,7 +76,7 @@ namespace Pawn_Shop.Pages
                 case nameof(Student.hostel_address):
                     e.Column.Header = "Hostel Address";
                     break;
-            }
+            }*/
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

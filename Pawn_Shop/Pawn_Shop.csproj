@@ -121,17 +121,16 @@
     </Compile>
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Dto\Major.cs" />
+    <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\Student.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\MajorModel.cs" />
+    <Compile Include="Models\PawnTypeModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Pages\AcceptPawns.xaml.cs">
       <DependentUpon>AcceptPawns.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AppData\Gold.xaml.cs">
-      <DependentUpon>Gold.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AppData\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
@@ -139,8 +138,8 @@
     <Compile Include="Pages\AppData\NRC.xaml.cs">
       <DependentUpon>NRC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AppData\Vehicles.xaml.cs">
-      <DependentUpon>Vehicles.xaml</DependentUpon>
+    <Compile Include="Pages\AppData\PawnCategories.xaml.cs">
+      <DependentUpon>PawnCategories.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\KillInterest.xaml.cs">
       <DependentUpon>KillInterest.xaml</DependentUpon>
@@ -185,10 +184,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\Gold.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\AppData\IndexPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,7 +192,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\Vehicles.xaml">
+    <Page Include="Pages\AppData\PawnCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
