@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Pawn_Shop.Pages.AppData"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -196,5 +197,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+
+        <!-- <controls:InAppNotification x:Name="ExampleInAppNotification" /> -->
     </Grid>
 </Page>
