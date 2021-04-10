@@ -80,6 +80,14 @@ namespace Pawn_Shop
                         sender.Header = "Setup Data";
                         ContentFrame.Navigate(typeof(IndexPage));
                         break;
+                    case "app_data_pawns_types":
+                        sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
+                        ContentFrame.Navigate(typeof(PawnCategories));
+                        break;
+                    case "app_data_nrc":
+                        sender.Header = "မှတ်ပုံတင်အချက်အလက်များ";
+                        ContentFrame.Navigate(typeof(NRC));
+                        break;
                 }
             }
         }

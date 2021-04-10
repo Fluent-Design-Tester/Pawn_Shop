@@ -16,7 +16,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -239,6 +239,8 @@
         </Grid>
 
         <Grid Name="A" Grid.Column="2" />
+
+
 
         <!-- <controls:InAppNotification x:Name="ExampleInAppNotification" /> -->
 

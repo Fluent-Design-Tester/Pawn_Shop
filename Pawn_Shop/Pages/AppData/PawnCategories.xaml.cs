@@ -105,6 +105,8 @@ namespace Pawn_Shop.Pages.AppData
             TextBox_No.Visibility = Visibility.Collapsed;
 
             TextBox_Name.Description = "";
+
+            TextBox_Name.Focus(FocusState.Programmatic);
         }
 
         private void ButtonClick_Edit(object sender, RoutedEventArgs e)
@@ -153,6 +155,7 @@ namespace Pawn_Shop.Pages.AppData
                         DataGrid_PawnTypes.ItemsSource = bindingList;
 
                         TextBox_Name.Text = "";
+                        TextBox_Name.Description = "";
                         Grid_Manage_Category.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -193,6 +196,7 @@ namespace Pawn_Shop.Pages.AppData
                         DataGrid_PawnTypes.ItemsSource = bindingList;
 
                         TextBox_Name.Text = "";
+                        TextBox_Name.Description = "";
                     }
                 }
                 else
@@ -210,8 +214,12 @@ namespace Pawn_Shop.Pages.AppData
 
         private Boolean isPawnTypeAlreadyExist(String text)
         {
-            // if result >= 0 -> it does not exist yet!
-            return PawnTypesList.FindIndex(type => type.name.ToLower().Equals(text)) >= 0 ? true : false;
+            int categoryId = Category_ComboBox.SelectedIndex + 1;
+
+            PawnTypeModel pawnType = new PawnTypeModel();
+            List<PawnType> items = pawnType.selectAll(categoryId);
+
+            return items.FindIndex(item => item.name.ToLower().Equals(text)) >= 0 ? true : false;
         }
 
         private void ButtonClick_Delete(object sender, RoutedEventArgs e)
@@ -253,7 +261,22 @@ namespace Pawn_Shop.Pages.AppData
 
         private void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
         {
+            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+            int typeId = selectedRow.type_id;
 
+            PawnTypeModel pawnType = new PawnTypeModel();
+            Boolean isDeleted = pawnType.delete(typeId);
+
+            if (isDeleted)
+            {
+                int categoryId = Category_ComboBox.SelectedIndex + 1;
+
+                var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
+                DataGrid_PawnTypes.ItemsSource = bindingList;
+
+                TextBox_Name.Text = "";
+                Grid_Manage_Category.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

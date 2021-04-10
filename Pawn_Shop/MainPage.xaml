@@ -154,7 +154,20 @@
                     Width="320"
                     Content="App Data"
                     Icon="Setting"
-                    Tag="app_data" />
+                    Tag="app_data">
+                    <muxc:NavigationViewItem.MenuItems>
+                        <muxc:NavigationViewItem
+                            Content="အပေါင်ပစ္စည်းအမျိုးအမည်များ"
+                            Icon="ViewAll"
+                            Tag="app_data_pawns_types"
+                            ToolTipService.ToolTip="Pawns Types" />
+                        <muxc:NavigationViewItem
+                            Content="မှတ်ပုံတင်အချက်အလက်များ"
+                            Icon="Webcam"
+                            Tag="app_data_nrc"
+                            ToolTipService.ToolTip="NRC" />
+                    </muxc:NavigationViewItem.MenuItems>
+                </muxc:NavigationViewItem>
                 <muxc:NavigationViewItem
                     Width="320"
                     Content="Users"

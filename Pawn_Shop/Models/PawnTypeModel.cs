@@ -86,5 +86,25 @@ namespace Pawn_Shop.Models
 
             return false;
         }
+
+        public bool delete(int typeId)
+        {
+            string query = "DELETE FROM types WHERE `type_id` = '" + typeId + "';";
+
+            using (connection)
+            {
+                connection.Open();
+
+                MySqlCommand con = new MySqlCommand(query, connection);
+                int rowsAffected = con.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
