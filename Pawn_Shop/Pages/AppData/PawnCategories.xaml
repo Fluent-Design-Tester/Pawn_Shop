@@ -203,7 +203,10 @@
                         <AdaptiveTrigger MinWindowWidth="1370" />
                     </VisualState.StateTriggers>
 
-                    <VisualState.Setters />
+                    <VisualState.Setters>
+                        <Setter Target="Grid_Filter.Margin" Value="25,20,50,0" />
+                        <Setter Target="DataGrid_PawnTypes.Margin" Value="25,20,50,0" />
+                    </VisualState.Setters>
                 </VisualState>
 
                 <!--  Triggered when the window width >=1271 effective pixels.  -->
@@ -215,6 +218,8 @@
                     <VisualState.Setters>
                         <Setter Target="SearchBox.Width" Value="150" />
                         <Setter Target="Grid_Manage_Category.Margin" Value="25,20,25,20" />
+                        <Setter Target="Grid_Filter.Margin" Value="25,20,25,0" />
+                        <Setter Target="DataGrid_PawnTypes.Margin" Value="25,20,25,0" />
 
                         <Setter Target="A.Width" Value="0" />
                         <Setter Target="Grid_Filter.(Grid.ColumnSpan)" Value="2" />
