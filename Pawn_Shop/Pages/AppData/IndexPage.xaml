@@ -23,7 +23,9 @@
                 <muxc:NavigationViewItem Content="Categories and Types" Tag="categories" />
                 <muxc:NavigationViewItem Content="NRC" Tag="nrc" />
             </muxc:NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" />
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" />
+            </ScrollViewer>
         </muxc:NavigationView>
     </Grid>
 </Page>

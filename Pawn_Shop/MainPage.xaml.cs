@@ -32,6 +32,18 @@ namespace Pawn_Shop
 
             // Set sound according to the previous load
             ElementSoundPlayer.State = AppSettings.Sound;
+
+
+        }
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Get the current Windows Size
+            var bounds = Window.Current.Bounds;
+            double height = bounds.Height;
+            // Debug.WriteLine(height);
+            double width = bounds.Width;
+            Debug.WriteLine(width);
         }
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)

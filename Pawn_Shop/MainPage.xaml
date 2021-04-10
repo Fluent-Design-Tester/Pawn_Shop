@@ -13,7 +13,10 @@
         <Thickness x:Key="NavigationViewHeaderMargin">25,40,0,20</Thickness>
     </Page.Resources>
 
-    <Grid x:Name="AppTitleBar" Background="Transparent">
+    <Grid
+        x:Name="AppTitleBar"
+        Background="Transparent"
+        SizeChanged="MainPage_SizeChanged">
         <Grid.Resources>
             <AcrylicBrush
                 x:Key="NavigationViewExpandedPaneBackground"

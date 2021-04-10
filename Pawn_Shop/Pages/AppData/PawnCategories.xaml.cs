@@ -26,6 +26,8 @@ namespace Pawn_Shop.Pages.AppData
     {
         private List<PawnType> PawnTypesList;
 
+        private readonly string[] titles = { "ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ", "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ", "ပစ္စည်းအမျိုးအစား ဖျက်ပါ" };
+
         public PawnCategories()
         {
             this.InitializeComponent();
@@ -62,7 +64,7 @@ namespace Pawn_Shop.Pages.AppData
 
             if (Grid_Manage_Category.Visibility == Visibility.Visible)
             {
-                if (TextBlock_Title.Text == "ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ")
+                if (TextBlock_Title.Text == titles[0])
                 {
                     TextBox_Category.Text = Category_ComboBox.SelectedItem.ToString();
                 }
@@ -91,14 +93,14 @@ namespace Pawn_Shop.Pages.AppData
         private void ButtonClick_Add(object sender, RoutedEventArgs e)
         {
             Grid_Manage_Category.Visibility = Visibility.Visible;
-            TextBlock_Title.Text = "ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ";
+            TextBlock_Title.Text = titles[0];
             TextBox_Category.Text = Category_ComboBox.SelectedItem.ToString();
             TextBox_Name.IsEnabled = true;
             TextBox_Name.Text = "";
 
             Button_ConfirmDelete.Visibility = Visibility.Collapsed;
             Button_Save.Visibility = Visibility.Visible;
-            Button_ClearField.Visibility = Visibility.Visible;
+            Button_Cancel.Visibility = Visibility.Visible;
         }
 
         private void ButtonClick_Edit(object sender, RoutedEventArgs e)
@@ -109,17 +111,17 @@ namespace Pawn_Shop.Pages.AppData
             {
                 TextBox_Name.IsEnabled = true;
                 Grid_Manage_Category.Visibility = Visibility.Visible;
-                TextBlock_Title.Text = "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ";
+                TextBlock_Title.Text = titles[1];
                 TextBox_Category.Text = Category_ComboBox.SelectedItem.ToString();
                 TextBox_Name.Text = selectedRow.name;
 
                 Button_ConfirmDelete.Visibility = Visibility.Collapsed;
                 Button_Save.Visibility = Visibility.Visible;
-                Button_ClearField.Visibility = Visibility.Visible;
+                Button_Cancel.Visibility = Visibility.Visible;
             }
         }
 
-        private void ButtonClick_Clear(object sender, RoutedEventArgs e)
+        private void ButtonClick_Cancel(object sender, RoutedEventArgs e)
         {
 
         }
@@ -135,14 +137,14 @@ namespace Pawn_Shop.Pages.AppData
 
             if (selectedRow != null)
             {
-                TextBlock_Title.Text = "ပစ္စည်းအမျိုးအစား ဖျက်မည်";
+                TextBlock_Title.Text = titles[2];
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_Name.IsEnabled = false;
                 TextBox_Name.Text = selectedRow.name;
 
+                Grid_Manage_Category.Visibility = Visibility.Visible;
                 Button_ConfirmDelete.Visibility = Visibility.Visible;
                 Button_Save.Visibility = Visibility.Collapsed;
-                Button_ClearField.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -150,7 +152,7 @@ namespace Pawn_Shop.Pages.AppData
         {
             if (Grid_Manage_Category.Visibility == Visibility.Visible && e.AddedItems.Count == 1)
             {
-                if (TextBlock_Title.Text == "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ" || TextBlock_Title.Text == "ပစ္စည်းအမျိုးအစား ဖျက်မည်")
+                if (TextBlock_Title.Text == titles[1] || TextBlock_Title.Text == titles[2])
                 {
                     PawnType selectedRow = (PawnType) e.AddedItems[0];
                     TextBox_Name.Text = selectedRow.name;
