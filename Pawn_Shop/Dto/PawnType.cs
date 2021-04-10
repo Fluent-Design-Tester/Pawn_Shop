@@ -18,10 +18,13 @@ namespace Pawn_Shop.Dto
         [DisplayName("Category")]
         public int category_id { get; set; }
 
-        public PawnType(int type_id, string name)
+        public int display_no { get; set; }
+
+        public PawnType(int typeId, string name, int displayNo)
         {
-            this.type_id = type_id;
+            this.type_id = typeId;
             this.name = name;
+            this.display_no = displayNo;
         }
     }
 }
