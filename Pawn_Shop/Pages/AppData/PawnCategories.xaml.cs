@@ -123,7 +123,7 @@ namespace Pawn_Shop.Pages.AppData
 
         private void ButtonClick_Cancel(object sender, RoutedEventArgs e)
         {
-
+            Grid_Manage_Category.Visibility = Visibility.Collapsed;
         }
 
         private void ButtonClick_Save(object sender, RoutedEventArgs e)
