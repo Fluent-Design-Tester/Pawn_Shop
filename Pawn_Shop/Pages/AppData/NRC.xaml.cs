@@ -216,7 +216,6 @@ namespace Pawn_Shop.Pages.AppData
 
         private async void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
         {
-
             ContentDialogResult contentDialogResult = await cd.ShowAsync();
             
             if ("Primary".Equals(contentDialogResult.ToString()))

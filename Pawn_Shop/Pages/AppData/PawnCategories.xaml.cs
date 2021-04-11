@@ -209,19 +209,24 @@ namespace Pawn_Shop.Pages.AppData
             }
         }
 
-        private void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
+        private async void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
         {
-            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+            ContentDialogResult contentDialogResult = await ContentDialog_Delete.ShowAsync();
 
-            PawnTypeModel pawnType = new PawnTypeModel();
-            bool isDeleted = pawnType.delete(selectedRow.type_id);
-
-            if (isDeleted)
+            if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
-                DataGrid_PawnTypes.ItemsSource = bindingList;
+                PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
 
-                Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
+                PawnTypeModel pawnType = new PawnTypeModel();
+                bool isDeleted = pawnType.delete(selectedRow.type_id);
+
+                if (isDeleted)
+                {
+                    var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
+                    DataGrid_PawnTypes.ItemsSource = bindingList;
+
+                    Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
+                }
             }
         }        
 

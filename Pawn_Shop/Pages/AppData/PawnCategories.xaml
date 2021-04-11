@@ -24,6 +24,26 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <ContentDialog
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            x:Name="ContentDialog_Delete"
+            Title="Are you sure?"
+            MaxWidth="200"
+            CloseButtonText="Cancel"
+            DefaultButton="Primary"
+            PrimaryButtonText="Delete">
+
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <RichTextBlock SelectionHighlightColor="Green">
+                    <Paragraph>
+                        This action will parmentely delete and<LineBreak />
+                        all the data associated with it will also be deleted.</Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+        </ContentDialog>
+
         <!--  Filter, search and command bar  -->
         <Grid
             x:Name="Grid_Filter"
