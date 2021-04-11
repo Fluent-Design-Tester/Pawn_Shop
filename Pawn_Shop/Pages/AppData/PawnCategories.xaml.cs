@@ -211,7 +211,7 @@ namespace Pawn_Shop.Pages.AppData
 
         private void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
         {
-            PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
+            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
 
             PawnTypeModel pawnType = new PawnTypeModel();
             bool isDeleted = pawnType.delete(selectedRow.type_id);

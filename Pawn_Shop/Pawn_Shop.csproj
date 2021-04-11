@@ -121,12 +121,14 @@
     </Compile>
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Dto\Major.cs" />
+    <Compile Include="Dto\NRCTownship.cs" />
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\Student.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\MajorModel.cs" />
+    <Compile Include="Models\NRCTownshipModel.cs" />
     <Compile Include="Models\PawnTypeModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Pages\AcceptPawns.xaml.cs">
