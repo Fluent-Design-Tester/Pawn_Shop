@@ -55,6 +55,7 @@
                 <x:String>ဆိုင်ကယ်</x:String>
                 <x:String>ကား</x:String>
                 <x:String>အိမ်</x:String>
+                <x:String>မြေ</x:String>
             </ComboBox>
 
             <AutoSuggestBox

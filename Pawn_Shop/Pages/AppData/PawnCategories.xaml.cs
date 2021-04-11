@@ -18,15 +18,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class PawnCategories : Page
     {
         private List<PawnType> PawnTypesList;
-
-        private readonly string[] titles = { "ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ", "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ", "ပစ္စည်းအမျိုးအစား ဖျက်ပါ" };
+        private readonly (string New, string Update, string Delete) titles = ("ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ", "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ", "ပစ္စည်းအမျိုးအစား ဖျက်ပါ");
 
         public PawnCategories()
         {
@@ -35,29 +32,23 @@ namespace Pawn_Shop.Pages.AppData
             ComboBox_Category.SelectedIndex = 0;
 
             PawnTypeModel pawnType = new PawnTypeModel();
-            PawnTypesList = pawnType.selectAll(1);
-        }
+            PawnTypesList = pawnType.selectAll(1); // loads category 1 - Gold - by default
+        }        
 
         private void SelectionChanged_CategoryComboBox(object sender, SelectionChangedEventArgs e)
         {
-            int category = ComboBox_Category.SelectedIndex + 1;
-
             PawnTypeModel pawnType = new PawnTypeModel();
-            List<PawnType> items = pawnType.selectAll(category);
+            List<PawnType> items = pawnType.selectAll(_getSelectedCategoryId());
 
             var bindingList = new BindingList<PawnType>(items);
             DataGrid_PawnTypes.ItemsSource = bindingList;
 
             if (Grid_ManagePawnTypes.Visibility == Visibility.Visible)
             {
-                if (TextBlock_Title.Text == titles[0])
-                {
-                    TextBox_Category.Text = ComboBox_Category.SelectedItem.ToString();
-                }
+                if (TextBlock_Title.Text == titles.New)
+                    TextBox_Category.Text = _getSelectedCategoryItem();
                 else
-                {
                     Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
-                }
             }
         }
 
@@ -66,9 +57,9 @@ namespace Pawn_Shop.Pages.AppData
             string searchString = sender.Text.ToLower().Trim();
             var matchedItems = new List<PawnType>();
 
-            // Searchable Fields: Name
             PawnTypesList.ForEach(type =>
             {
+                // Searchable Fields: Name
                 if (type.name.ToLower().Contains(searchString)) matchedItems.Add(type);
             });
 
@@ -79,65 +70,125 @@ namespace Pawn_Shop.Pages.AppData
         private void ButtonClick_Add(object sender, RoutedEventArgs e)
         {
             Grid_ManagePawnTypes.Visibility = Visibility.Visible;
-            TextBlock_Title.Text = titles[0];
-            TextBox_Category.Text = ComboBox_Category.SelectedItem.ToString();
+            TextBlock_Title.Text = titles.New;
+            TextBox_Category.Text = _getSelectedCategoryItem();
             TextBox_Name.IsEnabled = true;
             TextBox_Name.Text = "";
 
-            Button_ConfirmDelete.Visibility = Visibility.Collapsed;
             Button_Save.Visibility = Visibility.Visible;
             Button_Cancel.Visibility = Visibility.Visible;
+            Button_ConfirmDelete.Visibility = Visibility.Collapsed;
             Button_Update.Visibility = Visibility.Collapsed;
             TextBox_No.Visibility = Visibility.Collapsed;
 
             TextBox_Name.Description = "";
-
             TextBox_Name.Focus(FocusState.Programmatic);
         }
 
         private void ButtonClick_Edit(object sender, RoutedEventArgs e)
         {
-            TextBox_Name.Description = "";
-
             PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
             if (selectedRow != null)
             {
-                TextBox_Name.IsEnabled = true;
                 Grid_ManagePawnTypes.Visibility = Visibility.Visible;
-                TextBlock_Title.Text = titles[1];
-                TextBox_Category.Text = ComboBox_Category.SelectedItem.ToString();
+                TextBlock_Title.Text = titles.Update;
+                TextBox_Category.Text = _getSelectedCategoryItem();
+                TextBox_Name.IsEnabled = true;
+
+                TextBox_No.Text = selectedRow.display_no.ToString();
+                TextBlock_TypeId.Text = selectedRow.type_id.ToString();
+                TextBox_Name.Text = selectedRow.name;
+
+                TextBox_No.Visibility = Visibility.Visible;
+                Button_Update.Visibility = Visibility.Visible;
+                Button_Cancel.Visibility = Visibility.Visible;
+                Button_Save.Visibility = Visibility.Collapsed;
+                Button_ConfirmDelete.Visibility = Visibility.Collapsed;
+
+                TextBox_Name.Description = "";
+            }
+        }
+
+        private void ButtonClick_Delete(object sender, RoutedEventArgs e)
+        {
+            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+
+            if (selectedRow != null)
+            {
+                Grid_ManagePawnTypes.Visibility = Visibility.Visible;
+                TextBlock_Title.Text = titles.Delete;
+                TextBox_Category.Text = _getSelectedCategoryItem();
+                TextBox_Name.IsEnabled = false;
+
                 TextBox_Name.Text = selectedRow.name;
                 TextBlock_TypeId.Text = selectedRow.type_id.ToString();
                 TextBox_No.Text = selectedRow.display_no.ToString();
 
-                Button_ConfirmDelete.Visibility = Visibility.Collapsed;
-                Button_Save.Visibility = Visibility.Collapsed;
-                Button_Update.Visibility = Visibility.Visible;
-                Button_Cancel.Visibility = Visibility.Visible;
+                Button_ConfirmDelete.Visibility = Visibility.Visible;
                 TextBox_No.Visibility = Visibility.Visible;
+                Button_Save.Visibility = Visibility.Collapsed;
+                Button_Update.Visibility = Visibility.Collapsed;
 
+                TextBox_Name.Description = "";
+            }
+        }
 
+        private void ButtonClick_Cancel(object sender, RoutedEventArgs e)
+        {
+            Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonClick_Save(object sender, RoutedEventArgs e)
+        {
+            string newType = TextBox_Name.Text;
+
+            if (!"".Equals(newType))
+            {
+                if (!_isPawnTypeAlreadyExist(newType))
+                {
+                    int categoryId = _getSelectedCategoryId();
+
+                    PawnTypeModel pawnType = new PawnTypeModel();
+                    Boolean isAdded = pawnType.add(categoryId, newType);
+
+                    if (isAdded)
+                    {
+                        var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
+                        DataGrid_PawnTypes.ItemsSource = bindingList;
+
+                        TextBox_Name.Text = "";
+                        TextBox_Name.Description = "";
+                    }
+                }
+                else
+                {
+                    TextBox_Name.Description = "Already exists";
+                    TextBox_Name.Focus(FocusState.Programmatic);
+                    TextBox_Name.SelectAll();
+                }
+            }
+            else
+            {
+                TextBox_Name.Description = "Required";
             }
         }
 
         private void ButtonClick_Update(object sender, RoutedEventArgs e)
         {
-
             int typeId = Convert.ToInt32(TextBlock_TypeId.Text);
-            string updatedText = TextBox_Name.Text;
+            string updatedType = TextBox_Name.Text;
 
-            if (!"".Equals(updatedText))
+            if (!"".Equals(updatedType))
             {
-                if (!isPawnTypeAlreadyExist(updatedText))
+                if (!_isPawnTypeAlreadyExist(updatedType))
                 {
                     PawnTypeModel pawnType = new PawnTypeModel();
-                    Boolean isUpdated = pawnType.update(typeId, updatedText);
+                    Boolean isUpdated = pawnType.update(typeId, updatedType);
 
                     if (isUpdated)
                     {
-                        int categoryId = ComboBox_Category.SelectedIndex + 1;
-                        var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
+                        var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
                         DataGrid_PawnTypes.ItemsSource = bindingList;
 
                         TextBox_Name.Text = "";
@@ -158,111 +209,52 @@ namespace Pawn_Shop.Pages.AppData
             }
         }
 
-        private void ButtonClick_Cancel(object sender, RoutedEventArgs e)
+        private void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
         {
-            Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
-        }
-
-        private void ButtonClick_Save(object sender, RoutedEventArgs e)
-        {
-            string newType = TextBox_Name.Text;
-
-            if (!"".Equals(newType))
-            {
-                if (!isPawnTypeAlreadyExist(newType))
-                {
-                    int categoryId = ComboBox_Category.SelectedIndex + 1;
-
-                    PawnTypeModel pawnType = new PawnTypeModel();
-                    Boolean isAdded = pawnType.add(categoryId, newType);
-
-                    if (isAdded)
-                    {
-                        var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
-                        DataGrid_PawnTypes.ItemsSource = bindingList;
-
-                        TextBox_Name.Text = "";
-                        TextBox_Name.Description = "";
-                    }
-                }
-                else
-                {
-                    TextBox_Name.Description = "Already exists";
-                    TextBox_Name.Focus(FocusState.Programmatic);
-                    TextBox_Name.SelectAll();
-                }
-            } 
-            else
-            {
-                TextBox_Name.Description = "Required";
-            }
-        }
-
-        private Boolean isPawnTypeAlreadyExist(String text)
-        {
-            int categoryId = ComboBox_Category.SelectedIndex + 1;
+            PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
             PawnTypeModel pawnType = new PawnTypeModel();
-            List<PawnType> items = pawnType.selectAll(categoryId);
+            Boolean isDeleted = pawnType.delete(selectedRow.type_id);
 
-            return items.FindIndex(item => item.name.ToLower().Equals(text)) >= 0 ? true : false;
-        }
-
-        private void ButtonClick_Delete(object sender, RoutedEventArgs e)
-        {
-            TextBox_Name.Description = "";
-
-            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
-
-            if (selectedRow != null)
+            if (isDeleted)
             {
-                TextBlock_Title.Text = titles[2];
-                TextBox_Name.Text = selectedRow.name;
-                TextBox_Name.IsEnabled = false;
-                TextBox_Name.Text = selectedRow.name;
-                TextBlock_TypeId.Text = selectedRow.type_id.ToString();
-                TextBox_No.Text = selectedRow.display_no.ToString();
+                var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
+                DataGrid_PawnTypes.ItemsSource = bindingList;
 
-                Grid_ManagePawnTypes.Visibility = Visibility.Visible;
-                Button_ConfirmDelete.Visibility = Visibility.Visible;
-                Button_Save.Visibility = Visibility.Collapsed;
-                Button_Update.Visibility = Visibility.Collapsed;
-                TextBox_No.Visibility = Visibility.Visible;
+                Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
             }
-        }
+        }        
 
         private void SelectionChanged_DataGrid(object sender, SelectionChangedEventArgs e)
         {
             if (Grid_ManagePawnTypes.Visibility == Visibility.Visible && e.AddedItems.Count == 1)
             {
-                if (TextBlock_Title.Text == titles[1] || TextBlock_Title.Text == titles[2])
+                if (TextBlock_Title.Text == titles.Update || TextBlock_Title.Text == titles.Delete)
                 {
                     PawnType selectedRow = (PawnType) e.AddedItems[0];
-                    TextBlock_TypeId.Text = selectedRow.type_id.ToString();
                     TextBox_Name.Text = selectedRow.name;
+                    TextBlock_TypeId.Text = selectedRow.type_id.ToString();
                     TextBox_No.Text = selectedRow.display_no.ToString();
                 }
             }
         }
 
-        private void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
+        private Boolean _isPawnTypeAlreadyExist(String text)
         {
-            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
-            int typeId = selectedRow.type_id;
-
             PawnTypeModel pawnType = new PawnTypeModel();
-            Boolean isDeleted = pawnType.delete(typeId);
+            List<PawnType> items = pawnType.selectAll(_getSelectedCategoryId());
 
-            if (isDeleted)
-            {
-                int categoryId = ComboBox_Category.SelectedIndex + 1;
+            return items.FindIndex(item => item.name.ToLower().Equals(text)) >= 0 ? true : false;
+        }
 
-                var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
-                DataGrid_PawnTypes.ItemsSource = bindingList;
+        private int _getSelectedCategoryId()
+        {
+            return ComboBox_Category.SelectedIndex + 1;
+        }
 
-                TextBox_Name.Text = "";
-                Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
-            }
+        private string _getSelectedCategoryItem()
+        {
+            return ComboBox_Category.SelectedItem.ToString();
         }
     }
 }
