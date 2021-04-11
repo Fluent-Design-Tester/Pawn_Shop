@@ -239,12 +239,12 @@ namespace Pawn_Shop.Pages.AppData
             }
         }
 
-        private bool _isPawnTypeAlreadyExist(String text)
+        private bool _isPawnTypeAlreadyExist(string text)
         {
             PawnTypeModel pawnType = new PawnTypeModel();
             List<PawnType> items = pawnType.selectAll(_getSelectedCategoryId());
 
-            return items.FindIndex(item => item.name.ToLower().Equals(text)) >= 0 ? true : false;
+            return items.FindIndex(item => item.name.ToLower().Equals(text.ToLower())) >= 0 ? true : false;
         }
 
         private int _getSelectedCategoryId()
