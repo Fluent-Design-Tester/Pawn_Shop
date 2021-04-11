@@ -142,15 +142,15 @@
             SelectionMode="Single">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
-                    Width="SizeToHeader"
+                    Width="Auto"
                     Binding="{Binding display_no}"
                     Header="No" />
                 <controls:DataGridTextColumn
-                    Width="SizeToCells"
+                    Width="Auto"
                     Binding="{Binding name}"
                     Header="Name" />
                 <controls:DataGridTextColumn
-                    Width="SizeToCells"
+                    Width="Auto"
                     Binding="{Binding description}"
                     Header="Description" />
                 <controls:DataGridTextColumn
