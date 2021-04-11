@@ -102,7 +102,6 @@
             VerticalAlignment="Top"
             AreRowGroupHeadersFrozen="True"
             AutoGenerateColumns="False"
-            AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
             CanUserReorderColumns="False"
             CanUserResizeColumns="True"
             CanUserSortColumns="True"

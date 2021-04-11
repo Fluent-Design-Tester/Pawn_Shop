@@ -38,20 +38,6 @@ namespace Pawn_Shop.Pages.AppData
             PawnTypesList = pawnType.selectAll(1);
         }
 
-        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case nameof(PawnType.type_id):
-                    e.Column.Header = "No.";
-                    break;
-
-                case nameof(PawnType.name):
-                    e.Column.Header = "Name";
-                    break;
-            }
-        }
-
         private void SelectionChanged_CategoryComboBox(object sender, SelectionChangedEventArgs e)
         {
             int category = ComboBox_Category.SelectedIndex + 1;
