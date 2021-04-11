@@ -1,13 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using Pawn_Shop.Database;
 using Pawn_Shop.Dto;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pawn_Shop.Models
 {
@@ -42,12 +37,14 @@ namespace Pawn_Shop.Models
                     pawnTypes.Add(type);
                     pawnTypeNo++;
                 }
+
+                connection.Close();
             }
 
             return pawnTypes;
         }
 
-        public Boolean add(int categoryId, string newType)
+        public bool add(int categoryId, string newType)
         {
             string query = "INSERT INTO types (name, category_id) VALUES ('" + newType + "', '" + categoryId + "');";
 
@@ -60,10 +57,10 @@ namespace Pawn_Shop.Models
 
                 if (rowsAffected > 0)
                 {
+                    connection.Close();
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -80,10 +77,10 @@ namespace Pawn_Shop.Models
 
                 if (rowsAffected > 0)
                 {
+                    connection.Close();
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -100,10 +97,10 @@ namespace Pawn_Shop.Models
 
                 if (rowsAffected > 0)
                 {
+                    connection.Close();
                     return true;
                 }
             }
-
             return false;
         }
     }

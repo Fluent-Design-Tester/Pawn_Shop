@@ -150,7 +150,7 @@ namespace Pawn_Shop.Pages.AppData
                     int categoryId = _getSelectedCategoryId();
 
                     PawnTypeModel pawnType = new PawnTypeModel();
-                    Boolean isAdded = pawnType.add(categoryId, newType);
+                    bool isAdded = pawnType.add(categoryId, newType);
 
                     if (isAdded)
                     {
@@ -184,7 +184,7 @@ namespace Pawn_Shop.Pages.AppData
                 if (!_isPawnTypeAlreadyExist(updatedType))
                 {
                     PawnTypeModel pawnType = new PawnTypeModel();
-                    Boolean isUpdated = pawnType.update(typeId, updatedType);
+                    bool isUpdated = pawnType.update(typeId, updatedType);
 
                     if (isUpdated)
                     {
@@ -214,7 +214,7 @@ namespace Pawn_Shop.Pages.AppData
             PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
             PawnTypeModel pawnType = new PawnTypeModel();
-            Boolean isDeleted = pawnType.delete(selectedRow.type_id);
+            bool isDeleted = pawnType.delete(selectedRow.type_id);
 
             if (isDeleted)
             {
@@ -239,7 +239,7 @@ namespace Pawn_Shop.Pages.AppData
             }
         }
 
-        private Boolean _isPawnTypeAlreadyExist(String text)
+        private bool _isPawnTypeAlreadyExist(String text)
         {
             PawnTypeModel pawnType = new PawnTypeModel();
             List<PawnType> items = pawnType.selectAll(_getSelectedCategoryId());
