@@ -32,7 +32,6 @@
                 Background="{ThemeResource AppBarBackgroundThemeBrush}"
                 BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
                 BorderThickness="3"
-                CornerRadius="7"
                 Tapped="GridTapped_Gold">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -67,7 +66,6 @@
                 Background="{ThemeResource AppBarBackgroundThemeBrush}"
                 BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
                 BorderThickness="3"
-                CornerRadius="7"
                 Tapped="GridTapped_Vehicle">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -101,7 +99,6 @@
                 Background="{ThemeResource AppBarBackgroundThemeBrush}"
                 BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
                 BorderThickness="3"
-                CornerRadius="7"
                 Tapped="GridTapped_House">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -135,7 +132,6 @@
                 Background="{ThemeResource AppBarBackgroundThemeBrush}"
                 BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
                 BorderThickness="3"
-                CornerRadius="7"
                 Tapped="GridTapped_Ground">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
