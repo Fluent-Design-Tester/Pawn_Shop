@@ -169,13 +169,46 @@ namespace Pawn_Shop.Pages.AcceptPawns
             units.Add(6, "သိန်း");
             units.Add(7, "သန်း");
 
-            string takenAmount = TextBox_TakenAmount.Text; // 12700
+            string takenAmount = TextBox_TakenAmount.Text; // 1270005
 
             var aa = takenAmount.ToCharArray();
 
             var result = "";
             int index = aa.Length;
-            foreach(char a in aa)
+            var bb = "";
+            var cc = "";
+
+            var result1 = ""; 
+            var result2 = "";
+
+            if (aa.Length > 6)
+            {
+                // aa = 1270005
+                bb = takenAmount.Substring(2); // 70005
+                cc = takenAmount.Substring(0, 2); // 12
+
+                result2 = calculate(cc.ToCharArray(), cc.ToCharArray().Length, numbers, units);
+                result1 = calculate(bb.ToCharArray(), bb.ToCharArray().Length, numbers, units);
+
+                Debug.WriteLine(result2);
+                Debug.WriteLine(result1);
+
+                TextBox_TakenAmountMM.Visibility = Visibility.Visible;
+                TextBox_TakenAmountMM.Text = result2 + "သိန်း" + result1;
+            } 
+            else
+            {
+                var result3 = calculate(aa, index, numbers, units);
+
+                TextBox_TakenAmountMM.Visibility = Visibility.Visible;
+                TextBox_TakenAmountMM.Text = result3;
+            }
+        }
+
+        private string calculate(char[] aa, int index, Dictionary<char, string> numbers, Dictionary<int, string> units)
+        {
+            var result = "";
+            foreach (char a in aa)
             {
                 if (!'0'.Equals(a))
                 {
@@ -191,8 +224,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
                 index--;
             }
 
-            TextBox_TakenAmountMM.Visibility = Visibility.Visible;
-            TextBox_TakenAmountMM.Text = result;
+            return result;
         }
     }
 }
