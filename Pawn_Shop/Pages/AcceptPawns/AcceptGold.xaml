@@ -444,7 +444,8 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Header="ယူငွေ" />
+                        Header="ယူငွေ"
+                        TextChanged="TextChanged_TakenAmount" />
 
                     <TextBox
                         Name="TextBox_TakenAmountMM"
@@ -453,7 +454,7 @@
                         VerticalAlignment="Center"
                         Header="ယူငွေကျပ် (စာသားဖြင့်)"
                         IsEnabled="False"
-                        PlaceholderText="သုံးသောင်းနှစ်ထောင်ငါးရာ တိတိ" />
+                        Visibility="Collapsed" />
 
                     <ComboBox
                         Name="ComboBox_InterestRate"

@@ -80,6 +80,12 @@ namespace Pawn_Shop.Pages.AcceptPawns
             _calculateCurrentMarketValue();
         }
 
+        private void TextChanged_TakenAmount(object sender, TextChangedEventArgs e)
+        {
+            TextBox_CurrentValue.Visibility = Visibility.Visible;
+            _generateMMAmount();
+        }
+
         private int _getSelectedNRCRegionId()
         {
             return ComboBox_NRCRegion.SelectedIndex + 1;
@@ -138,6 +144,55 @@ namespace Pawn_Shop.Pages.AcceptPawns
             double currentMarketValue = kyat1 + pae1 + ywae1;
 
             TextBox_CurrentValue.Text = currentMarketValue.ToString();
+        }
+
+        private void _generateMMAmount()
+        {
+            Dictionary<char, string> numbers = new Dictionary<char, string>();
+            numbers.Add('0', "သုည");
+            numbers.Add('1', "တစ်");
+            numbers.Add('2', "နှစ်");
+            numbers.Add('3', "သုံး");
+            numbers.Add('4', "လေး");
+            numbers.Add('5', "ငါး");
+            numbers.Add('6', "ခြောက်");
+            numbers.Add('7', "ခုနစ်");
+            numbers.Add('8', "ရှစ်");
+            numbers.Add('9', "ကိုး");
+
+            Dictionary<int, string> units = new Dictionary<int, string>();
+            units.Add(1, "");
+            units.Add(2, "ဆယ်");
+            units.Add(3, "ရာ");
+            units.Add(4, "ထောင်");
+            units.Add(5, "သောင်း");
+            units.Add(6, "သိန်း");
+            units.Add(7, "သန်း");
+
+            string takenAmount = TextBox_TakenAmount.Text; // 12700
+
+            var aa = takenAmount.ToCharArray();
+
+            var result = "";
+            int index = aa.Length;
+            foreach(char a in aa)
+            {
+                if (!'0'.Equals(a))
+                {
+                    if (index == 1)
+                    {
+                        result += numbers[a];
+                    }
+                    else
+                    {
+                        result += numbers[a] + units[index];
+                    }
+                }
+                index--;
+            }
+
+            TextBox_TakenAmountMM.Visibility = Visibility.Visible;
+            TextBox_TakenAmountMM.Text = result;
         }
     }
 }
