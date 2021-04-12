@@ -18,7 +18,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="25,10,0,20">
+        <Grid Grid.Row="0" Margin="25,10,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -94,22 +94,40 @@
                     Grid.Column="0"
                     Foreground="Gray"
                     Text="Issued date" />
-                <TextBlock
+
+                <Border
                     Grid.Row="1"
                     Grid.Column="0"
-                    Foreground="Gray"
-                    Text="No" />
+                    Margin="0,10,0,0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Gold"
+                    BorderThickness="1"
+                    CornerRadius="15">
+                    <TextBlock Foreground="Gold" Text="Market" />
+                </Border>
 
                 <TextBlock
                     Grid.Row="0"
                     Grid.Column="1"
                     Margin="20,0,0,0"
                     Text="3/4/2021" />
-                <TextBlock
+
+                <Border
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="20,0,0,0"
-                    Text="A_0001_210403" />
+                    Margin="20,10,0,0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Gold"
+                    BorderThickness="1"
+                    CornerRadius="15">
+                    <TextBlock Foreground="Gold" Text="1275000" />
+                </Border>
             </Grid>
         </Grid>
 
@@ -120,7 +138,7 @@
             Margin="0,0,0,0"
             Fill="LightGray" />
 
-        <ScrollViewer Grid.Row="2" Margin="25,30,0,50">
+        <ScrollViewer Grid.Row="2" Margin="25,20,0,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -142,18 +160,19 @@
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="ငှားရမ်းသူ အချက်အလက်များ" />
 
                     <TextBox
+                        Name="TextBox_BorrowerName"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Header="အမည်" />
 
                     <TextBox
+                        Name="TextBox_Address"
                         Height="100"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Header="နေရပ်" />
-
 
                     <Grid Margin="0,20,0,0" HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
@@ -162,6 +181,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                             <ComboBox
+                                Name="ComboBox_NRCRegion"
                                 Grid.Column="0"
                                 Margin="0,0,10,0"
                                 HorizontalAlignment="Stretch"
@@ -177,6 +197,7 @@
                                 VerticalAlignment="Center"
                                 Text="/" />
                             <ComboBox
+                                Name="ComboBox_NRCTownship"
                                 Grid.Column="0"
                                 Margin="0,0,10,0"
                                 HorizontalAlignment="Stretch"
@@ -188,6 +209,7 @@
                                 <x:String>ပသ</x:String>
                             </ComboBox>
                             <ComboBox
+                                Name="ComboBox_NRCType"
                                 Grid.Column="0"
                                 Margin="0,0,10,0"
                                 HorizontalAlignment="Stretch"
@@ -200,6 +222,7 @@
                             </ComboBox>
                         </StackPanel>
                         <TextBox
+                            Name="TextBox_NRCNumber"
                             Grid.Column="1"
                             Margin="0,0,0,0"
                             HorizontalAlignment="Stretch"
@@ -209,6 +232,7 @@
                     </Grid>
 
                     <TextBox
+                        Name="TextBox_Phone"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
@@ -226,11 +250,11 @@
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အပေါင်ပစ္စည်း အချက်အလက်များ" />
 
                     <ComboBox
-                        x:Name="Category_ComboBox"
+                        Name="ComboBox_PawnCategory"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Header="ပစ္စည်းအမျိုးအစား"
+                        Header="အမျိုးအစား"
                         PlaceholderText="ရွှေ"
                         SelectionChanged="Category_SelectionChanged">
                         <x:String>ရွှေ</x:String>
@@ -239,31 +263,193 @@
                         <x:String>အိမ်</x:String>
                     </ComboBox>
 
-                    <TextBox
-                        x:Name="pawnNameAndCount"
-                        Height="100"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Name="ComboBox_PawnType"
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အမျိုးအမည်"
+                            PlaceholderText="ရွှေ"
+                            SelectionChanged="Category_SelectionChanged">
+                            <x:String>ရွှေ</x:String>
+                            <x:String>ဆိုင်ကယ်</x:String>
+                            <x:String>ကား</x:String>
+                            <x:String>အိမ်</x:String>
+                        </ComboBox>
+
+                        <TextBox
+                            Name="TextBox_PawnCount"
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အရေအတွက်"
+                            PlaceholderText="2" />
+                    </Grid>
+
+                    <Grid
                         Margin="0,20,0,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        Header="ပစ္စည်းအမျိုးအမည်နှင့်အရေအတွက်"
-                        PlaceholderText="လက်စွပ် ၂ ကွင်း" />
+                        Padding="10,10,10,15"
+                        BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
+                        BorderThickness="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="ပစ္စည်းချိန်" />
+
+                        <TextBox
+                            Name="TextBox_WholeKyat"
+                            Grid.Column="1"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ကျပ်)" />
+
+                        <TextBox
+                            Name="TextBox_WholePae"
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ပဲ)" />
+
+                        <TextBox
+                            Name="TextBox_WholeYwae"
+                            Grid.Column="3"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ရွေး)" />
+                    </Grid>
+
+                    <Grid
+                        Margin="0,10,0,0"
+                        Padding="10,10,10,15"
+                        BorderBrush="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}"
+                        BorderThickness="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="ကျောက်ချိန်" />
+
+                        <TextBox
+                            Name="TextBox_StoneKyat"
+                            Grid.Column="1"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ကျပ်)" />
+
+                        <TextBox
+                            Name="TextBox_StonePae"
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ပဲ)" />
+
+                        <TextBox
+                            Name="TextBox_StoneYwae"
+                            Grid.Column="3"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ရွေး)" />
+                    </Grid>
+
+                    <Grid
+                        Margin="0,10,0,0"
+                        Padding="10,10,10,15"
+                        Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="ရွှေချိန်" />
+
+                        <TextBox
+                            Name="TextBox_GoldKyat"
+                            Grid.Column="1"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ကျပ်)" />
+
+                        <TextBox
+                            Name="TextBox_GoldPae"
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ပဲ)" />
+
+                        <TextBox
+                            Name="TextBox_GoldYwae"
+                            Grid.Column="3"
+                            Margin="0,0,10,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="(ရွေး)" />
+                    </Grid>
 
                     <TextBox
-                        x:Name="weight"
-                        Margin="0,20,0,0"
+                        Name="TextBox_CurrentValue"
+                        Margin="0,15,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Header="အလေးချိန်"
-                        Visibility="Visible" />
+                        Header="ကာလတန်ဖိုး"
+                        IsEnabled="False"
+                        PlaceholderText="1027500" />
+
+                    <CheckBox
+                        Name="CheckBox_IsLatePawnMoney"
+                        Margin="0,20,0,0"
+                        Content="အပေါင်ထပ်တိုးငွေယူမည်" />
+
+                    <TextBox
+                        Name="TextBox_MaximumLandingAmount"
+                        Margin="0,15,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အများဆုံး ချေးပေးနိုင်သောပမာဏ" />
 
                     <!--  Cycle and Car  -->
                     <TextBox
-                        x:Name="currentNameForCategory"
+                        Name="TextBox_CurrentOwnerName"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Header="အမည်ပေါက်"
-                        Visibility="Collapsed" />
+                        Visibility="Visible" />
 
                     <!--  Cycle and Car  -->
                     <TextBox
@@ -278,7 +464,7 @@
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Header="ယူငွေကျပ်" />
+                        Header="ယူငွေ" />
 
                     <TextBox
                         Margin="0,20,0,0"

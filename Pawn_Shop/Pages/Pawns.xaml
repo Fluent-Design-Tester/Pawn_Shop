@@ -61,15 +61,17 @@
                     </ComboBox>
 
                     <ComboBox
+                        x:Name="ComboBox_Category"
                         Grid.Column="1"
                         Width="120"
                         Margin="0,0,7,0"
                         Header="Category"
                         PlaceholderText="Gold">
-                        <x:String>Gold</x:String>
-                        <x:String>Car</x:String>
-                        <x:String>Cycle</x:String>
-                        <x:String>House</x:String>
+                        <x:String>ရွှေထည်</x:String>
+                        <x:String>ဆိုင်ကယ်</x:String>
+                        <x:String>ကား</x:String>
+                        <x:String>အိမ်</x:String>
+                        <x:String>ခြံ/မြေ</x:String>
                     </ComboBox>
                 </Grid>
                 <!--  End filter group  -->
@@ -81,9 +83,6 @@
                     Width="170"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
-                    BorderBrush="#B3B3B3"
-                    BorderThickness="1"
-                    CornerRadius="0"
                     PlaceholderText="Search . . ."
                     QueryIcon="Find"
                     TextChanged="AutoSuggestBox_TextChanged"

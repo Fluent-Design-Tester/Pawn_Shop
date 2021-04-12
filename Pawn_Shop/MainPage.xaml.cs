@@ -68,6 +68,10 @@ namespace Pawn_Shop
                         sender.Header = "အပေါင်ပစ္စည်းများ";
                         ContentFrame.Navigate(typeof(Pawns));
                         break;
+                    case "accept_pawns":
+                        sender.Header = "အပေါင်ပစ္စည်းများ";
+                        ContentFrame.Navigate(typeof(AcceptPawns));
+                        break;
                     case "return_pawns":
                         sender.Header = "အပေါင်ပစ္စည်းရွေးခြင်း";
                         ContentFrame.Navigate(typeof(ReturnPawns));

@@ -69,6 +69,13 @@
                             Glyph="&#xE74C;" />
                         <TextBlock Margin="13,0,0,0">အပေါင်ပစ္စည်းများ</TextBlock>
                     </StackPanel>
+                    <muxc:NavigationViewItem.MenuItems>
+                        <muxc:NavigationViewItem
+                            Content="ပစ္စည်းလက်ခံ"
+                            Icon="Add"
+                            Tag="accept_pawns"
+                            ToolTipService.ToolTip="Pawns Types" />
+                    </muxc:NavigationViewItem.MenuItems>
                 </muxc:NavigationViewItem>
                 <muxc:NavigationViewItemSeparator />
                 <muxc:NavigationViewItem Width="320" Tag="kill_interest">
