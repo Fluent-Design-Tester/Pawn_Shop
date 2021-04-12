@@ -94,7 +94,7 @@ namespace Pawn_Shop.Pages
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AcceptPawns));
+            this.Frame.Navigate(typeof(Pages.AcceptPawns.IndexPage));
         }
     }
 }

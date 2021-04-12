@@ -25,5 +25,11 @@ namespace Pawn_Shop.Dto
             this.name = name;
             this.description = description;
         }
+
+        public NRCTownship(int nrc_township_id, string name)
+        {
+            this.nrc_township_id = nrc_township_id;
+            this.name = name;
+        }
     }
 }

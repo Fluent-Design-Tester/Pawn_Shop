@@ -131,8 +131,20 @@
     <Compile Include="Models\NRCTownshipModel.cs" />
     <Compile Include="Models\PawnTypeModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
-    <Compile Include="Pages\AcceptPawns.xaml.cs">
-      <DependentUpon>AcceptPawns.xaml</DependentUpon>
+    <Compile Include="Pages\AcceptPawns\AcceptGold.xaml.cs">
+      <DependentUpon>AcceptGold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AcceptPawns\AcceptGround.xaml.cs">
+      <DependentUpon>AcceptGround.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AcceptPawns\AcceptHouse.xaml.cs">
+      <DependentUpon>AcceptHouse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AcceptPawns\AcceptVehicle.xaml.cs">
+      <DependentUpon>AcceptVehicle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AcceptPawns\IndexPage.xaml.cs">
+      <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AppData\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
@@ -182,7 +194,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\AcceptPawns.xaml">
+    <Page Include="Pages\AcceptPawns\AcceptGold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AcceptPawns\AcceptGround.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AcceptPawns\AcceptHouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AcceptPawns\AcceptVehicle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AcceptPawns\IndexPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Pawn_Shop.Utilities;
 using System.Diagnostics;
-using Pawn_Shop.Pages.AppData;
 
 namespace Pawn_Shop
 {
@@ -70,7 +69,7 @@ namespace Pawn_Shop
                         break;
                     case "accept_pawns":
                         sender.Header = "အပေါင်ပစ္စည်းများ";
-                        ContentFrame.Navigate(typeof(AcceptPawns));
+                        ContentFrame.Navigate(typeof(Pages.AcceptPawns.IndexPage));
                         break;
                     case "return_pawns":
                         sender.Header = "အပေါင်ပစ္စည်းရွေးခြင်း";
@@ -82,15 +81,15 @@ namespace Pawn_Shop
                         break;
                     case "app_data":
                         sender.Header = "Setup Data";
-                        ContentFrame.Navigate(typeof(IndexPage));
+                        ContentFrame.Navigate(typeof(Pages.AppData.IndexPage));
                         break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
-                        ContentFrame.Navigate(typeof(PawnCategories));
+                        ContentFrame.Navigate(typeof(Pages.AppData.PawnCategories));
                         break;
                     case "app_data_nrc":
                         sender.Header = "မှတ်ပုံတင်အချက်အလက်များ";
-                        ContentFrame.Navigate(typeof(NRC));
+                        ContentFrame.Navigate(typeof(Pages.AppData.NRC));
                         break;
                 }
             }
