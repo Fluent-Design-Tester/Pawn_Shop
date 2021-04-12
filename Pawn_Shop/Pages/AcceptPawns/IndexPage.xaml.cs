@@ -14,22 +14,22 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void GridTapped_Gold(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.AcceptPawns.AcceptGold));
+            this.Frame.Navigate(typeof(AcceptGold));
         }
 
         private void GridTapped_Vehicle(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.AcceptPawns.AcceptVehicle));
+            this.Frame.Navigate(typeof(AcceptVehicle));
         }
 
         private void GridTapped_House(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.AcceptPawns.AcceptHouse));
+            this.Frame.Navigate(typeof(AcceptHouse));
         }
 
         private void GridTapped_Ground(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Pages.AcceptPawns.AcceptGround));
+            this.Frame.Navigate(typeof(AcceptGround));
         }
     }
 }

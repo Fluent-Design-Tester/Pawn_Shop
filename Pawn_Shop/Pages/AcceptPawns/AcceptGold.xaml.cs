@@ -129,5 +129,10 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
             TextBox_CurrentValue.Text = result.ToString();
         }
+
+        private async void ButtonClick_Continue(object sender, RoutedEventArgs e)
+        {
+            ContentDialogResult contentDialogResult = await ContentDialog_AcceptGold.ShowAsync();
+        }
     }
 }
