@@ -134,7 +134,6 @@
             GridLinesVisibility="All"
             HeadersVisibility="Column"
             IsReadOnly="True"
-            ItemsSource="{x:Bind PawnTypesList}"
             MaxColumnWidth="400"
             SelectionChanged="SelectionChanged_DataGrid"
             SelectionMode="Single">

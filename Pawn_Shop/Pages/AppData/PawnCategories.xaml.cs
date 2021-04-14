@@ -32,7 +32,7 @@ namespace Pawn_Shop.Pages.AppData
             ComboBox_Category.SelectedIndex = 0;
 
             PawnTypeModel pawnType = new PawnTypeModel();
-            PawnTypesList = pawnType.selectAll(1); // loads category 1 - Gold - by default
+            PawnTypesList = pawnType.selectAll(_getSelectedCategoryId()); // loads category 1 - Gold - by default
         }
 
         private void SelectionChanged_CategoryComboBox(object sender, SelectionChangedEventArgs e)
@@ -59,10 +59,14 @@ namespace Pawn_Shop.Pages.AppData
             string searchString = sender.Text.ToLower().Trim();
             var matchedItems = new List<PawnType>();
 
+            PawnTypeModel pawnType = new PawnTypeModel();
+            PawnTypesList = pawnType.selectAll(_getSelectedCategoryId());
+
             PawnTypesList.ForEach(type =>
             {
-                // Searchable Fields: Name
+                // Searchable Fields: Name, Short Name
                 if (type.name.ToLower().Contains(searchString)) matchedItems.Add(type);
+                else if (type.short_name.ToLower().Contains(searchString)) matchedItems.Add(type);
             });
 
             var bindingList = new BindingList<PawnType>(matchedItems);
