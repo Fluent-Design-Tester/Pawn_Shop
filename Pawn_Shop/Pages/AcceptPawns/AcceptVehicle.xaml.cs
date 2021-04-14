@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 /**
- * TASK - how to get tag of combobox item in uwp
+ * TODO - get tag of combobox item in uwp
  */
 
 namespace Pawn_Shop.Pages.AcceptPawns
