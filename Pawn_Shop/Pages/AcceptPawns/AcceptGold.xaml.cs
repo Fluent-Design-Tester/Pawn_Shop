@@ -95,11 +95,23 @@ namespace Pawn_Shop.Pages.AcceptPawns
             if (((ToggleSwitch)sender).IsOn)
             {
                 TextBox_MaximumEligibleAmount.Visibility = Visibility.Visible;
+                TextBox_MaximumEligibleAmount.Text = "";
+                TextBox_MaximumEligibleAmount.Focus(FocusState.Programmatic);
             }
             else
             {
                 TextBox_MaximumEligibleAmount.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void SelectionChanged_ExpiredDurationInMonth(object sender, SelectionChangedEventArgs e)
+        {
+            int expiredDurationInMonth = _getSelectedExpiredDurationInMonth();
+
+            DateTime expiredDate = DateTime.Today.AddMonths(expiredDurationInMonth);
+
+            TextBox_ExpiredDate.Visibility = Visibility.Visible;
+            TextBox_ExpiredDate.Text = expiredDate.ToShortDateString();
         }
 
         private void _loadPawnTypes()
@@ -116,6 +128,11 @@ namespace Pawn_Shop.Pages.AcceptPawns
         private int _getSelectedNRCRegionId()
         {
             return ComboBox_NRCRegion.SelectedIndex + 1;
+        }
+
+        private int _getSelectedExpiredDurationInMonth()
+        {
+            return ComboBox_ExpiredDurationInMonth.SelectedIndex + 2;
         }
 
         private void _calculateCurrentMarketValue()

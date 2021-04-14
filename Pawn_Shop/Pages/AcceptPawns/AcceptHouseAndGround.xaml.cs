@@ -1,19 +1,30 @@
 ﻿using Pawn_Shop.Models;
 using Pawn_Shop.Utilities;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-/**
- * TASK - how to get tag of combobox item in uwp
- */
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Pawn_Shop.Pages.AcceptPawns
 {
-    public sealed partial class AcceptVehicle : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class AcceptHouseAndGround : Page
     {
-        public AcceptVehicle()
+        public AcceptHouseAndGround()
         {
             this.InitializeComponent();
         }
@@ -54,6 +65,17 @@ namespace Pawn_Shop.Pages.AcceptPawns
             {
                 ComboBox_PawnType.Items.Add(new ComboBoxItem { Tag = item.type_id, Content = item.name.ToString() });
             });
+
+            if (ComboBox_PawnCategory.SelectedIndex == 0)
+            {
+                TextBox_HouseNo.Visibility = Visibility.Visible;
+                Grid_PawnWidth.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TextBox_HouseNo.Visibility = Visibility.Collapsed;
+                Grid_PawnWidth.Visibility = Visibility.Visible;
+            }
         }
 
         private void Toggled_IsLatePawnMoney(object sender, RoutedEventArgs e)
@@ -101,7 +123,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private int _getSelectedPawnCategory()
         {
-            return ComboBox_PawnCategory.SelectedIndex + 2; // cycle's id in db is 2 and car's is 3.
+            return ComboBox_PawnCategory.SelectedIndex + 4; // cycle's id in db is 2 and car's is 3.
         }
     }
 }

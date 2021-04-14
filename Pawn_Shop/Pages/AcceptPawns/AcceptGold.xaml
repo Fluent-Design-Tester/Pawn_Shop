@@ -810,12 +810,29 @@
                         <x:String>10</x:String>
                     </ComboBox>
 
-                    <CalendarDatePicker
-                        Name="DatePicker_ExpiredDate"
+                    <ComboBox
+                        Name="ComboBox_ExpiredDurationInMonth"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Header="အပေါင်ဆုံးကာလ" />
+                        Header="အတိုးကာလ"
+                        PlaceholderText="ရွေးပါ"
+                        SelectionChanged="SelectionChanged_ExpiredDurationInMonth">
+                        <x:String>2</x:String>
+                        <x:String>3</x:String>
+                        <x:String>4</x:String>
+                        <x:String>5</x:String>
+                        <x:String>6</x:String>
+                    </ComboBox>
+
+                    <TextBox
+                        Name="TextBox_ExpiredDate"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အပေါင်ဆုံးရက်"
+                        IsEnabled="False"
+                        Visibility="Collapsed" />
 
                     <TextBox
                         Name="TextBox_Remark"

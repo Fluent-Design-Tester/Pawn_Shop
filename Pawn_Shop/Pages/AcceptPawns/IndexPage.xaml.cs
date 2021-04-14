@@ -24,12 +24,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void GridTapped_House(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AcceptHouse));
-        }
-
-        private void GridTapped_Ground(object sender, TappedRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AcceptGround));
+            this.Frame.Navigate(typeof(AcceptHouseAndGround));
         }
     }
 }

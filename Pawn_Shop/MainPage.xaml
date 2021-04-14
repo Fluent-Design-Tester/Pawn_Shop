@@ -32,7 +32,7 @@
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             Header="အပေါင်ပစ္စည်းများ"
             IsBackButtonVisible="Auto"
-            IsBackEnabled="False"
+            IsBackEnabled="True"
             IsSettingsVisible="True"
             IsTitleBarAutoPaddingEnabled="False"
             Loaded="NavigationView_Loaded"

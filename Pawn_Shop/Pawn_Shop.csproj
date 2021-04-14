@@ -134,11 +134,8 @@
     <Compile Include="Pages\AcceptPawns\AcceptGold.xaml.cs">
       <DependentUpon>AcceptGold.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AcceptPawns\AcceptGround.xaml.cs">
-      <DependentUpon>AcceptGround.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AcceptPawns\AcceptHouse.xaml.cs">
-      <DependentUpon>AcceptHouse.xaml</DependentUpon>
+    <Compile Include="Pages\AcceptPawns\AcceptHouseAndGround.xaml.cs">
+      <DependentUpon>AcceptHouseAndGround.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AcceptPawns\AcceptVehicle.xaml.cs">
       <DependentUpon>AcceptVehicle.xaml</DependentUpon>
@@ -200,11 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AcceptPawns\AcceptGround.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\AcceptPawns\AcceptHouse.xaml">
+    <Page Include="Pages\AcceptPawns\AcceptHouseAndGround.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
