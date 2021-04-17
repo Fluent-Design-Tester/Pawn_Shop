@@ -1,7 +1,10 @@
-﻿using Pawn_Shop.Dto;
+﻿using Newtonsoft.Json;
+using Pawn_Shop.Dto;
 using Pawn_Shop.Models;
+using Pawn_Shop.Responses;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -16,17 +19,14 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.Web.Http;
 
 namespace Pawn_Shop.Pages.AppData
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class NRC : Page
     {
         private List<NRCTownship> NRCTownshipsList;
+        private string uri = "http://localhost:8080";
         private readonly (string New, string Update, string Delete) titles = ("မြို့နယ် အသစ်ထည့်ပါ", "မြို့နယ် ပြင်ဆင်ပါ", "မြို့နယ် ဖျက်ပါ");
 
         public NRC()
@@ -35,17 +35,39 @@ namespace Pawn_Shop.Pages.AppData
 
             ComboBox_NRCRegion.SelectedIndex = 0;
 
-            NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-            NRCTownshipsList = nrcTownshipModel.selectAll(1); // loads region 1 by default
+            List<RSNRCTownship> list = new List<RSNRCTownship>();
+            _loadData(list, "1");
         }
+
+        private async void _loadData<T>(List<T> list, string regionId)
+        {
+            HttpClient httpClient = new HttpClient();
+
+            Uri requestUri = new Uri(uri + "/api/nrc-townships?regionId=" + regionId);
+
+            HttpResponseMessage httpResponse = new HttpResponseMessage();
+            string httpResponseBody = "";
+
+            try
+            {
+                //Send the GET request
+                httpResponse = await httpClient.GetAsync(requestUri);
+                httpResponse.EnsureSuccessStatusCode();
+                httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+
+                list = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
+                DataGrid_NRCTownships.ItemsSource = list;
+            }
+            catch (Exception ex)
+            {
+                httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+            }
+        } 
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
         {
-            NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-            List<NRCTownship> items = nrcTownshipModel.selectAll(_getSelectedNRCRegionId());
-
-            var bindingList = new BindingList<NRCTownship>(items);
-            DataGrid_NRCTownships.ItemsSource = bindingList;
+            List<RSNRCTownship> list = new List<RSNRCTownship>();
+            _loadData(list, _getSelectedNRCRegionId());
 
             if (Grid_ManageNRCTownships.Visibility == Visibility.Visible)
             {
@@ -159,7 +181,7 @@ namespace Pawn_Shop.Pages.AppData
             {
                 if (!_isNRCTownshipAlreadyExist(newTownship))
                 {
-                    int nrcRegionId = _getSelectedNRCRegionId();
+                    int nrcRegionId = 1;
 
                     NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
                     bool isAdded = nrcTownshipModel.add(nrcRegionId, newTownship, description);
@@ -200,7 +222,7 @@ namespace Pawn_Shop.Pages.AppData
 
                 if (isUpdated)
                 {
-                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(_getSelectedNRCRegionId()));
+                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(1));
                     DataGrid_NRCTownships.ItemsSource = bindingList;
 
                     TextBox_Name.Text = "";
@@ -227,7 +249,7 @@ namespace Pawn_Shop.Pages.AppData
 
                 if (isDeleted)
                 {
-                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(_getSelectedNRCRegionId()));
+                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(1));
                     DataGrid_NRCTownships.ItemsSource = bindingList;
 
                     Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
@@ -253,19 +275,19 @@ namespace Pawn_Shop.Pages.AppData
         private bool _isNRCTownshipAlreadyExist(string text)
         {
             NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-            List<NRCTownship> items = nrcTownshipModel.selectAll(_getSelectedNRCRegionId());
+            List<NRCTownship> items = nrcTownshipModel.selectAll(1);
 
             return items.FindIndex(item => item.name.ToLower().Equals(text.ToLower())) >= 0 ? true : false;
         }
 
-        private int _getSelectedNRCRegionId()
+        private string _getSelectedNRCRegionId()
         {
-            return ComboBox_NRCRegion.SelectedIndex + 1;
+            return ((ComboBoxItem)ComboBox_NRCRegion.SelectedItem).Tag.ToString();
         }
 
         private string _getSelectedNRCRegionItem()
         {
-            return ComboBox_NRCRegion.SelectedItem.ToString();
+            return ((ComboBoxItem)ComboBox_NRCRegion.SelectedItem).Content.ToString();
         }
     }
 }

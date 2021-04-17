@@ -67,20 +67,20 @@
                 Margin="0,0,10,0"
                 Header="Region"
                 SelectionChanged="SelectionChanged_NRCRegion">
-                <x:String>၁</x:String>
-                <x:String>၂</x:String>
-                <x:String>၃</x:String>
-                <x:String>၄</x:String>
-                <x:String>၅</x:String>
-                <x:String>၆</x:String>
-                <x:String>၇</x:String>
-                <x:String>၈</x:String>
-                <x:String>၉</x:String>
-                <x:String>၁၀</x:String>
-                <x:String>၁၁</x:String>
-                <x:String>၁၂</x:String>
-                <x:String>၁၃</x:String>
-                <x:String>၁၄</x:String>
+                <ComboBoxItem Content="၁" Tag="1" />
+                <ComboBoxItem Content="၂" Tag="2" />
+                <ComboBoxItem Content="၃" Tag="3" />
+                <ComboBoxItem Content="၄" Tag="4" />
+                <ComboBoxItem Content="၅" Tag="5" />
+                <ComboBoxItem Content="၆" Tag="6" />
+                <ComboBoxItem Content="၇" Tag="7" />
+                <ComboBoxItem Content="၈" Tag="8" />
+                <ComboBoxItem Content="၉" Tag="9" />
+                <ComboBoxItem Content="၁၀" Tag="10" />
+                <ComboBoxItem Content="၁၁" Tag="11" />
+                <ComboBoxItem Content="၁၂" Tag="12" />
+                <ComboBoxItem Content="၁၃" Tag="13" />
+                <ComboBoxItem Content="၁၄" Tag="14" />
             </ComboBox>
 
             <AutoSuggestBox
@@ -134,14 +134,13 @@
             GridLinesVisibility="All"
             HeadersVisibility="Column"
             IsReadOnly="True"
-            ItemsSource="{x:Bind NRCTownshipsList}"
             MaxColumnWidth="400"
             SelectionChanged="SelectionChanged_DataGrid"
             SelectionMode="Single">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding display_no}"
+                    Binding="{Binding id}"
                     Header="No" />
                 <controls:DataGridTextColumn
                     Width="Auto"
@@ -153,7 +152,7 @@
                     Header="Description" />
                 <controls:DataGridTextColumn
                     Width="SizeToHeader"
-                    Binding="{Binding nrc_township_id}"
+                    Binding="{Binding id}"
                     Header="Id"
                     Visibility="Collapsed" />
             </controls:DataGrid.Columns>
