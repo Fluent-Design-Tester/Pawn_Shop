@@ -1,39 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Pawn_Shop.Dto
 {
-    class NRCTownship
+    class NRCTownship : INotifyPropertyChanged
     {
-        public int nrc_township_id { get; set; }
-
+        public int id { get; set; }
+        public int displayNo { get; set; }
         public string name { get; set; }
-
         public string description { get; set; }
+        public int nrcRegionId { get; set; }
+        public DateTime createdDate { get; set; }
+        public DateTime updatedDate { get; set; }
 
-        public int nrc_region_id { get; set; }
-
-        public int display_no { get; set; }
-
-        public NRCTownship(int nrc_township_id, string name, string description, int displayNo)
-        {
-            this.nrc_township_id = nrc_township_id;
-            this.display_no = displayNo;
-            this.name = name;
-            this.description = description;
-        }
-
-        public NRCTownship(int nrc_township_id, string name)
-        {
-            this.nrc_township_id = nrc_township_id;
-            this.name = name;
-        }
-
-        public NRCTownship()
-        {
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

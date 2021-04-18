@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Pawn_Shop.Dtos;
+using Pawn_Shop.Dto;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

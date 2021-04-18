@@ -1,23 +1,22 @@
-﻿namespace Pawn_Shop.Dto
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Pawn_Shop.Dto
 {
-    class PawnType
+    class PawnType : INotifyPropertyChanged
     {
-        public int type_id { get; set; }
-
+        public int id { get; set; }
+        public int displayNo { get; set; }
         public string name { get; set; }
+        public string shortName { get; set; }
+        public int categoryId { get; set; }
+        public DateTime createdDate { get; set; }
+        public DateTime updatedDate { get; set; }
 
-        public string short_name { get; set; }
-
-        public int category_id { get; set; }
-
-        public int display_no { get; set; }
-
-        public PawnType(int typeId, string name, string shortName, int displayNo)
-        {
-            this.type_id = typeId;
-            this.display_no = displayNo;
-            this.name = name;
-            this.short_name = shortName;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

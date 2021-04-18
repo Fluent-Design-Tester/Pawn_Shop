@@ -1,7 +1,4 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using Pawn_Shop.Dto;
-using System.Collections.Generic;
-using System.ComponentModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -14,7 +11,7 @@ namespace Pawn_Shop.Pages
     /// </summary>
     public sealed partial class Pawns : Page
     {
-        public List<Student> StudentList;
+        // public List<Student> StudentList;
 
         public Pawns()
         {
@@ -71,7 +68,7 @@ namespace Pawn_Shop.Pages
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            string searchString = sender.Text.ToLower().Trim();
+            /*string searchString = sender.Text.ToLower().Trim();
             var matchedItems = new List<Student>();
 
             // Searchable Fields: Name, NRC, Birthday and Phone
@@ -84,7 +81,7 @@ namespace Pawn_Shop.Pages
             }
 
             var bindingList = new BindingList<Student>(matchedItems);
-            DataGrid_Students.ItemsSource = bindingList;
+            DataGrid_Students.ItemsSource = bindingList;*/
         }
 
         private void ButtonClick_About(object sender, RoutedEventArgs e)

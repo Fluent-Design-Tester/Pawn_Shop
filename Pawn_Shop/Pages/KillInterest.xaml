@@ -274,8 +274,7 @@
                                 Margin="0,20,0,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                AutoGenerateColumns="True"
-                                AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
+                                AutoGenerateColumns="False"
                                 CanUserReorderColumns="False"
                                 CanUserResizeColumns="True"
                                 CanUserSortColumns="True"
@@ -283,7 +282,6 @@
                                 GridLinesVisibility="All"
                                 HeadersVisibility="Column"
                                 IsReadOnly="True"
-                                ItemsSource="{x:Bind MajorList}"
                                 MaxColumnWidth="400"
                                 SelectionMode="Extended" />
                             <!--  End data grid  -->

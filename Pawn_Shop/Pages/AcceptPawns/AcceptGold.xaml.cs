@@ -1,6 +1,4 @@
-﻿using Pawn_Shop.Dto;
-using Pawn_Shop.Models;
-using Pawn_Shop.Utilities;
+﻿using Pawn_Shop.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,7 +39,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox_NRCTownship.IsEnabled = true;
+            /*ComboBox_NRCTownship.IsEnabled = true;
 
             NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
             var list = nrcTownshipModel.selectAll(_getSelectedNRCRegionId());
@@ -50,7 +48,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
             list.ForEach(item =>
             {
                 ComboBox_NRCTownship.Items.Add(new ComboBoxItem { Tag = item.nrc_township_id, Content = item.name.ToString() });
-            });
+            });*/
         }
 
         private void SelectionChanged_NRCTownship(object sender, SelectionChangedEventArgs e)
@@ -116,13 +114,13 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void _loadPawnTypes()
         {
-            PawnTypeModel pawnType = new PawnTypeModel();
+            /*PawnTypeModel pawnType = new PawnTypeModel();
             List<PawnType> types = pawnType.selectAll(1); // loads category 1 - Gold
 
             types.ForEach(item =>
             {
                 ComboBox_PawnType.Items.Add(new ComboBoxItem { Tag = item.category_id, Content = item.name.ToString() });
-            });
+            });*/
         }
 
         private int _getSelectedNRCRegionId()

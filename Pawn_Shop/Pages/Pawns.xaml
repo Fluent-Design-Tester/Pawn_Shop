@@ -133,7 +133,6 @@
                 GridLinesVisibility="None"
                 HeadersVisibility="Column"
                 IsReadOnly="True"
-                ItemsSource="{x:Bind StudentList}"
                 MaxColumnWidth="400"
                 SelectionMode="Extended" />
             <!--  End data grid  -->

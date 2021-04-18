@@ -1,4 +1,4 @@
-﻿using Pawn_Shop.Dtos;
+﻿using Pawn_Shop.Dto;
 using Pawn_Shop.Services.AppData;
 using System;
 using System.Collections.Generic;

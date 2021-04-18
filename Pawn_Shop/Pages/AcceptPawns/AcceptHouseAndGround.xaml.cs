@@ -1,19 +1,7 @@
-﻿using Pawn_Shop.Models;
-using Pawn_Shop.Utilities;
+﻿using Pawn_Shop.Utilities;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,7 +19,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox_NRCTownship.IsEnabled = true;
+           /* ComboBox_NRCTownship.IsEnabled = true;
 
             NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
             var list = nrcTownshipModel.selectAll(_getSelectedNRCRegionId());
@@ -40,7 +28,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
             list.ForEach(item =>
             {
                 ComboBox_NRCTownship.Items.Add(new ComboBoxItem { Tag = item.nrc_township_id, Content = item.name.ToString() });
-            });
+            });*/
         }
 
         private void SelectionChanged_NRCTownship(object sender, SelectionChangedEventArgs e)
@@ -55,7 +43,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
 
         private void SelectionChanged_PawnCategory(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox_PawnType.IsEnabled = true;
+           /* ComboBox_PawnType.IsEnabled = true;
 
             PawnTypeModel pawnTypeModel = new PawnTypeModel();
             var list = pawnTypeModel.selectAll(_getSelectedPawnCategory());
@@ -75,7 +63,7 @@ namespace Pawn_Shop.Pages.AcceptPawns
             {
                 TextBox_HouseNo.Visibility = Visibility.Collapsed;
                 Grid_PawnWidth.Visibility = Visibility.Visible;
-            }
+            }*/
         }
 
         private void Toggled_IsLatePawnMoney(object sender, RoutedEventArgs e)
