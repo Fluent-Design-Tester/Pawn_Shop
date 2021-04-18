@@ -11,7 +11,7 @@ namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class NRC : Page
     {
-        private readonly (string New, string Update, string Delete) titles = ("မြို့နယ် အသစ်ထည့်ပါ", "မြို့နယ် ပြင်ဆင်ပါ", "မြို့နယ် ဖျက်ပါ");
+        private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
         public NRC()
         {
@@ -152,12 +152,12 @@ namespace Pawn_Shop.Pages.AppData
 
         private async void ButtonClick_Save(object sender, RoutedEventArgs e)
         {
-            string newTownship = TextBox_Name.Text;
+            string name = TextBox_Name.Text;
             string description = TextBox_Description.Text;
 
             // Construct the content to Post
             NRCTownship newNrcTownship = new NRCTownship();
-            newNrcTownship.name = newTownship;
+            newNrcTownship.name = name;
             newNrcTownship.description = description;
             newNrcTownship.nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
 

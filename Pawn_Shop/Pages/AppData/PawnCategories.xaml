@@ -140,7 +140,7 @@
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding display_no}"
+                    Binding="{Binding displayNo}"
                     Header="No" />
                 <controls:DataGridTextColumn
                     Width="Auto"
@@ -148,11 +148,11 @@
                     Header="Name" />
                 <controls:DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding short_name}"
+                    Binding="{Binding shortName}"
                     Header="Short Name" />
                 <controls:DataGridTextColumn
                     Width="SizeToHeader"
-                    Binding="{Binding type_id}"
+                    Binding="{Binding id}"
                     Header="Id"
                     Visibility="Collapsed" />
             </controls:DataGrid.Columns>
@@ -368,6 +368,49 @@
             </controls:InAppNotification.ContentTemplate>
         </controls:InAppNotification>
         <!--  End Info Noti  -->
+
+        <!--  Error Noti  -->
+        <controls:InAppNotification
+            x:Name="Noti_Error"
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            AnimationDuration="00:00:00.1000000"
+            HorizontalOffset="0"
+            ShowDismissButton="True"
+            StackMode="Replace"
+            VerticalOffset="100">
+            <controls:InAppNotification.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid
+                            Grid.Column="0"
+                            Width="40"
+                            Height="40"
+                            Padding="10"
+                            Background="Red"
+                            CornerRadius="100">
+                            <SymbolIcon
+                                VerticalAlignment="Center"
+                                Foreground="White"
+                                Symbol="Cancel" />
+                        </Grid>
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock FontFamily="Pyidaungsu" Text="Error" />
+                            <TextBlock
+                                Opacity="0.7"
+                                Style="{ThemeResource BodyTextBlockStyle}"
+                                Text="တစ်ခုခု မှားယွင်းနေပါသည်" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </controls:InAppNotification.ContentTemplate>
+        </controls:InAppNotification>
+        <!--  End Error Noti  -->
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Dtos\PawnType.cs" />
     <Compile Include="Dto\Major.cs" />
     <Compile Include="Dto\NRCTownship.cs" />
     <Compile Include="Dto\PawnType.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dtos\NRCTownship.cs" />
     <Compile Include="Services\AppData\NRCTownshipService.cs" />
+    <Compile Include="Services\AppData\PawnTypeService.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

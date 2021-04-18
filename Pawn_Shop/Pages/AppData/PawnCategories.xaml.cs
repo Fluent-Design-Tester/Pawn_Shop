@@ -1,29 +1,18 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using Pawn_Shop.Dto;
+﻿using Pawn_Shop.Dtos;
 using Pawn_Shop.Models;
+using Pawn_Shop.Services.AppData;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class PawnCategories : Page
     {
-        private List<PawnType> PawnTypesList;
-        private readonly (string New, string Update, string Delete) titles = ("ပစ္စည်းအမျိုးအစား အသစ်ထည့်ပါ", "ပစ္စည်းအမျိုးအစား ပြင်ဆင်ပါ", "ပစ္စည်းအမျိုးအစား ဖျက်ပါ");
+        private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
         public PawnCategories()
         {
@@ -31,43 +20,45 @@ namespace Pawn_Shop.Pages.AppData
 
             ComboBox_Category.SelectedIndex = 0;
 
-            PawnTypeModel pawnType = new PawnTypeModel();
-            PawnTypesList = pawnType.selectAll(_getSelectedCategoryId()); // loads category 1 - Gold - by default
+            _LoadPawnTypeData("1");
+        }
+
+        private async void _LoadPawnTypeData(string categoryId)
+        {
+            ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
+
+            PawnTypeService typeService = new PawnTypeService();
+            DataGrid_PawnTypes.ItemsSource = await typeService.GetByCategoryId(list, categoryId);
         }
 
         private void SelectionChanged_CategoryComboBox(object sender, SelectionChangedEventArgs e)
         {
-            TextBlock_ErrorMessage.Visibility = Visibility.Collapsed;
-
-            PawnTypeModel pawnType = new PawnTypeModel();
-            List<PawnType> items = pawnType.selectAll(_getSelectedCategoryId());
-
-            var bindingList = new BindingList<PawnType>(items);
-            DataGrid_PawnTypes.ItemsSource = bindingList;
-
+            _LoadPawnTypeData(_GetSelectedCategoryId());
+            
             if (Grid_ManagePawnTypes.Visibility == Visibility.Visible)
             {
                 if (TextBlock_Title.Text == titles.New)
-                    TextBox_Category.Text = _getSelectedCategoryItem();
+                    TextBox_Category.Text = _GetSelectedCategoryItem();
                 else
                     Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void TextChanged_AutoSuggestBox(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private async void TextChanged_AutoSuggestBox(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            string searchString = sender.Text.ToLower().Trim();
+           string keyword = sender.Text.ToLower().Trim();
             var matchedItems = new List<PawnType>();
 
-            PawnTypeModel pawnType = new PawnTypeModel();
-            PawnTypesList = pawnType.selectAll(_getSelectedCategoryId());
+            ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
+            PawnTypeService typeService = new PawnTypeService();
+            ObservableCollection<PawnType> types = await typeService.GetByCategoryId(list, _GetSelectedCategoryId());
 
-            PawnTypesList.ForEach(type =>
+            foreach (PawnType type in types)
             {
-                // Searchable Fields: Name, Short Name
-                if (type.name.ToLower().Contains(searchString)) matchedItems.Add(type);
-                else if (type.short_name.ToLower().Contains(searchString)) matchedItems.Add(type);
-            });
+                // Searchable Fields: Name, ShortName
+                if (type.name.ToLower().Contains(keyword)) matchedItems.Add(type);
+                else if (type.shortName.ToLower().Contains(keyword)) matchedItems.Add(type);
+            }
 
             var bindingList = new BindingList<PawnType>(matchedItems);
             DataGrid_PawnTypes.ItemsSource = bindingList;
@@ -78,7 +69,7 @@ namespace Pawn_Shop.Pages.AppData
             Grid_ManagePawnTypes.Visibility = Visibility.Visible;
             TextBlock_ErrorMessage.Visibility = Visibility.Collapsed;
             TextBlock_Title.Text = titles.New;
-            TextBox_Category.Text = _getSelectedCategoryItem();
+            TextBox_Category.Text = _GetSelectedCategoryItem();
             TextBox_Name.IsEnabled = true;
             TextBox_Name.Text = "";
             TextBox_ShortName.IsEnabled = true;
@@ -104,14 +95,14 @@ namespace Pawn_Shop.Pages.AppData
                 Grid_ManagePawnTypes.Visibility = Visibility.Visible;
                 TextBlock_ErrorMessage.Visibility = Visibility.Collapsed;
                 TextBlock_Title.Text = titles.Update;
-                TextBox_Category.Text = _getSelectedCategoryItem();
+                TextBox_Category.Text = _GetSelectedCategoryItem();
                 TextBox_Name.IsEnabled = true;
                 TextBox_ShortName.IsEnabled = true;
 
-                TextBox_No.Text = selectedRow.display_no.ToString();
-                TextBlock_TypeId.Text = selectedRow.type_id.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBlock_TypeId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
-                TextBox_ShortName.Text = selectedRow.short_name;
+                TextBox_ShortName.Text = selectedRow.shortName;
 
                 TextBox_No.Visibility = Visibility.Visible;
                 Button_Update.Visibility = Visibility.Visible;
@@ -136,14 +127,14 @@ namespace Pawn_Shop.Pages.AppData
                 Grid_ManagePawnTypes.Visibility = Visibility.Visible;
                 TextBlock_ErrorMessage.Visibility = Visibility.Collapsed;
                 TextBlock_Title.Text = titles.Delete;
-                TextBox_Category.Text = _getSelectedCategoryItem();
+                TextBox_Category.Text = _GetSelectedCategoryItem();
                 TextBox_Name.IsEnabled = false;
                 TextBox_ShortName.IsEnabled = false;
 
-                TextBlock_TypeId.Text = selectedRow.type_id.ToString();
-                TextBox_No.Text = selectedRow.display_no.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBlock_TypeId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
-                TextBox_ShortName.Text = selectedRow.short_name;
+                TextBox_ShortName.Text = selectedRow.shortName;
 
                 Button_ConfirmDelete.Visibility = Visibility.Visible;
                 TextBox_No.Visibility = Visibility.Visible;
@@ -163,77 +154,66 @@ namespace Pawn_Shop.Pages.AppData
             Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
         }
 
-        private void ButtonClick_Save(object sender, RoutedEventArgs e)
+        private async void ButtonClick_Save(object sender, RoutedEventArgs e)
         {
             string name = TextBox_Name.Text;
             string shortName = TextBox_ShortName.Text;
 
-            if ("".Equals(name) || "".Equals(shortName))
-            {
-                TextBlock_ErrorMessage.Visibility = Visibility.Visible;
-                TextBlock_ErrorMessage.Text = "Name နှင့် Short Name ၂ မျိုးလုံးကို လိုအပ်ပြီး ရှိပြီးသားများနှင့် မတူရပါ.";
-                return;
-            }
+            // Construct the content to Post
+            PawnType newPawnType = new PawnType();
+            newPawnType.name = name;
+            newPawnType.shortName = shortName;
+            newPawnType.categoryId = Convert.ToInt32(_GetSelectedCategoryId());
 
-            // if no errors, ...
-            int categoryId = _getSelectedCategoryId();
-
-            PawnTypeModel pawnType = new PawnTypeModel();
-            bool isAdded = pawnType.add(categoryId, name, shortName);
+            PawnTypeService typeService = new PawnTypeService();
+            bool isAdded = await typeService.Save(newPawnType);
 
             if (isAdded)
             {
-                var bindingList = new BindingList<PawnType>(pawnType.selectAll(categoryId));
-                DataGrid_PawnTypes.ItemsSource = bindingList;
-
-                TextBox_Name.Text = "";
-                TextBox_Name.Description = "";
-                TextBox_ShortName.Text = "";
-                TextBox_ShortName.Description = "";
-                TextBlock_ErrorMessage.Visibility = Visibility.Collapsed;
-
                 Noti_Success.Show(2000);
+
+                // Clear the inputs and prepare for the next input
+                TextBox_Name.Text = "";
+                TextBox_ShortName.Text = "";
+                TextBox_Name.Focus(FocusState.Programmatic);
+
+                _LoadPawnTypeData(_GetSelectedCategoryId());
             }
             else
             {
-                TextBlock_ErrorMessage.Visibility = Visibility.Visible;
-                TextBlock_ErrorMessage.Text = "Name နှင့် Short Name ၂ မျိုးလုံးကို လိုအပ်ပြီး ရှိပြီးသားအချက်အလက်များနှင့် မတူရပါ.";
+                Noti_Error.Show(2000);
             }
         }
 
-        private void ButtonClick_Update(object sender, RoutedEventArgs e)
+        private async void ButtonClick_Update(object sender, RoutedEventArgs e)
         {
             int typeId = Convert.ToInt32(TextBlock_TypeId.Text);
-            string name = TextBox_Name.Text;
-            string shortName = TextBox_ShortName.Text;
+            string updatedName = TextBox_Name.Text;
+            string updatedShortName = TextBox_ShortName.Text;
 
-            if ("".Equals(name) || "".Equals(shortName))
-            {
-                TextBlock_ErrorMessage.Visibility = Visibility.Visible;
-                TextBlock_ErrorMessage.Text = "Name နှင့် Short Name ၂ မျိုးလုံးကို လိုအပ်ပြီး ရှိပြီးသားအချက်အလက်များနှင့် မတူရပါ.";
-                return;
-            }
+            // Construct the data to Update
+            PawnType updatedPawnType = new PawnType();
+            updatedPawnType.id = Convert.ToInt32(typeId);
+            updatedPawnType.name = updatedName;
+            updatedPawnType.shortName = updatedShortName;
 
-            PawnTypeModel pawnType = new PawnTypeModel();
-            bool isUpdated = pawnType.update(typeId, name, shortName);
+            PawnTypeService typeService = new PawnTypeService();
+            bool isUpdated = await typeService.Update(updatedPawnType);
 
             if (isUpdated)
             {
-                var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
-                DataGrid_PawnTypes.ItemsSource = bindingList;
+                Noti_Success.Show(2000);
 
+                // Clear the inputs and close the form
                 TextBox_Name.Text = "";
-                TextBox_Name.Description = "";
                 TextBox_ShortName.Text = "";
-                TextBox_ShortName.Description = "";
                 Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
 
-                Noti_Success.Show(2000);
+                _LoadPawnTypeData(_GetSelectedCategoryId());
             }
             else
             {
-                TextBlock_ErrorMessage.Visibility = Visibility.Visible;
-                TextBlock_ErrorMessage.Text = "Name နှင့် Short Name ၂ မျိုးလုံးကို လိုအပ်ပြီး ရှိပြီးသားအချက်အလက်များနှင့် မတူရပါ.";
+                Noti_Error.Show(2000);
             }
         }
 
@@ -243,19 +223,22 @@ namespace Pawn_Shop.Pages.AppData
 
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+               PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
-                PawnTypeModel pawnType = new PawnTypeModel();
-                bool isDeleted = pawnType.delete(selectedRow.type_id);
+                PawnTypeService typeService = new PawnTypeService();
+                bool isDeleted = await typeService.Delete(selectedRow.id);
 
                 if (isDeleted)
                 {
-                    var bindingList = new BindingList<PawnType>(pawnType.selectAll(_getSelectedCategoryId()));
-                    DataGrid_PawnTypes.ItemsSource = bindingList;
+                    Noti_Success.Show(2000);
+
+                    _LoadPawnTypeData(_GetSelectedCategoryId());
 
                     Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
-
-                    Noti_Success.Show(2000);
+                }
+                else
+                {
+                    Noti_Error.Show(2000);
                 }
             }
         }
@@ -268,19 +251,19 @@ namespace Pawn_Shop.Pages.AppData
                 {
                     PawnType selectedRow = (PawnType)e.AddedItems[0];
                     TextBox_Name.Text = selectedRow.name;
-                    TextBox_ShortName.Text = selectedRow.short_name;
-                    TextBlock_TypeId.Text = selectedRow.type_id.ToString();
-                    TextBox_No.Text = selectedRow.display_no.ToString();
+                    TextBox_ShortName.Text = selectedRow.shortName;
+                    TextBlock_TypeId.Text = selectedRow.id.ToString();
+                    TextBox_No.Text = selectedRow.displayNo.ToString();
                 }
             }
         }
 
-        private int _getSelectedCategoryId()
+        private string _GetSelectedCategoryId()
         {
-            return Convert.ToInt32(((ComboBoxItem)ComboBox_Category.SelectedItem).Tag);
+            return ((ComboBoxItem)ComboBox_Category.SelectedItem).Tag.ToString();
         }
 
-        private string _getSelectedCategoryItem()
+        private string _GetSelectedCategoryItem()
         {
             return ((ComboBoxItem)ComboBox_Category.SelectedItem).Content.ToString();
         }
