@@ -143,7 +143,7 @@
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn
                     Width="Auto"
-                    Binding="{Binding id}"
+                    Binding="{Binding displayNo}"
                     Header="No" />
                 <controls:DataGridTextColumn
                     Width="Auto"

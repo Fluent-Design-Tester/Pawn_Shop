@@ -162,7 +162,8 @@
       <DependentUpon>ReturnPawns.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\RSNRCTownship.cs" />
+    <Compile Include="Dtos\NRCTownship.cs" />
+    <Compile Include="Services\AppData\NRCTownshipService.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

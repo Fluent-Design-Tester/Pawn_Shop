@@ -31,5 +31,9 @@ namespace Pawn_Shop.Dto
             this.nrc_township_id = nrc_township_id;
             this.name = name;
         }
+
+        public NRCTownship()
+        {
+        }
     }
 }

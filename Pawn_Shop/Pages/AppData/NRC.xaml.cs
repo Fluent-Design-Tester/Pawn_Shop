@@ -1,32 +1,16 @@
-﻿using Newtonsoft.Json;
-using Pawn_Shop.Dto;
-using Pawn_Shop.Models;
-using Pawn_Shop.Responses;
+﻿using Pawn_Shop.Dtos;
+using Pawn_Shop.Services.AppData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Web.Http;
 
 namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class NRC : Page
     {
-        private List<NRCTownship> NRCTownshipsList;
-        private string uri = "http://localhost:8080";
         private readonly (string New, string Update, string Delete) titles = ("မြို့နယ် အသစ်ထည့်ပါ", "မြို့နယ် ပြင်ဆင်ပါ", "မြို့နယ် ဖျက်ပါ");
 
         public NRC()
@@ -35,60 +19,43 @@ namespace Pawn_Shop.Pages.AppData
 
             ComboBox_NRCRegion.SelectedIndex = 0;
 
-            List<RSNRCTownship> list = new List<RSNRCTownship>();
-            _loadData(list, "1");
+            _LoadNRCTownshipData("1");
         }
 
-        private async void _loadData<T>(List<T> list, string regionId)
+        private async void _LoadNRCTownshipData(string regionId)
         {
-            HttpClient httpClient = new HttpClient();
-
-            Uri requestUri = new Uri(uri + "/api/nrc-townships?regionId=" + regionId);
-
-            HttpResponseMessage httpResponse = new HttpResponseMessage();
-            string httpResponseBody = "";
-
-            try
-            {
-                //Send the GET request
-                httpResponse = await httpClient.GetAsync(requestUri);
-                httpResponse.EnsureSuccessStatusCode();
-                httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-
-                list = JsonConvert.DeserializeObject<List<T>>(httpResponseBody);
-                DataGrid_NRCTownships.ItemsSource = list;
-            }
-            catch (Exception ex)
-            {
-                httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
-            }
-        } 
+            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
+            
+            NRCTownshipService townshipService = new NRCTownshipService();
+            DataGrid_NRCTownships.ItemsSource = await townshipService.GetByRegionId(list, regionId);
+        }
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
         {
-            List<RSNRCTownship> list = new List<RSNRCTownship>();
-            _loadData(list, _getSelectedNRCRegionId());
+            _LoadNRCTownshipData(_GetSelectedNRCRegionId());
 
             if (Grid_ManageNRCTownships.Visibility == Visibility.Visible)
             {
-                if (TextBlock_Title.Text == titles.New)
-                    TextBox_NRCRegion.Text = _getSelectedNRCRegionItem();
-                else
-                    Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
+                if (TextBlock_Title.Text == titles.New) TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
+                else Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void TextChanged_AutoSuggestBox(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private async void TextChanged_AutoSuggestBox(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             string searchString = sender.Text.ToLower().Trim();
             var matchedItems = new List<NRCTownship>();
 
-            NRCTownshipsList.ForEach(township =>
+            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
+            NRCTownshipService townshipService = new NRCTownshipService();
+            ObservableCollection<NRCTownship> townships = await townshipService.GetByRegionId(list, _GetSelectedNRCRegionId());
+
+            foreach(NRCTownship township in townships)
             {
-                // Searchable Fields: Name
+                // Searchable Fields: Name, Short Name
                 if (township.name.ToLower().Contains(searchString)) matchedItems.Add(township);
                 else if (township.description.ToLower().Contains(searchString)) matchedItems.Add(township);
-            });
+            }
 
             var bindingList = new BindingList<NRCTownship>(matchedItems);
             DataGrid_NRCTownships.ItemsSource = bindingList;
@@ -98,7 +65,7 @@ namespace Pawn_Shop.Pages.AppData
         {
             Grid_ManageNRCTownships.Visibility = Visibility.Visible;
             TextBlock_Title.Text = titles.New;
-            TextBox_NRCRegion.Text = _getSelectedNRCRegionItem();
+            TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
             TextBox_Name.IsEnabled = true;
             TextBox_Description.IsEnabled = true;
             TextBox_Name.Text = "";
@@ -122,12 +89,12 @@ namespace Pawn_Shop.Pages.AppData
             {
                 Grid_ManageNRCTownships.Visibility = Visibility.Visible;
                 TextBlock_Title.Text = titles.Update;
-                TextBox_NRCRegion.Text = _getSelectedNRCRegionItem();
-                TextBox_Name.IsEnabled = false;
+                TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
+                TextBox_Name.IsEnabled = true;
                 TextBox_Description.IsEnabled = true;
 
-                TextBox_No.Text = selectedRow.display_no.ToString();
-                TextBlock_NRCTownshipId.Text = selectedRow.nrc_township_id.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBlock_NRCTownshipId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_Description.Text = selectedRow.description;
 
@@ -139,22 +106,26 @@ namespace Pawn_Shop.Pages.AppData
 
                 TextBox_Name.Description = "";
             }
+            else
+            {
+                Noti_Info.Show(2000);
+            }
         }
 
         private void ButtonClick_Delete(object sender, RoutedEventArgs e)
         {
-            RSNRCTownship selectedRow = (RSNRCTownship) DataGrid_NRCTownships.SelectedItem;
+            NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
 
             if (selectedRow != null)
             {
                 Grid_ManageNRCTownships.Visibility = Visibility.Visible;
                 TextBlock_Title.Text = titles.Delete;
-                TextBox_NRCRegion.Text = _getSelectedNRCRegionItem();
+                TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
                 TextBox_Name.IsEnabled = false;
                 TextBox_Description.IsEnabled = false;
 
                 TextBlock_NRCTownshipId.Text = selectedRow.id.ToString();
-                TextBox_No.Text = selectedRow.id.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_Description.Text = selectedRow.description;
 
@@ -176,68 +147,75 @@ namespace Pawn_Shop.Pages.AppData
             Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
         }
 
-        private void ButtonClick_Save(object sender, RoutedEventArgs e)
+        private async void ButtonClick_Save(object sender, RoutedEventArgs e)
         {
             string newTownship = TextBox_Name.Text;
             string description = TextBox_Description.Text;
 
-            if (!"".Equals(newTownship))
+            // Construct the data to Post
+            NRCTownship newNrcTownship = new NRCTownship();
+            newNrcTownship.name = newTownship;
+            newNrcTownship.description = description;
+            newNrcTownship.nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
+
+            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
+
+            NRCTownshipService townshipService = new NRCTownshipService();
+            
+            // TODO: how to return boolean from async method
+            bool isAdded = await townshipService.Save(newNrcTownship);
+
+            if(isAdded)
             {
-                if (!_isNRCTownshipAlreadyExist(newTownship))
-                {
-                    int nrcRegionId = 1;
+                Noti_Success.Show(2000);
 
-                    NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-                    bool isAdded = nrcTownshipModel.add(nrcRegionId, newTownship, description);
-
-                    if (isAdded)
-                    {
-                        var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(nrcRegionId));
-                        DataGrid_NRCTownships.ItemsSource = bindingList;
-
-                        TextBox_Name.Text = "";
-                        TextBox_Name.Description = "";
-                        TextBox_Description.Text = "";
-                    }
-                }
-                else
-                {
-                    TextBox_Name.Description = "Already exists";
-                    TextBox_Name.Focus(FocusState.Programmatic);
-                    TextBox_Name.SelectAll();
-                }
+                // Clear the inputs and prepare for the next input
+                TextBox_Name.Text = "";
+                TextBox_Description.Text = "";
+                TextBox_Name.Focus(FocusState.Programmatic);
+                
+                _LoadNRCTownshipData(_GetSelectedNRCRegionId());
             }
             else
             {
-                TextBox_Name.Description = "Required";
+                Noti_Error.Show(2000);
             }
+
         }
 
-        private void ButtonClick_Update(object sender, RoutedEventArgs e)
+        private async void ButtonClick_Update(object sender, RoutedEventArgs e)
         {
             int townshipId = Convert.ToInt32(TextBlock_NRCTownshipId.Text);
-            string updatedTownship = TextBox_Name.Text;
+            string updatedName = TextBox_Name.Text;
             string updatedDescription = TextBox_Description.Text;
 
-            if (!"".Equals(updatedTownship))
+            // Construct the data to Update
+            NRCTownship updatedNrcTownship = new NRCTownship();
+            updatedNrcTownship.name = updatedName;
+            updatedNrcTownship.description = updatedDescription;
+            updatedNrcTownship.id = Convert.ToInt32(townshipId);
+
+            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
+
+            NRCTownshipService townshipService = new NRCTownshipService();
+            bool isUpdated = await townshipService.Update(updatedNrcTownship);
+
+            if (isUpdated)
             {
-                NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-                bool isUpdated = nrcTownshipModel.update(townshipId, updatedTownship, updatedDescription);
+                Noti_Success.Show(2000);
 
-                if (isUpdated)
-                {
-                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(1));
-                    DataGrid_NRCTownships.ItemsSource = bindingList;
+                // Clear the inputs and close the form
+                TextBox_Name.Text = "";
+                TextBox_Name.Description = "";
+                Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
 
-                    TextBox_Name.Text = "";
-                    TextBox_Name.Description = "";
-                    Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
-                }
+                _LoadNRCTownshipData(_GetSelectedNRCRegionId());
             }
             else
             {
-                TextBox_Name.Description = "Required";
+                Noti_Error.Show(2000);
             }
+            
         }
 
         private async void ButtonClick_ConfirmDelete(object sender, RoutedEventArgs e)
@@ -246,29 +224,24 @@ namespace Pawn_Shop.Pages.AppData
             
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                RSNRCTownship selectedRow = (RSNRCTownship)DataGrid_NRCTownships.SelectedItem;
+                NRCTownship selectedRow = (NRCTownship)DataGrid_NRCTownships.SelectedItem;
 
-                HttpClient httpClient = new HttpClient();
-                Uri requestUri = new Uri(uri + "/api/nrc-townships/" + selectedRow.id);
+                NRCTownshipService townshipService = new NRCTownshipService();
+                bool isDeleted = await townshipService.Delete(selectedRow.id);
 
-                HttpResponseMessage httpResponse = new HttpResponseMessage();
-
-                try
+                if (isDeleted)
                 {
-                    httpResponse = await httpClient.DeleteAsync(requestUri);
-                    httpResponse.EnsureSuccessStatusCode();
                     Noti_Success.Show(2000);
+
+                    _LoadNRCTownshipData(_GetSelectedNRCRegionId());
+
+                    Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
                 }
-                catch (Exception ex)
+                else
                 {
-                    // `logging`: httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
                     Noti_Error.Show(2000);
                 }
 
-                List<RSNRCTownship> list = new List<RSNRCTownship>();
-                _loadData(list, _getSelectedNRCRegionId());
-
-                Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -281,26 +254,18 @@ namespace Pawn_Shop.Pages.AppData
                     NRCTownship selectedRow = (NRCTownship)e.AddedItems[0];
                     TextBox_Name.Text = selectedRow.name;
                     TextBox_Description.Text = selectedRow.description;
-                    TextBlock_NRCTownshipId.Text = selectedRow.nrc_township_id.ToString();
-                    TextBox_No.Text = selectedRow.display_no.ToString();
+                    TextBlock_NRCTownshipId.Text = selectedRow.id.ToString();
+                    TextBox_No.Text = selectedRow.displayNo.ToString();
                 }
             }
         }
 
-        private bool _isNRCTownshipAlreadyExist(string text)
-        {
-            NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-            List<NRCTownship> items = nrcTownshipModel.selectAll(1);
-
-            return items.FindIndex(item => item.name.ToLower().Equals(text.ToLower())) >= 0 ? true : false;
-        }
-
-        private string _getSelectedNRCRegionId()
+        private string _GetSelectedNRCRegionId()
         {
             return ((ComboBoxItem)ComboBox_NRCRegion.SelectedItem).Tag.ToString();
         }
 
-        private string _getSelectedNRCRegionItem()
+        private string _GetSelectedNRCRegionItem()
         {
             return ((ComboBoxItem)ComboBox_NRCRegion.SelectedItem).Content.ToString();
         }
