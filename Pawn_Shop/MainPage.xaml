@@ -164,12 +164,22 @@
                     Tag="app_data">
                     <muxc:NavigationViewItem.MenuItems>
                         <muxc:NavigationViewItem
-                            Content="အမျိုးအမည်များ"
+                            Content="Referal Persons"
+                            Icon="People"
+                            Tag="app_data_referal_persons"
+                            ToolTipService.ToolTip="Referal Persons" />
+                        <muxc:NavigationViewItem
+                            Content="Agents"
+                            Icon="OtherUser"
+                            Tag="app_data_agents"
+                            ToolTipService.ToolTip="Agents" />
+                        <muxc:NavigationViewItem
+                            Content="ပစ္စည်းအမျိုးအမည်များ"
                             Icon="ViewAll"
                             Tag="app_data_pawns_types"
                             ToolTipService.ToolTip="Pawns Types" />
                         <muxc:NavigationViewItem
-                            Content="အမျိုးအစားများ"
+                            Content="ပစ္စည်းအမျိုးအစားများ"
                             Icon="Tag"
                             Tag="app_data_pawns_sub_types"
                             ToolTipService.ToolTip="Pawns Sub Types" />
@@ -177,7 +187,7 @@
                             Content="မှတ်ပုံတင်အချက်အလက်များ"
                             Icon="DockBottom"
                             Tag="app_data_nrc"
-                            ToolTipService.ToolTip="NRC" />
+                            ToolTipService.ToolTip="NRC Data" />
                     </muxc:NavigationViewItem.MenuItems>
                 </muxc:NavigationViewItem>
                 <muxc:NavigationViewItem
