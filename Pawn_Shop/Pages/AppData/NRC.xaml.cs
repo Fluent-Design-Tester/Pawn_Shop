@@ -143,7 +143,7 @@ namespace Pawn_Shop.Pages.AppData
 
         private void ButtonClick_Delete(object sender, RoutedEventArgs e)
         {
-            NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
+            RSNRCTownship selectedRow = (RSNRCTownship) DataGrid_NRCTownships.SelectedItem;
 
             if (selectedRow != null)
             {
@@ -153,8 +153,8 @@ namespace Pawn_Shop.Pages.AppData
                 TextBox_Name.IsEnabled = false;
                 TextBox_Description.IsEnabled = false;
 
-                TextBlock_NRCTownshipId.Text = selectedRow.nrc_township_id.ToString();
-                TextBox_No.Text = selectedRow.display_no.ToString();
+                TextBlock_NRCTownshipId.Text = selectedRow.id.ToString();
+                TextBox_No.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_Description.Text = selectedRow.description;
 
@@ -164,6 +164,10 @@ namespace Pawn_Shop.Pages.AppData
                 Button_Update.Visibility = Visibility.Collapsed;
 
                 TextBox_Name.Description = "";
+            }
+            else
+            {
+                Noti_Info.Show(2000);
             }
         }
 
@@ -242,18 +246,29 @@ namespace Pawn_Shop.Pages.AppData
             
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                NRCTownship selectedRow = (NRCTownship)DataGrid_NRCTownships.SelectedItem;
+                RSNRCTownship selectedRow = (RSNRCTownship)DataGrid_NRCTownships.SelectedItem;
 
-                NRCTownshipModel nrcTownshipModel = new NRCTownshipModel();
-                bool isDeleted = nrcTownshipModel.delete(selectedRow.nrc_township_id);
+                HttpClient httpClient = new HttpClient();
+                Uri requestUri = new Uri(uri + "/api/nrc-townships/" + selectedRow.id);
 
-                if (isDeleted)
+                HttpResponseMessage httpResponse = new HttpResponseMessage();
+
+                try
                 {
-                    var bindingList = new BindingList<NRCTownship>(nrcTownshipModel.selectAll(1));
-                    DataGrid_NRCTownships.ItemsSource = bindingList;
-
-                    Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
+                    httpResponse = await httpClient.DeleteAsync(requestUri);
+                    httpResponse.EnsureSuccessStatusCode();
+                    Noti_Success.Show(2000);
                 }
+                catch (Exception ex)
+                {
+                    // `logging`: httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                    Noti_Error.Show(2000);
+                }
+
+                List<RSNRCTownship> list = new List<RSNRCTownship>();
+                _loadData(list, _getSelectedNRCRegionId());
+
+                Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
             }
         }
 

@@ -37,7 +37,7 @@
 
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                <RichTextBlock SelectionHighlightColor="Green">
+                <RichTextBlock>
                     <Paragraph
                         CharacterSpacing="10"
                         FontFamily="Pyidaungsu"
