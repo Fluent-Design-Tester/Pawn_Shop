@@ -121,6 +121,7 @@
         </Grid>
         <!--  End filter, search and command bar  -->
 
+
         <!--  Data Grid  -->
         <controls:DataGrid
             Name="DataGrid_NRCTownships"

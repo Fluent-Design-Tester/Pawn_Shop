@@ -36,14 +36,16 @@ namespace Pawn_Shop.Pages.AppData
 
             if (Grid_ManageNRCTownships.Visibility == Visibility.Visible)
             {
-                if (TextBlock_Title.Text == titles.New) TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
-                else Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
+                if (TextBlock_Title.Text == titles.New) 
+                    TextBox_NRCRegion.Text = _GetSelectedNRCRegionItem();
+                else 
+                    Grid_ManageNRCTownships.Visibility = Visibility.Collapsed;
             }
         }
 
         private async void TextChanged_AutoSuggestBox(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            string searchString = sender.Text.ToLower().Trim();
+            string keyword = sender.Text.ToLower().Trim();
             var matchedItems = new List<NRCTownship>();
 
             ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
@@ -52,9 +54,9 @@ namespace Pawn_Shop.Pages.AppData
 
             foreach(NRCTownship township in townships)
             {
-                // Searchable Fields: Name, Short Name
-                if (township.name.ToLower().Contains(searchString)) matchedItems.Add(township);
-                else if (township.description.ToLower().Contains(searchString)) matchedItems.Add(township);
+                // Searchable Fields: Name, Description
+                if (township.name.ToLower().Contains(keyword)) matchedItems.Add(township);
+                else if (township.description.ToLower().Contains(keyword)) matchedItems.Add(township);
             }
 
             var bindingList = new BindingList<NRCTownship>(matchedItems);
@@ -78,6 +80,7 @@ namespace Pawn_Shop.Pages.AppData
             TextBox_No.Visibility = Visibility.Collapsed;
 
             TextBox_Name.Description = "";
+            TextBox_Description.Description = "";
             TextBox_Name.Focus(FocusState.Programmatic);
         }
 
@@ -152,17 +155,13 @@ namespace Pawn_Shop.Pages.AppData
             string newTownship = TextBox_Name.Text;
             string description = TextBox_Description.Text;
 
-            // Construct the data to Post
+            // Construct the content to Post
             NRCTownship newNrcTownship = new NRCTownship();
             newNrcTownship.name = newTownship;
             newNrcTownship.description = description;
             newNrcTownship.nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
 
-            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
-
             NRCTownshipService townshipService = new NRCTownshipService();
-            
-            // TODO: how to return boolean from async method
             bool isAdded = await townshipService.Save(newNrcTownship);
 
             if(isAdded)
@@ -180,7 +179,6 @@ namespace Pawn_Shop.Pages.AppData
             {
                 Noti_Error.Show(2000);
             }
-
         }
 
         private async void ButtonClick_Update(object sender, RoutedEventArgs e)
@@ -191,11 +189,9 @@ namespace Pawn_Shop.Pages.AppData
 
             // Construct the data to Update
             NRCTownship updatedNrcTownship = new NRCTownship();
+            updatedNrcTownship.id = Convert.ToInt32(townshipId);
             updatedNrcTownship.name = updatedName;
             updatedNrcTownship.description = updatedDescription;
-            updatedNrcTownship.id = Convert.ToInt32(townshipId);
-
-            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
 
             NRCTownshipService townshipService = new NRCTownshipService();
             bool isUpdated = await townshipService.Update(updatedNrcTownship);
@@ -224,7 +220,7 @@ namespace Pawn_Shop.Pages.AppData
             
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                NRCTownship selectedRow = (NRCTownship)DataGrid_NRCTownships.SelectedItem;
+                NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
 
                 NRCTownshipService townshipService = new NRCTownshipService();
                 bool isDeleted = await townshipService.Delete(selectedRow.id);
@@ -241,7 +237,6 @@ namespace Pawn_Shop.Pages.AppData
                 {
                     Noti_Error.Show(2000);
                 }
-
             }
         }
 
