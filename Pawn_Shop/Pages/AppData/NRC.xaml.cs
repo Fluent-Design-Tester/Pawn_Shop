@@ -11,6 +11,8 @@ namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class NRC : Page
     {
+        private string uri = "/api/nrc-townships";
+
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
         public NRC()
@@ -26,7 +28,7 @@ namespace Pawn_Shop.Pages.AppData
         {
             ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
             
-            NRCTownshipService townshipService = new NRCTownshipService();
+            NRCTownshipService townshipService = new NRCTownshipService(uri);
             DataGrid_NRCTownships.ItemsSource = await townshipService.GetByRegionId(list, regionId);
         }
 
@@ -49,7 +51,7 @@ namespace Pawn_Shop.Pages.AppData
             var matchedItems = new List<NRCTownship>();
 
             ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
-            NRCTownshipService townshipService = new NRCTownshipService();
+            NRCTownshipService townshipService = new NRCTownshipService(uri);
             ObservableCollection<NRCTownship> townships = await townshipService.GetByRegionId(list, _GetSelectedNRCRegionId());
 
             foreach(NRCTownship township in townships)
@@ -161,7 +163,7 @@ namespace Pawn_Shop.Pages.AppData
             newNrcTownship.description = description;
             newNrcTownship.nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
 
-            NRCTownshipService townshipService = new NRCTownshipService();
+            NRCTownshipService townshipService = new NRCTownshipService(uri);
             bool isAdded = await townshipService.Save(newNrcTownship);
 
             if(isAdded)
@@ -193,7 +195,7 @@ namespace Pawn_Shop.Pages.AppData
             updatedNrcTownship.name = updatedName;
             updatedNrcTownship.description = updatedDescription;
 
-            NRCTownshipService townshipService = new NRCTownshipService();
+            NRCTownshipService townshipService = new NRCTownshipService(uri);
             bool isUpdated = await townshipService.Update(updatedNrcTownship);
 
             if (isUpdated)
@@ -222,7 +224,7 @@ namespace Pawn_Shop.Pages.AppData
             {
                 NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
 
-                NRCTownshipService townshipService = new NRCTownshipService();
+                NRCTownshipService townshipService = new NRCTownshipService(uri);
                 bool isDeleted = await townshipService.Delete(selectedRow.id);
 
                 if (isDeleted)

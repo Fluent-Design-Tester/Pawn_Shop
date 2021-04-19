@@ -157,6 +157,7 @@
     <Compile Include="Dto\NRCTownship.cs" />
     <Compile Include="Services\AppData\NRCTownshipService.cs" />
     <Compile Include="Services\AppData\PawnTypeService.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
