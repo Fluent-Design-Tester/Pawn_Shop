@@ -1,11 +1,6 @@
-﻿using Newtonsoft.Json;
-using Pawn_Shop.Dto;
-using System;
+﻿using Pawn_Shop.Dto;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Windows.Storage.Streams;
-using Windows.Web.Http;
 
 namespace Pawn_Shop.Services.AppData
 {

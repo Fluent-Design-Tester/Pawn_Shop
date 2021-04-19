@@ -84,8 +84,6 @@ namespace Pawn_Shop.Services
             HttpClient httpClient = new HttpClient();
             Uri requestUri = new Uri(baseUri + "/" + id);
 
-            Debug.WriteLine(requestUri);
-
             HttpResponseMessage httpResponse = new HttpResponseMessage();
 
             try

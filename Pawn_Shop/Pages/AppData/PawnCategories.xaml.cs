@@ -11,6 +11,8 @@ namespace Pawn_Shop.Pages.AppData
 {
     public sealed partial class PawnCategories : Page
     {
+        private string uri = "/api/types";
+
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
         public PawnCategories()
@@ -26,7 +28,7 @@ namespace Pawn_Shop.Pages.AppData
         {
             ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
 
-            PawnTypeService typeService = new PawnTypeService();
+            PawnTypeService typeService = new PawnTypeService(uri);
             DataGrid_PawnTypes.ItemsSource = await typeService.GetByCategoryId(list, categoryId);
         }
 
@@ -49,7 +51,7 @@ namespace Pawn_Shop.Pages.AppData
             var matchedItems = new List<PawnType>();
 
             ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
-            PawnTypeService typeService = new PawnTypeService();
+            PawnTypeService typeService = new PawnTypeService(uri);
             ObservableCollection<PawnType> types = await typeService.GetByCategoryId(list, _GetSelectedCategoryId());
 
             foreach (PawnType type in types)
@@ -164,7 +166,7 @@ namespace Pawn_Shop.Pages.AppData
             newPawnType.shortName = shortName;
             newPawnType.categoryId = Convert.ToInt32(_GetSelectedCategoryId());
 
-            PawnTypeService typeService = new PawnTypeService();
+            PawnTypeService typeService = new PawnTypeService(uri);
             bool isAdded = await typeService.Save(newPawnType);
 
             if (isAdded)
@@ -196,7 +198,7 @@ namespace Pawn_Shop.Pages.AppData
             updatedPawnType.name = updatedName;
             updatedPawnType.shortName = updatedShortName;
 
-            PawnTypeService typeService = new PawnTypeService();
+            PawnTypeService typeService = new PawnTypeService(uri);
             bool isUpdated = await typeService.Update(updatedPawnType);
 
             if (isUpdated)
@@ -224,7 +226,7 @@ namespace Pawn_Shop.Pages.AppData
             {
                PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
-                PawnTypeService typeService = new PawnTypeService();
+                PawnTypeService typeService = new PawnTypeService(uri);
                 bool isDeleted = await typeService.Delete(selectedRow.id);
 
                 if (isDeleted)
