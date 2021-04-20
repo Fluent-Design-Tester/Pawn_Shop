@@ -1,20 +1,9 @@
 ﻿using Pawn_Shop.Pages;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Pawn_Shop.Utilities;
 using System.Diagnostics;
+using Pawn_Shop.Pages.UpdatePrices;
 
 namespace Pawn_Shop
 {
@@ -83,6 +72,14 @@ namespace Pawn_Shop
                         sender.Header = "Setup Data";
                         ContentFrame.Navigate(typeof(Pages.AppData.IndexPage));
                         break;
+                    case "update_gold_price":
+                        sender.Header = "ရွှေဈေးနှုန်း";
+                        ContentFrame.Navigate(typeof(UpdateGoldPrice));
+                        break;
+                    case "update_shop_price":
+                        sender.Header = "ဆိုင်ဈေးနှုန်း ပြင်ဆင်သတ်မှတ်ရန်";
+                        ContentFrame.Navigate(typeof(UpdateShopPrice));
+                        break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
                         ContentFrame.Navigate(typeof(Pages.AppData.PawnCategories));
@@ -90,6 +87,8 @@ namespace Pawn_Shop
                     case "app_data_nrc":
                         sender.Header = "မှတ်ပုံတင်အချက်အလက်များ";
                         ContentFrame.Navigate(typeof(Pages.AppData.NRC));
+                        break;
+                    default:
                         break;
                 }
             }

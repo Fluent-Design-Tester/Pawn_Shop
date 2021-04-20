@@ -1,0 +1,901 @@
+﻿<Page
+    x:Class="Pawn_Shop.Pages.UpdatePrices.UpdateShopPrice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ContentDialog
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            x:Name="ContentDialog_AcceptGold"
+            Title="Please check your work!"
+            Width="Auto"
+            Height="Auto"
+            CloseButtonText="Cancel"
+            DefaultButton="Primary"
+            PrimaryButtonText="Save"
+            SecondaryButtonText="Save and Print">
+
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="0"
+                        Padding="10,20,10,30"
+                        HorizontalAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="ငှားရမ်းသူ အချက်အလက်များ" />
+
+                        <TextBlock
+                            Name="TextBlock_BorrowerName"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="ဒေါ်မြမြသန်း" />
+
+                        <TextBlock
+                            Name="TextBlock_Address"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text="ကျောင်းတိုက်ကြီးလမ်း၊ အမှတ်၄ရပ်ကွက်၊ မြန်အောင်မြို့"
+                            TextWrapping="WrapWholeWords" />
+
+                        <TextBlock
+                            Name="TextBlock_NRC"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text="၁၄/ဟသတ(နိုင်) ၁၁၁၁၁၂" />
+
+                        <TextBlock
+                            Name="TextBlock_Phone"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            Text="၀၉၁၂၃၀၈၈၇၄၈" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="10,20,0,0"
+                        HorizontalAlignment="Stretch">
+                        <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အပေါင်ပစ္စည်း အချက်အလက်များ" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="ပစ္စည်းအမျိုးအစား" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,20,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="ရွှေထည်" />
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အမျိုးအမည်" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="ဆွဲကြိုး" />
+
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အရေအတွက်" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၁" />
+
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="ပစ္စည်းချိန်" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၁ကျပ် ၃ပဲ ၅ရွေး" />
+
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="ကျောက်ချိန်" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၃ပဲ ၅ရွေး" />
+
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Margin="0,10,0,30"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="ရွှေချိန်" />
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Margin="10,10,0,30"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၁ကျပ် ၃ပဲ ၅ရွေး" />
+
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အများဆုံးပေးနိုင်သောငွေ" />
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="1000000" />
+
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="ယူငွေ" />
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="800000" />
+
+                            <TextBlock
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အတိုးနှုန်း" />
+                            <TextBlock
+                                Grid.Row="8"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၂ ကျပ်တိုး" />
+
+
+                            <TextBlock
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အတိုး" />
+                            <TextBlock
+                                Grid.Row="9"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="20000 ကျပ်" />
+
+                            <TextBlock
+                                Grid.Row="10"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="အတိုးကာလ" />
+                            <TextBlock
+                                Grid.Row="10"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="၃ လ" />
+
+                            <TextBlock
+                                Grid.Row="11"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="သက်တမ်းကုန်ဆုံးရက်" />
+                            <TextBlock
+                                Grid.Row="11"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="12/4/2021" />
+
+                            <TextBlock
+                                Grid.Row="12"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                FontSize="11"
+                                FontStyle="Italic"
+                                Foreground="Gray"
+                                Text="မှတ်ချက်" />
+                            <TextBlock
+                                Grid.Row="12"
+                                Grid.Column="1"
+                                Margin="10,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Text="မှတ်ချင်တာ မှတ်ထားဖို့ပါ."
+                                TextWrapping="WrapWholeWords" />
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
+        </ContentDialog>
+
+        <Grid Grid.Row="0" Margin="25,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                x:Name="Header_Column_1"
+                Grid.Row="0"
+                Grid.Column="0"
+                Width="Auto"
+                Orientation="Horizontal">
+
+                <Border
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    Background="DeepPink"
+                    CornerRadius="10">
+                    <TextBlock
+                        CharacterSpacing="30"
+                        Foreground="White"
+                        Text="1790" />
+                </Border>
+                <Border
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    Background="Orange"
+                    CornerRadius="10">
+                    <TextBlock
+                        CharacterSpacing="30"
+                        Foreground="White"
+                        Text="1440000" />
+                </Border>
+                <Border
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    Background="Green"
+                    CornerRadius="10">
+                    <TextBlock
+                        CharacterSpacing="30"
+                        Foreground="White"
+                        Text="1450" />
+                </Border>
+                <Border
+                    Padding="5"
+                    Background="WhiteSmoke"
+                    CornerRadius="10">
+                    <TextBlock Foreground="Black" Text="Last Updated: Today 12:04 AM" />
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Rectangle
+            Grid.Row="1"
+            Width="Auto"
+            Height="0.1"
+            Margin="0,0,0,0"
+            Fill="LightGray" />
+
+        <ScrollViewer Grid.Row="2" Margin="25,20,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+
+                <StackPanel
+                    Name="Personal_Information"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,100,0">
+
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="HTD ဈေး" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အထွေထွေစရိတ်" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="$"
+                            IsEnabled="False" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A"
+                            IsEnabled="False" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B"
+                            IsEnabled="False" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C"
+                            IsEnabled="False" />
+                    </Grid>
+
+                    <Rectangle
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="0.1"
+                        Margin="0,20,0,0"
+                        Fill="LightGray" />
+
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        Style="{StaticResource BaseTextBlockStyle}"
+                        Text="အမှန်ရောင်းဈေး" />
+
+                    <TextBox
+                        Name="TextBox_BorrowerName"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="$" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C" />
+                    </Grid>
+
+                    <Rectangle
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="0.1"
+                        Margin="0,20,0,0"
+                        Fill="LightGray" />
+
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        Style="{StaticResource BaseTextBlockStyle}"
+                        Text="ဝယ်ဈေး" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="% or Amt"
+                            PlaceholderText="ရွေးပါ">
+                            <ComboBoxItem Content="%" />
+                            <ComboBoxItem Content="Amount" />
+                        </ComboBox>
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="Value" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C" />
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel
+                    Name="Pawn_Information"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,100,0">
+
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အပေါင်ဈေး" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="% or Amt"
+                            PlaceholderText="ရွေးပါ">
+                            <ComboBoxItem Content="%" />
+                            <ComboBoxItem Content="Amount" />
+                        </ComboBox>
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="Value" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C" />
+                    </Grid>
+
+                    <Rectangle
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="0.1"
+                        Margin="0,20,0,0"
+                        Fill="LightGray" />
+
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        Style="{StaticResource BaseTextBlockStyle}"
+                        Text="ဒုံးဝယ်ဈေး (အပျက်)" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="% or Amt"
+                            PlaceholderText="ရွေးပါ">
+                            <ComboBoxItem Content="%" />
+                            <ComboBoxItem Content="Amount" />
+                        </ComboBox>
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="Value" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C" />
+                    </Grid>
+
+
+                    <Rectangle
+                        Grid.Row="1"
+                        Width="Auto"
+                        Height="0.1"
+                        Margin="0,20,0,0"
+                        Fill="LightGray" />
+
+                    <TextBlock
+                        Margin="0,20,0,0"
+                        Style="{StaticResource BaseTextBlockStyle}"
+                        Text="ဒုံးရောင်းဈေး (အပျက်)" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="% or Amt"
+                            PlaceholderText="ရွေးပါ">
+                            <ComboBoxItem Content="%" />
+                            <ComboBoxItem Content="Amount" />
+                        </ComboBox>
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="Value" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="A" />
+
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="B" />
+
+                        <TextBox
+                            Grid.Column="2"
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="C" />
+                    </Grid>
+
+
+                    <StackPanel
+                        Margin="0,20,-10,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="0,0,10,0"
+                            Click="ButtonClick_Continue"
+                            Style="{StaticResource AccentButtonStyle}">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,5,0" VerticalAlignment="Center">Continue</TextBlock>
+                                <FontIcon
+                                    VerticalAlignment="Center"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="17"
+                                    Glyph="&#xEA62;" />
+                            </StackPanel>
+                        </Button>
+                        <Button
+                            Margin="0,0,10,0"
+                            Click="Cancel_Click"
+                            Style="{StaticResource ButtonRevealStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon
+                                    VerticalAlignment="Center"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="17"
+                                    Glyph="&#xE711;" />
+                                <TextBlock Margin="5,0,0,0">Clear</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel
+                    x:Name="Third_Column"
+                    Grid.Row="0"
+                    Grid.Column="2">
+                    <!--<TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အခြားအချက်အလက်များ" /> -->
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <!--  Triggered when the window width >=1366 effective pixels.  -->
+                <VisualState x:Name="VisualState_Extra_Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1366" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Third_Column.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Triggered when the window width >=1010 effective pixels.  -->
+                <VisualState x:Name="VisualState_Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1010" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters />
+                </VisualState>
+
+                <!--  Triggered when the window width >=800 effective pixels.  -->
+                <VisualState x:Name="VisualState_Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Pawn_Information.Margin" Value="0, 0, 100, 0" />
+                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
+                        <Setter Target="Third_Column.Background" Value="Red" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Triggered when the window width >=490 effective pixels.  -->
+                <VisualState x:Name="VisualState_Small">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="490" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <!--  Repositioning  -->
+                        <Setter Target="Personal_Information.(Grid.Row)" Value="0" />
+                        <Setter Target="Personal_Information.(Grid.Column)" Value="0" />
+                        <Setter Target="Personal_Information.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Pawn_Information.(Grid.Row)" Value="1" />
+                        <Setter Target="Pawn_Information.(Grid.Column)" Value="0" />
+                        <Setter Target="Pawn_Information.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Pawn_Information.Margin" Value="0, 50, 100, 0" />
+
+                        <!--  Header  -->
+                        <Setter Target="Header_Column_1.(Grid.Row)" Value="0" />
+                        <Setter Target="Header_Column_1.(Grid.Column)" Value="0" />
+                        <Setter Target="Header_Column_1.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Header_Column_2.(Grid.Row)" Value="1" />
+                        <Setter Target="Header_Column_2.(Grid.Column)" Value="0" />
+                        <Setter Target="Header_Column_2.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Header_Column_2.Margin" Value="0,10, 0,0" />
+
+                        <!--  Hide third column  -->
+                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

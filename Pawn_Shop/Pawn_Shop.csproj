@@ -153,6 +153,12 @@
     <Compile Include="Pages\ReturnPawns.xaml.cs">
       <DependentUpon>ReturnPawns.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UpdatePrices\UpdateGoldPrice.xaml.cs">
+      <DependentUpon>UpdateGoldPrice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdatePrices\UpdateShopPrice.xaml.cs">
+      <DependentUpon>UpdateShopPrice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dto\NRCTownship.cs" />
     <Compile Include="Services\AppData\NRCTownshipService.cs" />
@@ -226,6 +232,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ReturnPawns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UpdatePrices\UpdateGoldPrice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UpdatePrices\UpdateShopPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

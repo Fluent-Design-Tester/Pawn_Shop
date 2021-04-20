@@ -152,6 +152,43 @@
                     </StackPanel>
                 </muxc:NavigationViewItem>
                 <muxc:NavigationViewItemSeparator />
+                <muxc:NavigationViewItem Width="320" Tag="update_gold_price">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE9A9;" />
+                        <TextBlock Margin="13,0,0,0">ရွှေဈေးနှုန်း</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Width="320" Tag="">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xEE56;" />
+                        <TextBlock Margin="13,0,0,0">ဆိုင်ရောင်းဈေး</TextBlock>
+                    </StackPanel>
+                    <muxc:NavigationViewItem.MenuItems>
+                        <muxc:NavigationViewItem
+                            Content="Update လုပ်ရန်"
+                            Icon="Rotate"
+                            Tag="update_shop_price"
+                            ToolTipService.ToolTip="Update လုပ်ရန်" />
+                        <muxc:NavigationViewItem
+                            Content="History"
+                            Icon="AlignLeft"
+                            Tag=""
+                            ToolTipService.ToolTip="History" />
+                    </muxc:NavigationViewItem.MenuItems>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItemSeparator />
                 <muxc:NavigationViewItem
                     Width="320"
                     Content="Trash"
