@@ -398,6 +398,19 @@
                     CornerRadius="10">
                     <TextBlock Foreground="Black" Text="Last Updated: Today 12:04 AM" />
                 </Border>
+                <Border
+                    Margin="10,0,10,0"
+                    Padding="5"
+                    Background="WhiteSmoke"
+                    CornerRadius="10"
+                    ToolTipService.ToolTip="Refresh">
+                    <FontIcon
+                        VerticalAlignment="Center"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="17"
+                        Glyph="&#xE72C;" />
+                </Border>
+
             </StackPanel>
         </Grid>
 
@@ -787,10 +800,7 @@
                         Margin="0,20,-10,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                        <Button
-                            Margin="0,0,10,0"
-                            Click="ButtonClick_Continue"
-                            Style="{StaticResource AccentButtonStyle}">
+                        <Button Margin="0,0,10,0" Style="{StaticResource AccentButtonStyle}">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                                 <TextBlock Margin="0,0,5,0" VerticalAlignment="Center">Continue</TextBlock>
                                 <FontIcon
@@ -800,10 +810,7 @@
                                     Glyph="&#xEA62;" />
                             </StackPanel>
                         </Button>
-                        <Button
-                            Margin="0,0,10,0"
-                            Click="Cancel_Click"
-                            Style="{StaticResource ButtonRevealStyle}">
+                        <Button Margin="0,0,10,0" Style="{StaticResource ButtonRevealStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon
                                     VerticalAlignment="Center"
