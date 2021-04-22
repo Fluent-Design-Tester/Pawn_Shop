@@ -52,6 +52,10 @@ namespace Pawn_Shop
 
                 switch (item.Tag.ToString())
                 {
+                    case "gold_calculator":
+                        sender.Header = "Gold Calculator";
+                        ContentFrame.Navigate(typeof(CalculateGold));
+                        break;
                     case "accept_pawn":
                         sender.Header = "အပေါင်ပစ္စည်းများ";
                         ContentFrame.Navigate(typeof(Pawns));

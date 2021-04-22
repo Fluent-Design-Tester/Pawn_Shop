@@ -144,6 +144,9 @@
     <Compile Include="Pages\AppData\PawnCategories.xaml.cs">
       <DependentUpon>PawnCategories.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CalculateGold.xaml.cs">
+      <DependentUpon>CalculateGold.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\KillInterest.xaml.cs">
       <DependentUpon>KillInterest.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AppData\PawnCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CalculateGold.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

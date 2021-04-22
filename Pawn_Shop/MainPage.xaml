@@ -58,6 +58,18 @@
             </muxc:NavigationView.Resources>-->
 
             <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Width="320" Tag="gold_calculator">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="-5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="17"
+                            FontWeight="Thin"
+                            Glyph="&#xE94C;" />
+                        <TextBlock Margin="13,0,0,0">Gold Calculator</TextBlock>
+                    </StackPanel>
+                </muxc:NavigationViewItem>
                 <muxc:NavigationViewItem Width="320" Tag="accept_pawn">
                     <StackPanel Orientation="Horizontal">
                         <FontIcon
