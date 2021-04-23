@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Dto\GoldPrice.cs" />
     <Compile Include="Dto\PawnType.cs" />
+    <Compile Include="Dto\ReferalPerson.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +146,9 @@
     <Compile Include="Pages\AppData\PawnCategories.xaml.cs">
       <DependentUpon>PawnCategories.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AppData\ReferalPersons.xaml.cs">
+      <DependentUpon>ReferalPersons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CalculateGold.xaml.cs">
       <DependentUpon>CalculateGold.xaml</DependentUpon>
     </Compile>
@@ -167,6 +171,7 @@
     <Compile Include="Dto\NRCTownship.cs" />
     <Compile Include="Services\AppData\NRCTownshipService.cs" />
     <Compile Include="Services\AppData\PawnTypeService.cs" />
+    <Compile Include="Services\AppData\ReferalPersonService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\UpdatePrices\GoldPriceService.cs" />
     <Compile Include="Settings.xaml.cs">
@@ -225,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AppData\PawnCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AppData\ReferalPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

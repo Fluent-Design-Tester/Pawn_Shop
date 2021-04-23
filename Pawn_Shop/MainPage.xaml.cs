@@ -84,6 +84,10 @@ namespace Pawn_Shop
                         sender.Header = "ဆိုင်ဈေးနှုန်း ပြင်ဆင်သတ်မှတ်ရန်";
                         ContentFrame.Navigate(typeof(UpdateShopPrice));
                         break;
+                    case "app_data_referal_persons":
+                        sender.Header = "Referal Persons";
+                        ContentFrame.Navigate(typeof(Pages.AppData.ReferalPersons));
+                        break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
                         ContentFrame.Navigate(typeof(Pages.AppData.PawnCategories));

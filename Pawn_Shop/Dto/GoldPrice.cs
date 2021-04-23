@@ -14,5 +14,6 @@ namespace Pawn_Shop.Dto
         public decimal worldGoldPrice { get; set; }
         public decimal dollarPrice { get; set; }
         public decimal differenceGoldPrice { get; set; }
+        public string updatedDate { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Pawn_Shop.Services.AppData
 
         public async Task<ObservableCollection<T>> GetByCategoryId<T>(ObservableCollection<T> list, string categoryId)
         {
-            return await GetById<T>(list, "?categoryId=", categoryId);
+            return await GetAll<T>(list, $"?categoryId={categoryId}");
         }
 
         public async Task<bool> Save(PawnType newPawnType)

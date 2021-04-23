@@ -86,9 +86,14 @@ namespace Pawn_Shop.Pages.UpdatePrices
         {
         }
 
-        private void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            var fromDate = Convert.ToDateTime(DatePicker_FromDate.Date.ToString()).ToString("dd-MM-yyyy");
+            var toDate = Convert.ToDateTime(DatePicker_ToDate.Date.ToString()).ToString("dd-MM-yyyy");
 
+            var list = new ObservableCollection<GoldPrice>();
+            var goldPriceService = new GoldPriceService(uri);
+            DataGrid_GoldPrices.ItemsSource = await goldPriceService.FilterByDateRange(list, fromDate, toDate);
         }
 
         private void TextBox_WorldGP_TextChanged(object sender, TextChangedEventArgs e)

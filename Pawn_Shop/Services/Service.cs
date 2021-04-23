@@ -18,10 +18,10 @@ namespace Pawn_Shop.Services
             this.baseUri += uri;
         }
 
-        public async Task<ObservableCollection<T>> GetById<T>(ObservableCollection<T> list, string param, string id)
+        public async Task<ObservableCollection<T>> GetAll<T>(ObservableCollection<T> list, string path = "")
         {
             HttpClient httpClient = new HttpClient();
-            Uri requestUri = new Uri(baseUri + param + id);
+            Uri requestUri = new Uri(baseUri + path);
 
             HttpResponseMessage httpResponse = new HttpResponseMessage();
 

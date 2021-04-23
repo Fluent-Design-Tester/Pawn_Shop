@@ -13,7 +13,7 @@ namespace Pawn_Shop.Services.AppData
 
         public async Task<ObservableCollection<T>> GetByRegionId<T>(ObservableCollection<T> list, string regionId)
         {
-            return await GetById<T>(list, "?regionId=", regionId);
+            return await GetAll<T>(list, $"?regionId={regionId}");
         }
 
         public async Task<bool> Save(NRCTownship newNrcTownship)
