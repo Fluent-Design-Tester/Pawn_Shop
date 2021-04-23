@@ -1,7 +1,9 @@
 ﻿using Pawn_Shop.Dto;
 using Pawn_Shop.Services.AppData;
+using Pawn_Shop.Services.UpdatePrices;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -13,7 +15,7 @@ namespace Pawn_Shop.Pages.UpdatePrices
     /// </summary>
     public sealed partial class UpdateGoldPrice : Page
     {
-        private string uri = "/api/types";
+        private string uri = "/api/gold_prices";
 
         public UpdateGoldPrice()
         {
@@ -21,15 +23,15 @@ namespace Pawn_Shop.Pages.UpdatePrices
 
             ComboBox_Filter.SelectedIndex = 0;
 
-            _LoadPawnTypeData("1");
+            // _LoadPawnTypeData("1");
         }
 
         private async void _LoadPawnTypeData(string categoryId)
         {
-            ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
+           /* ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
 
             PawnTypeService typeService = new PawnTypeService(uri);
-            DataGrid_GoldPrices.ItemsSource = await typeService.GetByCategoryId(list, categoryId);
+            DataGrid_GoldPrices.ItemsSource = await typeService.GetByCategoryId(list, categoryId);*/
         }
 
         private void SelectionChanged_DataGrid(object sender, SelectionChangedEventArgs e)
@@ -37,9 +39,32 @@ namespace Pawn_Shop.Pages.UpdatePrices
 
         }
 
-        private void ButtonClick_Save(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ButtonClick_Save(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            decimal ygnGoldPrice = decimal.Parse(TextBox_YangonGP.Text);
+            decimal worldGoldPrice = decimal.Parse(TextBox_WorldGP.Text);
+            decimal dollarPrice = decimal.Parse(TextBox_DollarPrice.Text);
+            decimal differenceGoldPrice = decimal.Parse(TextBox_DollarPrice.Text);
 
+            var newGoldPrice = new GoldPrice
+            {
+                ygnGoldPrice = ygnGoldPrice,
+                worldGoldPrice = worldGoldPrice,
+                dollarPrice = dollarPrice,
+                differenceGoldPrice = differenceGoldPrice
+            };
+
+            var goldPriceService = new GoldPriceService(uri);
+            bool isAdded = await goldPriceService.Save(newGoldPrice);
+
+            if (isAdded)
+            {
+                Noti_Success.Show(2000);
+            }
+            else
+            {
+                Noti_Error.Show(2000);
+            }
         }
 
         private void ButtonClick_Update(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -59,7 +84,6 @@ namespace Pawn_Shop.Pages.UpdatePrices
 
         private void SelectionChanged_Filter(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)

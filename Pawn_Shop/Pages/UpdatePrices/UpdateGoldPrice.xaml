@@ -231,7 +231,7 @@
                         Grid.Column="0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Top"
-                        Header="$"
+                        Header="$$"
                         TextChanged="TextBox_DollarPrice_TextChanged">
                         <TextBox.HeaderTemplate>
                             <DataTemplate>

@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dto\GoldPrice.cs" />
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -167,6 +168,7 @@
     <Compile Include="Services\AppData\NRCTownshipService.cs" />
     <Compile Include="Services\AppData\PawnTypeService.cs" />
     <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\UpdatePrices\GoldPriceService.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
