@@ -11,7 +11,7 @@ namespace Pawn_Shop.Services
 {
     class Service
     {
-        private string baseUri = "http://localhost:8080";
+        private readonly string baseUri = "http://localhost:8080";
 
         public Service(string uri)
         {
@@ -20,6 +20,8 @@ namespace Pawn_Shop.Services
 
         public async Task<ObservableCollection<T>> GetAll<T>(ObservableCollection<T> list, string path = "")
         {
+            Debug.WriteLine(path);
+
             HttpClient httpClient = new HttpClient();
             Uri requestUri = new Uri(baseUri + path);
 

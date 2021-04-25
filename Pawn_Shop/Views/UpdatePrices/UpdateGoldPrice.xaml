@@ -112,66 +112,87 @@
                 </Button>
             </StackPanel>
 
-            <TextBlock
+            <StackPanel
                 Grid.Row="0"
                 Grid.Column="2"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                CharacterSpacing="50"
-                Text="Today: 21/4/2021 Tue" />
+                VerticalAlignment="Bottom">
+                <TextBlock
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    CharacterSpacing="50"
+                    Text="Today: " />
+                <TextBlock
+                    x:Name="TextBlock_Today"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    CharacterSpacing="50" />
+            </StackPanel>
+
         </Grid>
         <!--  End filter and range  -->
 
-        <!--  Data Grid  -->
-        <controls:DataGrid
-            Name="DataGrid_GoldPrices"
+        <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Margin="25,10,30,30"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            AreRowGroupHeadersFrozen="True"
-            AutoGenerateColumns="False"
-            CanUserReorderColumns="False"
-            CanUserResizeColumns="True"
-            CanUserSortColumns="True"
-            GridLinesVisibility="All"
-            HeadersVisibility="Column"
-            IsReadOnly="True"
-            MaxColumnWidth="400"
-            SelectionChanged="SelectionChanged_DataGrid"
-            SelectionMode="Single">
-            <controls:DataGrid.Columns>
+            Margin="25,10,30,30">
 
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding ygnGoldPrice}"
-                    Foreground="DeepPink"
-                    Header="YGP" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding worldGoldPrice}"
-                    Header="WGP" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding dollarPrice}"
-                    Header="US$" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding differenceGoldPrice}"
-                    Header="Diff" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding updatedDate}"
-                    Header="Updated At" />
-                <controls:DataGridTextColumn
-                    Width="SizeToHeader"
-                    Binding="{Binding id}"
-                    Header="Id"
-                    Visibility="Collapsed" />
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-        <!--  End data grid  -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Rows: " />
+                <TextBlock x:Name="TextBlock_TotalRows" Margin="4,0,0,0" />
+            </StackPanel>
+
+            <!--  Data Grid  -->
+            <controls:DataGrid
+                Name="DataGrid_GoldPrices"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                AreRowGroupHeadersFrozen="True"
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+                GridLinesVisibility="All"
+                HeadersVisibility="Column"
+                IsReadOnly="True"
+                MaxColumnWidth="400"
+                SelectionChanged="SelectionChanged_DataGrid"
+                SelectionMode="Single">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding displayNo}"
+                        Header="No" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding ygnGoldPrice}"
+                        Foreground="DeepPink"
+                        Header="YGP" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding worldGoldPrice}"
+                        Header="WGP" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding usDollars}"
+                        Header="US$" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding differenceGoldPrice}"
+                        Header="Diff" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding updatedDate}"
+                        Header="Updated At" />
+                    <controls:DataGridTextColumn
+                        Width="SizeToHeader"
+                        Binding="{Binding id}"
+                        Header="Id"
+                        Visibility="Collapsed" />
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+            <!--  End data grid  -->
+        </StackPanel>
 
         <!--  Manage pawn types  -->
         <Grid

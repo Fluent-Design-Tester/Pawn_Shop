@@ -1,4 +1,5 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.IServices.UpdatePrices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,15 +9,20 @@ using System.Threading.Tasks;
 
 namespace Pawn_Shop.Services.UpdatePrices
 {
-    class GoldPriceService : Service
+    class GoldPriceService : Service, IGoldPriceService
     {
         public GoldPriceService(string uri) : base(uri)
         {
         }
 
-        public async Task<ObservableCollection<T>> FilterByDateRange<T>(ObservableCollection<T> list, string fromDate, string toDate)
+        public async Task<ObservableCollection<T>> GetByDate<T>(ObservableCollection<T> list, string date)
         {
-            return await GetAll<T>(list, $"?from={fromDate}&to={toDate}");
+            return await GetAll<T>(list, $"?date={date}");
+        }
+
+        public async Task<ObservableCollection<T>> GetByDateRange<T>(ObservableCollection<T> list, string fromDate, string toDate)
+        {
+            return await GetAll<T>(list, $"between?from={fromDate}&to={toDate}");
         }
 
         public async Task<bool> Save(GoldPrice newGoldPrice)
