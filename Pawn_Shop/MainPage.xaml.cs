@@ -1,9 +1,9 @@
-﻿using Pawn_Shop.Pages;
+﻿using Pawn_Shop.Views;
 using Windows.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Pawn_Shop.Utilities;
 using System.Diagnostics;
-using Pawn_Shop.Pages.UpdatePrices;
+using Pawn_Shop.Views.UpdatePrices;
 
 namespace Pawn_Shop
 {
@@ -62,7 +62,7 @@ namespace Pawn_Shop
                         break;
                     case "accept_pawns":
                         sender.Header = "အပေါင်ပစ္စည်းများ";
-                        ContentFrame.Navigate(typeof(Pages.AcceptPawns.IndexPage));
+                        ContentFrame.Navigate(typeof(Views.AcceptPawns.IndexPage));
                         break;
                     case "return_pawns":
                         sender.Header = "အပေါင်ပစ္စည်းရွေးခြင်း";
@@ -74,7 +74,7 @@ namespace Pawn_Shop
                         break;
                     case "app_data":
                         sender.Header = "Setup Data";
-                        ContentFrame.Navigate(typeof(Pages.AppData.IndexPage));
+                        ContentFrame.Navigate(typeof(Views.AppData.IndexPage));
                         break;
                     case "update_gold_price":
                         sender.Header = "ရွှေဈေးနှုန်း";
@@ -86,15 +86,15 @@ namespace Pawn_Shop
                         break;
                     case "app_data_referal_persons":
                         sender.Header = "Referal Persons";
-                        ContentFrame.Navigate(typeof(Pages.AppData.ReferalPersons));
+                        ContentFrame.Navigate(typeof(Views.AppData.ReferalPersons));
                         break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
-                        ContentFrame.Navigate(typeof(Pages.AppData.PawnCategories));
+                        ContentFrame.Navigate(typeof(Views.AppData.PawnCategories));
                         break;
                     case "app_data_nrc":
                         sender.Header = "မှတ်ပုံတင်အချက်အလက်များ";
-                        ContentFrame.Navigate(typeof(Pages.AppData.NRC));
+                        ContentFrame.Navigate(typeof(Views.AppData.NRC));
                         break;
                     default:
                         break;

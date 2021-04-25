@@ -1,0 +1,518 @@
+﻿<Page
+    x:Class="Pawn_Shop.Views.AcceptPawns.AcceptHouseAndGround"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Pawn_Shop.Pages.AcceptPawns"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="25,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid
+                x:Name="Header_Column_1"
+                Grid.Row="0"
+                Grid.Column="0"
+                Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Foreground="Gray"
+                    Text="Divided shop" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Foreground="Gray"
+                    Text="Address" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Foreground="Gray"
+                    Text="Phone number" />
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    Text="ဆိုင်ခွဲ - ၁" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    Text="ဇေရာသီရိလမ်း၊ လှည်းတန်း၊ ကမာရွတ်မြို့နယ်၊ ရန်ကုန်မြို့။" />
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    Text="၀၉၇၆၇၆၈၂၅၂၆" />
+            </Grid>
+            <Grid
+                x:Name="Header_Column_2"
+                Grid.Row="0"
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Foreground="Gray"
+                    Text="Issued date" />
+
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="20,0,0,0"
+                    Text="3/4/2021" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Foreground="Gray"
+                    Text="အပေါင်ပစ္စည်း" />
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="3,3,0,0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderBrush="Gold"
+                    BorderThickness="1"
+                    CornerRadius="15">
+                    <TextBlock Text="အိမ်/ခြံ/မြေ" />
+                </Border>
+
+            </Grid>
+        </Grid>
+
+        <Rectangle
+            Grid.Row="1"
+            Width="Auto"
+            Height="0.1"
+            Margin="0,0,0,0"
+            Fill="LightGray" />
+
+        <ScrollViewer Grid.Row="2" Margin="25,20,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+
+                <StackPanel
+                    Name="Personal_Information"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,100,0">
+
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="ငှားရမ်းသူ အချက်အလက်များ" />
+
+                    <TextBox
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အမည်" />
+
+                    <TextBox
+                        Height="100"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="နေရပ်" />
+
+                    <Grid Margin="0,20,0,0" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <ComboBox
+                                Name="ComboBox_NRCRegion"
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                Header="Region"
+                                PlaceholderText="ရွေး"
+                                SelectionChanged="SelectionChanged_NRCRegion">
+                                <x:String>၁</x:String>
+                                <x:String>၂</x:String>
+                                <x:String>၃</x:String>
+                                <x:String>၄</x:String>
+                                <x:String>၅</x:String>
+                                <x:String>၆</x:String>
+                                <x:String>၇</x:String>
+                                <x:String>၈</x:String>
+                                <x:String>၉</x:String>
+                                <x:String>၁၀</x:String>
+                                <x:String>၁၁</x:String>
+                                <x:String>၁၂</x:String>
+                                <x:String>၁၃</x:String>
+                                <x:String>၁၄</x:String>
+                            </ComboBox>
+                            <TextBlock
+                                Margin="0,20,10,0"
+                                VerticalAlignment="Center"
+                                Text="/" />
+                            <ComboBox
+                                Name="ComboBox_NRCTownship"
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                Header="Township"
+                                IsEnabled="False"
+                                PlaceholderText="ရွေး"
+                                SelectionChanged="SelectionChanged_NRCTownship" />
+                            <ComboBox
+                                Name="ComboBox_NRCType"
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Stretch"
+                                Header="Type"
+                                IsEnabled="False"
+                                PlaceholderText="ရွေး"
+                                SelectionChanged="SelectionChanged_NRCType">
+                                <x:String>နိုင်</x:String>
+                                <x:String>အိုင်</x:String>
+                                <x:String>ထိုင်</x:String>
+                                <x:String>တိုင်</x:String>
+                            </ComboBox>
+                        </StackPanel>
+                        <TextBox
+                            Name="TextBox_NRCNumber"
+                            Grid.Column="1"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="Number"
+                            IsEnabled="False"
+                            PlaceholderText="နံပါတ်" />
+                    </Grid>
+
+                    <TextBox
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="ဖုန်းနံပါတ်"
+                        PlaceholderText="09" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Name="Pawn_Information"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,100,0">
+
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အပေါင်ပစ္စည်း အချက်အလက်များ" />
+
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Name="ComboBox_PawnCategory"
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အမျိုးအစား"
+                            PlaceholderText="ရွေးပါ"
+                            SelectionChanged="SelectionChanged_PawnCategory">
+                            <ComboBoxItem Content="အိမ်" Tag="2" />
+                            <ComboBoxItem Content="ခြံ/မြေ" Tag="3" />
+                        </ComboBox>
+
+                        <ComboBox
+                            Name="ComboBox_PawnType"
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အမျိုးအမည်"
+                            IsEnabled="False"
+                            PlaceholderText="ရွေးပါ" />
+                    </Grid>
+
+
+                    <TextBox
+                        Name="TextBox_HouseNo"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အိမ်နံပါတ်"
+                        Visibility="Collapsed" />
+
+                    <Grid Name="Grid_PawnWidth" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            Name="ComboBox_PawnAreaUnit"
+                            Grid.Column="0"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="ယူနစ်"
+                            PlaceholderText="ရွေးပါ">
+                            <ComboBoxItem Content="စတုရန်းပေ" />
+                            <ComboBoxItem Content="ဧက" />
+                        </ComboBox>
+                        <TextBox
+                            Grid.Column="1"
+                            Margin="10,20,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Header="အကျယ်" />
+                    </Grid>
+
+                    <TextBox
+                        Height="100"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="နေရာ" />
+
+                    <ToggleSwitch
+                        Name="ToggleSwitch_IsLatePawnMoney"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        CacheMode="BitmapCache"
+                        Header="အပေါင်ထပ်တိုးငွေ"
+                        IsOn="False"
+                        OffContent="မယူပါ"
+                        OnContent="ယူမည်"
+                        Toggled="Toggled_IsLatePawnMoney" />
+
+                    <TextBox
+                        Name="TextBox_MaximumEligibleAmount"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အများဆုံး ချေးပေးနိုင်သောပမာဏ"
+                        Visibility="Collapsed" />
+
+                    <TextBox
+                        Name="TextBox_TakenAmount"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="ယူငွေ"
+                        TextChanged="TextChanged_TakenAmount" />
+
+                    <TextBox
+                        Name="TextBox_TakenAmountMM"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="ယူငွေကျပ် (စာသားဖြင့်)"
+                        IsEnabled="False"
+                        Visibility="Collapsed" />
+
+                    <ComboBox
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အတိုးနှုန်း"
+                        PlaceholderText="ရွေးပါ">
+                        <x:String>2</x:String>
+                        <x:String>3</x:String>
+                        <x:String>4</x:String>
+                        <x:String>5</x:String>
+                        <x:String>6</x:String>
+                        <x:String>7</x:String>
+                        <x:String>8</x:String>
+                        <x:String>9</x:String>
+                        <x:String>10</x:String>
+                    </ComboBox>
+
+                    <ComboBox
+                        Name="ComboBox_ExpiredDurationInMonth"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အတိုးကာလ"
+                        PlaceholderText="ရွေးပါ"
+                        SelectionChanged="SelectionChanged_ExpiredDurationInMonth">
+                        <x:String>2</x:String>
+                        <x:String>3</x:String>
+                        <x:String>4</x:String>
+                        <x:String>5</x:String>
+                        <x:String>6</x:String>
+                    </ComboBox>
+
+                    <TextBox
+                        Name="TextBox_ExpiredDate"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="အပေါင်ဆုံးရက်"
+                        IsEnabled="False"
+                        Visibility="Collapsed" />
+
+                    <TextBox
+                        Height="100"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Header="မှတ်ချက်"
+                        PlaceholderText="မှတ်ချက်ရေးရန်" />
+
+                    <StackPanel
+                        Margin="0,30,-10,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                        <Button Margin="0,0,10,0" Style="{StaticResource AccentButtonStyle}">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,5,0" VerticalAlignment="Center">Continue</TextBlock>
+                                <FontIcon
+                                    VerticalAlignment="Center"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="17"
+                                    Glyph="&#xEA62;" />
+                            </StackPanel>
+                        </Button>
+                        <Button Margin="0,0,10,0" Style="{StaticResource ButtonRevealStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon
+                                    VerticalAlignment="Center"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="17"
+                                    Glyph="&#xE711;" />
+                                <TextBlock Margin="5,0,0,0">Cancel</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel
+                    x:Name="Third_Column"
+                    Grid.Row="0"
+                    Grid.Column="2">
+                    <!--<TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="အခြားအချက်အလက်များ" /> -->
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <!--  Triggered when the window width >=1366 effective pixels.  -->
+                <VisualState x:Name="VisualState_Extra_Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1366" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Third_Column.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Triggered when the window width >=1010 effective pixels.  -->
+                <VisualState x:Name="VisualState_Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1010" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters />
+                </VisualState>
+
+                <!--  Triggered when the window width >=800 effective pixels.  -->
+                <VisualState x:Name="VisualState_Medium">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Pawn_Information.Margin" Value="0, 0, 100, 0" />
+                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
+                        <Setter Target="Third_Column.Background" Value="Red" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Triggered when the window width >=490 effective pixels.  -->
+                <VisualState x:Name="VisualState_Small">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="490" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <!--  Repositioning  -->
+                        <Setter Target="Personal_Information.(Grid.Row)" Value="0" />
+                        <Setter Target="Personal_Information.(Grid.Column)" Value="0" />
+                        <Setter Target="Personal_Information.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Pawn_Information.(Grid.Row)" Value="1" />
+                        <Setter Target="Pawn_Information.(Grid.Column)" Value="0" />
+                        <Setter Target="Pawn_Information.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Pawn_Information.Margin" Value="0, 50, 100, 0" />
+
+                        <!--  Header  -->
+                        <Setter Target="Header_Column_1.(Grid.Row)" Value="0" />
+                        <Setter Target="Header_Column_1.(Grid.Column)" Value="0" />
+                        <Setter Target="Header_Column_1.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Header_Column_2.(Grid.Row)" Value="1" />
+                        <Setter Target="Header_Column_2.(Grid.Column)" Value="0" />
+                        <Setter Target="Header_Column_2.(Grid.ColumnSpan)" Value="2" />
+
+                        <Setter Target="Header_Column_2.Margin" Value="0,10, 0,0" />
+
+                        <!--  Hide third column  -->
+                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

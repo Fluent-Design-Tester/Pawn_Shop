@@ -125,46 +125,46 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AcceptPawns\AcceptGold.xaml.cs">
+    <Compile Include="Views\AcceptPawns\AcceptGold.xaml.cs">
       <DependentUpon>AcceptGold.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AcceptPawns\AcceptHouseAndGround.xaml.cs">
+    <Compile Include="Views\AcceptPawns\AcceptHouseAndGround.xaml.cs">
       <DependentUpon>AcceptHouseAndGround.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AcceptPawns\AcceptVehicle.xaml.cs">
+    <Compile Include="Views\AcceptPawns\AcceptVehicle.xaml.cs">
       <DependentUpon>AcceptVehicle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AcceptPawns\IndexPage.xaml.cs">
+    <Compile Include="Views\AcceptPawns\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AppData\IndexPage.xaml.cs">
+    <Compile Include="Views\AppData\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AppData\NRC.xaml.cs">
+    <Compile Include="Views\AppData\NRC.xaml.cs">
       <DependentUpon>NRC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AppData\PawnCategories.xaml.cs">
+    <Compile Include="Views\AppData\PawnCategories.xaml.cs">
       <DependentUpon>PawnCategories.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AppData\ReferalPersons.xaml.cs">
+    <Compile Include="Views\AppData\ReferalPersons.xaml.cs">
       <DependentUpon>ReferalPersons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CalculateGold.xaml.cs">
+    <Compile Include="Views\CalculateGold.xaml.cs">
       <DependentUpon>CalculateGold.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\KillInterest.xaml.cs">
+    <Compile Include="Views\KillInterest.xaml.cs">
       <DependentUpon>KillInterest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Pawns.xaml.cs">
+    <Compile Include="Views\Pawns.xaml.cs">
       <DependentUpon>Pawns.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ReturnPawns.xaml.cs">
+    <Compile Include="Views\ReturnPawns.xaml.cs">
       <DependentUpon>ReturnPawns.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UpdatePrices\UpdateGoldPrice.xaml.cs">
+    <Compile Include="Views\UpdatePrices\UpdateGoldPrice.xaml.cs">
       <DependentUpon>UpdateGoldPrice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UpdatePrices\UpdateShopPrice.xaml.cs">
+    <Compile Include="Views\UpdatePrices\UpdateShopPrice.xaml.cs">
       <DependentUpon>UpdateShopPrice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,59 +205,59 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\AcceptPawns\AcceptGold.xaml">
+    <Page Include="Views\AcceptPawns\AcceptGold.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AcceptPawns\AcceptHouseAndGround.xaml">
+    <Page Include="Views\AcceptPawns\AcceptHouseAndGround.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AcceptPawns\AcceptVehicle.xaml">
+    <Page Include="Views\AcceptPawns\AcceptVehicle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AcceptPawns\IndexPage.xaml">
+    <Page Include="Views\AcceptPawns\IndexPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\IndexPage.xaml">
+    <Page Include="Views\AppData\IndexPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\NRC.xaml">
+    <Page Include="Views\AppData\NRC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\PawnCategories.xaml">
+    <Page Include="Views\AppData\PawnCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AppData\ReferalPersons.xaml">
+    <Page Include="Views\AppData\ReferalPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CalculateGold.xaml">
+    <Page Include="Views\CalculateGold.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\KillInterest.xaml">
+    <Page Include="Views\KillInterest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Pawns.xaml">
+    <Page Include="Views\Pawns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ReturnPawns.xaml">
+    <Page Include="Views\ReturnPawns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UpdatePrices\UpdateGoldPrice.xaml">
+    <Page Include="Views\UpdatePrices\UpdateGoldPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UpdatePrices\UpdateShopPrice.xaml">
+    <Page Include="Views\UpdatePrices\UpdateShopPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,7 +298,9 @@
       <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="IServices\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

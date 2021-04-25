@@ -12,7 +12,7 @@ namespace Pawn_Shop.Dto
         public int displayNo { get; set; }
         public decimal ygnGoldPrice { get; set; }
         public decimal worldGoldPrice { get; set; }
-        public decimal dollarPrice { get; set; }
+        public decimal usDollars { get; set; }
         public decimal differenceGoldPrice { get; set; }
         public string updatedDate { get; set; }
     }
