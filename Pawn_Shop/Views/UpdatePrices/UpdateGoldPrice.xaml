@@ -69,6 +69,7 @@
                 Width="100"
                 Margin="0,0,10,0"
                 Header="Filter"
+                PlaceholderText="Choose"
                 SelectionChanged="SelectionChanged_Filter">
                 <ComboBoxItem Content="Today" Tag="1" />
                 <ComboBoxItem Content="Yesterday" Tag="2" />
@@ -302,7 +303,7 @@
                         Grid.Column="1"
                         Margin="10,20,0,0"
                         HorizontalAlignment="Stretch"
-                        Click="Cancel_Click"
+                        Click="ButtonClick_Cancel"
                         Style="{StaticResource ButtonRevealStyle}">
                         <StackPanel Orientation="Horizontal">
                             <FontIcon

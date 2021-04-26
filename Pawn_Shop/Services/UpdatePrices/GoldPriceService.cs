@@ -22,7 +22,7 @@ namespace Pawn_Shop.Services.UpdatePrices
 
         public async Task<ObservableCollection<T>> GetByDateRange<T>(ObservableCollection<T> list, string fromDate, string toDate)
         {
-            return await GetAll<T>(list, $"between?from={fromDate}&to={toDate}");
+            return await GetAll<T>(list, $"?from={fromDate}&to={toDate}");
         }
 
         public async Task<bool> Save(GoldPrice newGoldPrice)

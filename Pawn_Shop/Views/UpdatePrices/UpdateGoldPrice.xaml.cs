@@ -15,7 +15,7 @@ namespace Pawn_Shop.Views.UpdatePrices
     /// </summary>
     public sealed partial class UpdateGoldPrice : Page
     {
-        private static string uri = "/api/gold_prices/createdDate/";
+        private static string uri = "/api/gold_prices";
         private readonly IGoldPriceService goldPriceService = new GoldPriceService(uri);
 
         public UpdateGoldPrice()
@@ -79,11 +79,23 @@ namespace Pawn_Shop.Views.UpdatePrices
             if (isAdded)
             {
                 Noti_Success.Show(2000);
+
+                _LoadGoldPricesDataByDate(_GetTodayDate());
+
+                _ClearInputs();
             }
             else
             {
                 Noti_Error.Show(2000);
             }
+        }
+
+        private void _ClearInputs()
+        {
+            TextBox_YangonGP.Text = "";
+            TextBox_WorldGP.Text = "";
+            TextBox_DollarPrice.Text = "";
+            TextBox_DifferencePrice.Text = "";
         }
 
         private void ButtonClick_Update(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -98,11 +110,13 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private void ButtonClick_Cancel(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            _ClearInputs();
         }
 
         private void SelectionChanged_Filter(object sender, SelectionChangedEventArgs e)
         {
+            // TODO: clear the value of from date and to date date pickers
+
             string[] dates = _GetDatesFromFilterComboBox();
 
             if (dates.Length == 1)
@@ -117,12 +131,12 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private async void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            ComboBox_Filter.PlaceholderText = "Choose";
+
             var fromDate = Convert.ToDateTime(DatePicker_FromDate.Date.ToString()).ToString("dd-MM-yyyy");
             var toDate = Convert.ToDateTime(DatePicker_ToDate.Date.ToString()).ToString("dd-MM-yyyy");
 
-            var list = new ObservableCollection<GoldPrice>();
-            var goldPriceService = new GoldPriceService(uri);
-            // DataGrid_GoldPrices.ItemsSource = await goldPriceService.FilterByDateRange(list, fromDate, toDate);
+            _LoadGoldPricesDataByDateRange(fromDate, toDate);
         }
 
         private void TextBox_WorldGP_TextChanged(object sender, TextChangedEventArgs e)
@@ -193,6 +207,7 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private string _GetTodayDate()
         {
+            Debug.WriteLine(Convert.ToDateTime(DateTime.Today.ToShortDateString()).ToString("dd-MM-yyyy"));
             return Convert.ToDateTime(DateTime.Today.ToShortDateString()).ToString("dd-MM-yyyy");
         }
 
