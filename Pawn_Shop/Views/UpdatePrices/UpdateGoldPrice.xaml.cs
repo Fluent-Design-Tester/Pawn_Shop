@@ -115,7 +115,15 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private void SelectionChanged_Filter(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: clear the value of from date and to date date pickers
+            // TODO: clear the value of from_date and to_date date pickers
+
+            /*DatePicker_FromDate.ClearValue(CalendarDatePicker.DateProperty);
+            DatePicker_FromDate.PlaceholderText = "Pick a Date";
+            DatePicker_ToDate.ClearValue(CalendarDatePicker.DateProperty);
+            DatePicker_ToDate.PlaceholderText = "Pick a Date";*/
+
+            /*DatePicker_FromDate.Date = null;
+            DatePicker_ToDate.Date = null;*/
 
             string[] dates = _GetDatesFromFilterComboBox();
 
@@ -129,9 +137,10 @@ namespace Pawn_Shop.Views.UpdatePrices
             }
         }
 
-        private async void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            ComboBox_Filter.PlaceholderText = "Choose";
+            // Clear the Filter Combobox's selected value
+            ComboBox_Filter.SelectedIndex = -1;
 
             var fromDate = Convert.ToDateTime(DatePicker_FromDate.Date.ToString()).ToString("dd-MM-yyyy");
             var toDate = Convert.ToDateTime(DatePicker_ToDate.Date.ToString()).ToString("dd-MM-yyyy");
@@ -195,9 +204,9 @@ namespace Pawn_Shop.Views.UpdatePrices
                     return new string[] { _GetLast7DaysDate(), _GetYesterdayDate() };
                 case 4:
                     return new string[] { _GetLastMonthDate(), _GetYesterdayDate() };
+                default:
+                    return new string[] { "" };
             }
-
-            return null;
         }
 
         private int _GetSelectedIndexFromFilterBox()
