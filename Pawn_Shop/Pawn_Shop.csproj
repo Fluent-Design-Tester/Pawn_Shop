@@ -122,6 +122,7 @@
     <Compile Include="Dto\GoldPrice.cs" />
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\ReferalPerson.cs" />
+    <Compile Include="IServices\AppData\IReferalPersonService.cs" />
     <Compile Include="IServices\UpdatePrices\IGoldPriceService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

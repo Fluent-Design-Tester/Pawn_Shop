@@ -194,7 +194,7 @@ namespace Pawn_Shop.Views.AppData
 
             // Construct the data to Update
             PawnType updatedPawnType = new PawnType();
-            updatedPawnType.id = Convert.ToInt32(typeId);
+            updatedPawnType.id = typeId;
             updatedPawnType.name = updatedName;
             updatedPawnType.shortName = updatedShortName;
 

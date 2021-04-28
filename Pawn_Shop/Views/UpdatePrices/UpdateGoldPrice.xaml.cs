@@ -6,13 +6,16 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+/**
+ * TODO: <UpdateGoldPrice.xaml.cs>
+ *   { M: Mendatory, O: Optional, F: Finished }
+ * - [M] `Filter` Combobox ကို ရွေးရင် DatePicker `From` and `To` ရဲ့ Selected Value တွေကို Reset လုပ်ရန်
+ * - [M] `POST` အတွက် Validation တွေ စစ်ရန်
+ * - [O] `From` ကို ရွေးရင် ရွေးလိုက်တဲ့ date ရဲ့ နောက်ရက်တွေကိုသာ `To` မှာ ပြရန်
+ */
 
 namespace Pawn_Shop.Views.UpdatePrices
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class UpdateGoldPrice : Page
     {
         private static string uri = "/api/gold_prices";
@@ -31,7 +34,7 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private async void _LoadGoldPricesDataByDate(string date)
         {
-            ObservableCollection<GoldPrice> list = new ObservableCollection<GoldPrice>();
+            var list = new ObservableCollection<GoldPrice>();
 
             var result = await goldPriceService.GetByDate(list, date);
             if (result != null)
@@ -73,7 +76,6 @@ namespace Pawn_Shop.Views.UpdatePrices
                 differenceGoldPrice = differenceGoldPrice
             };
 
-            var goldPriceService = new GoldPriceService(uri);
             bool isAdded = await goldPriceService.Save(newGoldPrice);
 
             if (isAdded)
