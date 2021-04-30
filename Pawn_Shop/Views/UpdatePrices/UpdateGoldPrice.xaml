@@ -87,6 +87,7 @@
                 <CalendarDatePicker
                     Name="DatePicker_FromDate"
                     Margin="0,0,5,0"
+                    DateChanged="CDatePicker_From_DateChanged"
                     DateFormat="{}{day.integer}-{month.integer}-{year.full}"
                     Header="From"
                     PlaceholderText="Pick a date" />

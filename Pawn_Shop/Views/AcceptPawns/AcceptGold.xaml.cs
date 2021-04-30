@@ -135,7 +135,7 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void _calculateCurrentMarketValue()
         {
-            double currentMarketValuePerKyat = Convert.ToDouble(TextBlock_CurrentMarketValue.Text);
+            double currentMarketValuePerKyat = Convert.ToDouble(0);
             string strKyat = TextBox_GoldKyat.Text.ToString();
             string strPae = TextBox_GoldPae.Text.ToString();
             string strYwae = TextBox_GoldYwae.Text.ToString();

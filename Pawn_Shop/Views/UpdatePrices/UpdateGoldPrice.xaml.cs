@@ -124,8 +124,8 @@ namespace Pawn_Shop.Views.UpdatePrices
             DatePicker_ToDate.ClearValue(CalendarDatePicker.DateProperty);
             DatePicker_ToDate.PlaceholderText = "Pick a Date";*/
 
-            /*DatePicker_FromDate.Date = null;
-            DatePicker_ToDate.Date = null;*/
+            DatePicker_FromDate.Date = null;
+            DatePicker_ToDate.Date = null;
 
             string[] dates = _GetDatesFromFilterComboBox();
 
@@ -142,12 +142,15 @@ namespace Pawn_Shop.Views.UpdatePrices
         private void ButtonClick_Filter(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // Clear the Filter Combobox's selected value
-            ComboBox_Filter.SelectedIndex = -1;
+            // ComboBox_Filter.SelectedIndex = -1;
 
-            var fromDate = Convert.ToDateTime(DatePicker_FromDate.Date.ToString()).ToString("dd-MM-yyyy");
-            var toDate = Convert.ToDateTime(DatePicker_ToDate.Date.ToString()).ToString("dd-MM-yyyy");
+            if (DatePicker_FromDate.Date != null && DatePicker_ToDate.Date != null)
+            {
+                var fromDate = Convert.ToDateTime(DatePicker_FromDate.Date.ToString()).ToString("dd-MM-yyyy");
+                var toDate = Convert.ToDateTime(DatePicker_ToDate.Date.ToString()).ToString("dd-MM-yyyy");
 
-            _LoadGoldPricesDataByDateRange(fromDate, toDate);
+                _LoadGoldPricesDataByDateRange(fromDate, toDate);
+            }
         }
 
         private void TextBox_WorldGP_TextChanged(object sender, TextChangedEventArgs e)
@@ -240,6 +243,14 @@ namespace Pawn_Shop.Views.UpdatePrices
         private string _GetLastMonthDate()
         {
             return Convert.ToDateTime(DateTime.Today.AddMonths(-1).ToShortDateString()).ToString("dd-MM-yyyy");
+        }
+
+        private void CDatePicker_From_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            /*var fromDate = DatePicker_FromDate.Date;
+
+            if (fromDate != null)
+                sender.MinDate = Convert.ToDateTime(fromDate).AddDays(1);*/
         }
     }
 }
