@@ -8,7 +8,9 @@ namespace Pawn_Shop.Services.AppData
 
     class PawnTypeService : Service, IPawnTypeService
     {
-        public PawnTypeService(string uri) : base(uri)
+        private const string URI = "/api/types";
+
+        public PawnTypeService() : base(URI)
         {
         }
 
