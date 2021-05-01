@@ -1,13 +1,15 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.IServices.AppData;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Pawn_Shop.Services.AppData
 {
-    class NRCTownshipService : Service
+    class NRCTownshipService : Service, INRCTownshipService
     {
+        private const string URI = "/api/nrc-townships";
 
-        public NRCTownshipService(string uri) : base(uri)
+        public NRCTownshipService() : base(URI)
         {
         }
 
@@ -16,14 +18,14 @@ namespace Pawn_Shop.Services.AppData
             return await GetAll<T>(list, $"?regionId={regionId}");
         }
 
-        public async Task<bool> Save(NRCTownship newNrcTownship)
+        public async Task<bool> Save(NRCTownship newNRCTownship)
         {
-            return await Save<NRCTownship>(newNrcTownship);
+            return await Save<NRCTownship>(newNRCTownship);
         }
 
-        public async Task<bool> Update(NRCTownship updatedNrcTownship)
+        public async Task<bool> Update(NRCTownship updatedNRCTownship)
         {
-            return await Update<NRCTownship>(updatedNrcTownship);
+            return await Update<NRCTownship>(updatedNRCTownship);
         }
 
         public async Task<bool> Delete(int nrcTownshipId)

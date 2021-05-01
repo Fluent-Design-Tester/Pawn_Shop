@@ -19,8 +19,7 @@ namespace Pawn_Shop.Views.AppData
 
     public sealed partial class ReferalPersons : Page
     {
-        private static readonly string uri = "/api/referal_persons";
-        private readonly IReferalPersonService referalPersonService = new ReferalPersonService(uri);
+        private readonly IReferalPersonService referalPersonService = new ReferalPersonService();
 
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 

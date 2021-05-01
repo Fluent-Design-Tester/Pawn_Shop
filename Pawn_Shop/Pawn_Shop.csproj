@@ -125,6 +125,7 @@
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\ReferalPerson.cs" />
     <Compile Include="IServices\AppData\IAgentService.cs" />
+    <Compile Include="IServices\AppData\INRCTownshipService.cs" />
     <Compile Include="IServices\AppData\IPawnSubTypeService.cs" />
     <Compile Include="IServices\AppData\IPawnTypeService.cs" />
     <Compile Include="IServices\AppData\IReferalPersonService.cs" />

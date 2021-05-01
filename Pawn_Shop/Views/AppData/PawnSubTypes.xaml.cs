@@ -10,14 +10,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace Pawn_Shop.Views.AppData
 {
+    /**
+     * TODO: <PawnSubTypes.xaml.cs>
+     *   { M: Mendatory, O: Optional, F: Finished }
+     * - [M] To add displayNo in data grid
+     * - [M] To validate inputs
+     */
+
     public sealed partial class PawnSubTypes : Page
     {
         private readonly IPawnTypeService pawnTypeService = new PawnTypeService();
         private readonly IPawnSubTypeService pawnSubTypeService = new PawnSubTypeService();
 
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
-
-        private ObservableCollection<PawnType> PawnTypes;
 
         public PawnSubTypes()
         {

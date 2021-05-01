@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:Pawn_Shop.Pages.AppData"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
@@ -121,49 +120,58 @@
         </Grid>
         <!--  End filter, search and command bar  -->
 
-
-        <!--  Data Grid  -->
-        <controls:DataGrid
-            Name="DataGrid_NRCTownships"
+        <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Margin="25,10,30,30"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            AreRowGroupHeadersFrozen="True"
-            AutoGenerateColumns="False"
-            CanUserReorderColumns="False"
-            CanUserResizeColumns="True"
-            CanUserSortColumns="True"
-            GridLinesVisibility="All"
-            HeadersVisibility="Column"
-            IsReadOnly="True"
-            MaxColumnWidth="400"
-            SelectionChanged="SelectionChanged_DataGrid"
-            SelectionMode="Single">
-            <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding displayNo}"
-                    Header="No" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding name}"
-                    Header="Name" />
-                <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding description}"
-                    Header="Description" />
-                <controls:DataGridTextColumn
-                    Width="SizeToHeader"
-                    Binding="{Binding id}"
-                    Header="Id"
-                    Visibility="Collapsed" />
-            </controls:DataGrid.Columns>
-        </controls:DataGrid>
-        <!--  End data grid  -->
+            Margin="25,10,30,30">
 
-        <!--  Manage pawn types  -->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Total Rows: " />
+                <TextBlock x:Name="TextBlock_TotalRows" Margin="4,0,0,0" />
+            </StackPanel>
+            <!--  Data Grid  -->
+            <controls:DataGrid
+                Name="DataGrid_NRCTownships"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,10,30,30"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                AreRowGroupHeadersFrozen="True"
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+                GridLinesVisibility="All"
+                HeadersVisibility="Column"
+                IsReadOnly="True"
+                MaxColumnWidth="400"
+                SelectionChanged="SelectionChanged_DataGrid"
+                SelectionMode="Single">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding displayNo}"
+                        Header="No" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding name}"
+                        Header="Name" />
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding description}"
+                        Header="Description" />
+                    <controls:DataGridTextColumn
+                        Width="SizeToHeader"
+                        Binding="{Binding id}"
+                        Header="Id"
+                        Visibility="Collapsed" />
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+            <!--  End data grid  -->
+        </StackPanel>
+
+        <!--  Manage NRC Townships  -->
         <Grid
             Name="Grid_ManageNRCTownships"
             Grid.Row="1"
@@ -275,7 +283,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <!--  End manage pawn types  -->
+        <!--  End manage NRC Townships  -->
 
         <!--  Success Notification  -->
         <controls:InAppNotification

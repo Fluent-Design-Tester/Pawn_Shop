@@ -10,6 +10,13 @@ using Windows.UI.Xaml.Controls;
 
 namespace Pawn_Shop.Views.AppData
 {
+    /**
+     * TODO: <PawnType.xaml.cs>
+     *   { M: Mendatory, O: Optional, F: Finished }
+     * - [M] To add displayNo in data grid
+     * - [M] To validate inputs
+     */
+
     public sealed partial class PawnTypes : Page
     {
         private readonly IPawnTypeService pawnTypeService = new PawnTypeService();

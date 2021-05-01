@@ -12,7 +12,8 @@ namespace Pawn_Shop.Services.AppData
 {
     class ReferalPersonService : Service, IReferalPersonService
     {
-        public ReferalPersonService(string uri) : base(uri)
+        private const string URI = "/api/referal_persons";
+        public ReferalPersonService() : base(URI)
         {
         }
 

@@ -11,7 +11,9 @@ namespace Pawn_Shop.Services.AppData
 {
     class AgentService : Service, IAgentService
     {
-        public AgentService(string uri) : base(uri)
+        private const string URI = "/api/agents";
+
+        public AgentService() : base(URI)
         {
         }
 

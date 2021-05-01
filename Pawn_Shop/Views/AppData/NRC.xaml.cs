@@ -1,4 +1,5 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.IServices.AppData;
 using Pawn_Shop.Services.AppData;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Pawn_Shop.Views.AppData
 {
     public sealed partial class NRC : Page
     {
-        private string uri = "/api/nrc-townships";
+        private readonly INRCTownshipService nrcTownshipService = new NRCTownshipService();
 
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
@@ -26,10 +27,14 @@ namespace Pawn_Shop.Views.AppData
 
         private async void _LoadNRCTownshipData(string regionId)
         {
-            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
-            
-            NRCTownshipService townshipService = new NRCTownshipService(uri);
-            DataGrid_NRCTownships.ItemsSource = await townshipService.GetByRegionId(list, regionId);
+            var list = new ObservableCollection<NRCTownship>();
+
+            var result = await nrcTownshipService.GetByRegionId(list, regionId);
+            if (result != null)
+            {
+                DataGrid_NRCTownships.ItemsSource = result;
+                TextBlock_TotalRows.Text = result.Count.ToString();
+            }
         }
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
@@ -50,11 +55,10 @@ namespace Pawn_Shop.Views.AppData
             string keyword = sender.Text.ToLower().Trim();
             var matchedItems = new List<NRCTownship>();
 
-            ObservableCollection<NRCTownship> list = new ObservableCollection<NRCTownship>();
-            NRCTownshipService townshipService = new NRCTownshipService(uri);
-            ObservableCollection<NRCTownship> townships = await townshipService.GetByRegionId(list, _GetSelectedNRCRegionId());
+            var list = new ObservableCollection<NRCTownship>();
+            var townships = await nrcTownshipService.GetByRegionId(list, _GetSelectedNRCRegionId());
 
-            foreach(NRCTownship township in townships)
+            foreach(var township in townships)
             {
                 // Searchable Fields: Name, Description
                 if (township.name.ToLower().Contains(keyword)) matchedItems.Add(township);
@@ -88,7 +92,7 @@ namespace Pawn_Shop.Views.AppData
 
         private void ButtonClick_Edit(object sender, RoutedEventArgs e)
         {
-            NRCTownship selectedRow = (NRCTownship)DataGrid_NRCTownships.SelectedItem;
+            var selectedRow = (NRCTownship)DataGrid_NRCTownships.SelectedItem;
 
             if (selectedRow != null)
             {
@@ -119,7 +123,7 @@ namespace Pawn_Shop.Views.AppData
 
         private void ButtonClick_Delete(object sender, RoutedEventArgs e)
         {
-            NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
+            var selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
 
             if (selectedRow != null)
             {
@@ -156,15 +160,9 @@ namespace Pawn_Shop.Views.AppData
         {
             string name = TextBox_Name.Text;
             string description = TextBox_Description.Text;
+            int nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
 
-            // Construct the content to Post
-            NRCTownship newNrcTownship = new NRCTownship();
-            newNrcTownship.name = name;
-            newNrcTownship.description = description;
-            newNrcTownship.nrcRegionId = Convert.ToInt32(_GetSelectedNRCRegionId());
-
-            NRCTownshipService townshipService = new NRCTownshipService(uri);
-            bool isAdded = await townshipService.Save(newNrcTownship);
+            bool isAdded = await nrcTownshipService.Save(new NRCTownship { name = name, description = description, nrcRegionId = nrcRegionId });
 
             if(isAdded)
             {
@@ -189,14 +187,7 @@ namespace Pawn_Shop.Views.AppData
             string updatedName = TextBox_Name.Text;
             string updatedDescription = TextBox_Description.Text;
 
-            // Construct the data to Update
-            NRCTownship updatedNrcTownship = new NRCTownship();
-            updatedNrcTownship.id = Convert.ToInt32(townshipId);
-            updatedNrcTownship.name = updatedName;
-            updatedNrcTownship.description = updatedDescription;
-
-            NRCTownshipService townshipService = new NRCTownshipService(uri);
-            bool isUpdated = await townshipService.Update(updatedNrcTownship);
+            bool isUpdated = await nrcTownshipService.Update(new NRCTownship { id = townshipId, name = updatedName, description = updatedDescription });
 
             if (isUpdated)
             {
@@ -222,10 +213,9 @@ namespace Pawn_Shop.Views.AppData
             
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-                NRCTownship selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
+                var selectedRow = (NRCTownship) DataGrid_NRCTownships.SelectedItem;
 
-                NRCTownshipService townshipService = new NRCTownshipService(uri);
-                bool isDeleted = await townshipService.Delete(selectedRow.id);
+                bool isDeleted = await nrcTownshipService.Delete(selectedRow.id);
 
                 if (isDeleted)
                 {
@@ -248,7 +238,7 @@ namespace Pawn_Shop.Views.AppData
             {
                 if (TextBlock_Title.Text == titles.Update || TextBlock_Title.Text == titles.Delete)
                 {
-                    NRCTownship selectedRow = (NRCTownship)e.AddedItems[0];
+                    var selectedRow = (NRCTownship)e.AddedItems[0];
                     TextBox_Name.Text = selectedRow.name;
                     TextBox_Description.Text = selectedRow.description;
                     TextBlock_NRCTownshipId.Text = selectedRow.id.ToString();

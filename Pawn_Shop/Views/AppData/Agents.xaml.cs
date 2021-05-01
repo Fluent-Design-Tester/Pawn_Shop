@@ -29,8 +29,7 @@ namespace Pawn_Shop.Views.AppData
 
     public sealed partial class Agents : Page
     {
-        private static string uri = "/api/agents";
-        private readonly IAgentService agentService = new AgentService(uri);
+        private readonly IAgentService agentService = new AgentService();
 
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
