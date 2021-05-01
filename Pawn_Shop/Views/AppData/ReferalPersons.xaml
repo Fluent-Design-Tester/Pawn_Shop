@@ -408,7 +408,7 @@
                     <VisualState.Setters>
                         <!--  Alignment  -->
                         <Setter Target="Grid_Filter.Margin" Value="25,20,50,0" />
-                        <Setter Target="DataGrid_PawnTypes.Margin" Value="25,20,50,0" />
+                        <Setter Target="DataGrid_ReferalPersons.Margin" Value="25,20,50,0" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -422,9 +422,9 @@
                         <!--  Alignment  -->
                         <Setter Target="AutoSuggestBox_Search.Width" Value="160" />
                         <Setter Target="Grid_Filter.Margin" Value="25,20,25,0" />
-                        <Setter Target="DataGrid_PawnTypes.Margin" Value="25,20,25,0" />
-                        <Setter Target="Grid_ManagePawnTypes.Margin" Value="25,20,25,20" />
-                        <Setter Target="TextBox_Category.HorizontalAlignment" Value="Stretch" />
+                        <Setter Target="DataGrid_ReferalPersons.Margin" Value="25,20,25,0" />
+                        <Setter Target="Grid_ManageReferalPersons.Margin" Value="25,20,25,20" />
+                        <!-- <Setter Target="TextBox_Category.HorizontalAlignment" Value="Stretch" /> -->
                         <Setter Target="TextBox_No.HorizontalAlignment" Value="Stretch" />
                         <Setter Target="TextBox_Name.HorizontalAlignment" Value="Stretch" />
                         <Setter Target="TextBox_ShortName.HorizontalAlignment" Value="Stretch" />
@@ -439,19 +439,19 @@
 
                     <VisualState.Setters>
                         <!--  Repositioning layout  -->
-                        <Setter Target="DataGrid_PawnTypes.(Grid.Row)" Value="1" />
-                        <Setter Target="DataGrid_PawnTypes.(Grid.Column)" Value="0" />
-                        <Setter Target="DataGrid_PawnTypes.(Grid.ColumnSpan)" Value="2" />
-                        <Setter Target="Grid_ManagePawnTypes.(Grid.Row)" Value="2" />
-                        <Setter Target="Grid_ManagePawnTypes.(Grid.Column)" Value="0" />
-                        <Setter Target="Grid_ManagePawnTypes.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DataGrid_ReferalPersons.(Grid.Row)" Value="1" />
+                        <Setter Target="DataGrid_ReferalPersons.(Grid.Column)" Value="0" />
+                        <Setter Target="DataGrid_ReferalPersons.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="Grid_ManageReferalPersons.(Grid.Row)" Value="2" />
+                        <Setter Target="Grid_ManageReferalPersons.(Grid.Column)" Value="0" />
+                        <Setter Target="Grid_ManageReferalPersons.(Grid.ColumnSpan)" Value="2" />
                         <Setter Target="Grid_Filter.(Grid.ColumnSpan)" Value="2" />
 
                         <!--  Alignment  -->
                         <Setter Target="AutoSuggestBox_Search.Width" Value="160" />
-                        <Setter Target="Grid_ManagePawnTypes.Margin" Value="25,10,25,20" />
-                        <Setter Target="TextBox_Category.HorizontalAlignment" Value="Left" />
-                        <Setter Target="TextBox_Category.Width" Value="300" />
+                        <Setter Target="Grid_ManageReferalPersons.Margin" Value="25,10,25,20" />
+                        <!--<Setter Target="TextBox_Category.HorizontalAlignment" Value="Left" />
+                        <Setter Target="TextBox_Category.Width" Value="300" />-->
                         <Setter Target="TextBox_No.HorizontalAlignment" Value="Left" />
                         <Setter Target="TextBox_No.Width" Value="300" />
                         <Setter Target="TextBox_Name.HorizontalAlignment" Value="Left" />

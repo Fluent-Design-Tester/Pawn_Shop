@@ -1,4 +1,5 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.IServices.AppData;
 using Pawn_Shop.Services.AppData;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,37 @@ using Windows.UI.Xaml.Controls;
 
 namespace Pawn_Shop.Views.AppData
 {
-    public sealed partial class PawnCategories : Page
+    public sealed partial class PawnTypes : Page
     {
-        private string uri = "/api/types";
+        private static readonly string uri = "/api/types";
+        private readonly IPawnTypeService pawnTypeService = new PawnTypeService(uri);
 
         private readonly (string New, string Update, string Delete) titles = ("အသစ်ထည့်ပါ", "ပြင်ဆင်ပါ", "ဖျက်ပါ");
 
-        public PawnCategories()
+        public PawnTypes()
         {
             this.InitializeComponent();
 
             ComboBox_Category.SelectedIndex = 0;
 
-            _LoadPawnTypeData("1");
+            _LoadDataByCategoryId("1");
         }
 
-        private async void _LoadPawnTypeData(string categoryId)
+        private async void _LoadDataByCategoryId(string categoryId)
         {
-            ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
+            var list = new ObservableCollection<PawnType>();
 
-            PawnTypeService typeService = new PawnTypeService(uri);
-            DataGrid_PawnTypes.ItemsSource = await typeService.GetByCategoryId(list, categoryId);
+            var result = await pawnTypeService.GetByCategoryId(list, categoryId);
+            if (result != null)
+            {
+                DataGrid_PawnTypes.ItemsSource = result;
+                TextBlock_TotalRows.Text = result.Count.ToString();
+            }
         }
 
         private void SelectionChanged_CategoryComboBox(object sender, SelectionChangedEventArgs e)
         {
-            _LoadPawnTypeData(_GetSelectedCategoryId());
+            _LoadDataByCategoryId(_GetSelectedCategoryId());
             
             if (Grid_ManagePawnTypes.Visibility == Visibility.Visible)
             {
@@ -50,9 +56,8 @@ namespace Pawn_Shop.Views.AppData
            string keyword = sender.Text.ToLower().Trim();
             var matchedItems = new List<PawnType>();
 
-            ObservableCollection<PawnType> list = new ObservableCollection<PawnType>();
-            PawnTypeService typeService = new PawnTypeService(uri);
-            ObservableCollection<PawnType> types = await typeService.GetByCategoryId(list, _GetSelectedCategoryId());
+            var list = new ObservableCollection<PawnType>();
+            var types = await pawnTypeService.GetByCategoryId(list, _GetSelectedCategoryId());
 
             foreach (PawnType type in types)
             {
@@ -63,6 +68,7 @@ namespace Pawn_Shop.Views.AppData
 
             var bindingList = new BindingList<PawnType>(matchedItems);
             DataGrid_PawnTypes.ItemsSource = bindingList;
+            TextBlock_TotalRows.Text = bindingList.Count.ToString();
         }
 
         private void ButtonClick_Add(object sender, RoutedEventArgs e)
@@ -89,7 +95,7 @@ namespace Pawn_Shop.Views.AppData
 
         private void ButtonClick_Edit(object sender, RoutedEventArgs e)
         {
-            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+            var selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
 
             if (selectedRow != null)
             {
@@ -121,7 +127,7 @@ namespace Pawn_Shop.Views.AppData
 
         private void ButtonClick_Delete(object sender, RoutedEventArgs e)
         {
-            PawnType selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
+            var selectedRow = (PawnType)DataGrid_PawnTypes.SelectedItem;
 
             if (selectedRow != null)
             {
@@ -159,15 +165,16 @@ namespace Pawn_Shop.Views.AppData
         {
             string name = TextBox_Name.Text;
             string shortName = TextBox_ShortName.Text;
+            int categoryId = Convert.ToInt32(_GetSelectedCategoryId());
 
-            // Construct the content to Post
-            PawnType newPawnType = new PawnType();
-            newPawnType.name = name;
-            newPawnType.shortName = shortName;
-            newPawnType.categoryId = Convert.ToInt32(_GetSelectedCategoryId());
+            var newPawnType = new PawnType
+            {
+                name = name,
+                shortName = shortName,
+                categoryId = categoryId
+            };
 
-            PawnTypeService typeService = new PawnTypeService(uri);
-            bool isAdded = await typeService.Save(newPawnType);
+            bool isAdded = await pawnTypeService.Save(newPawnType);
 
             if (isAdded)
             {
@@ -178,7 +185,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.Text = "";
                 TextBox_Name.Focus(FocusState.Programmatic);
 
-                _LoadPawnTypeData(_GetSelectedCategoryId());
+                _LoadDataByCategoryId(_GetSelectedCategoryId());
             }
             else
             {
@@ -188,18 +195,18 @@ namespace Pawn_Shop.Views.AppData
 
         private async void ButtonClick_Update(object sender, RoutedEventArgs e)
         {
-            int typeId = Convert.ToInt32(TextBlock_TypeId.Text);
             string updatedName = TextBox_Name.Text;
             string updatedShortName = TextBox_ShortName.Text;
+            int typeId = Convert.ToInt32(TextBlock_TypeId.Text);
 
-            // Construct the data to Update
-            PawnType updatedPawnType = new PawnType();
-            updatedPawnType.id = typeId;
-            updatedPawnType.name = updatedName;
-            updatedPawnType.shortName = updatedShortName;
+            var updatedPawnType = new PawnType
+            {
+                id = typeId,
+                name = updatedName,
+                shortName = updatedShortName
+            };
 
-            PawnTypeService typeService = new PawnTypeService(uri);
-            bool isUpdated = await typeService.Update(updatedPawnType);
+            bool isUpdated = await pawnTypeService.Update(updatedPawnType);
 
             if (isUpdated)
             {
@@ -210,7 +217,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.Text = "";
                 Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
 
-                _LoadPawnTypeData(_GetSelectedCategoryId());
+                _LoadDataByCategoryId(_GetSelectedCategoryId());
             }
             else
             {
@@ -224,16 +231,15 @@ namespace Pawn_Shop.Views.AppData
 
             if ("Primary".Equals(contentDialogResult.ToString()))
             {
-               PawnType selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
+               var selectedRow = (PawnType) DataGrid_PawnTypes.SelectedItem;
 
-                PawnTypeService typeService = new PawnTypeService(uri);
-                bool isDeleted = await typeService.Delete(selectedRow.id);
+                bool isDeleted = await pawnTypeService.Delete(selectedRow.id);
 
                 if (isDeleted)
                 {
                     Noti_Success.Show(2000);
 
-                    _LoadPawnTypeData(_GetSelectedCategoryId());
+                    _LoadDataByCategoryId(_GetSelectedCategoryId());
 
                     Grid_ManagePawnTypes.Visibility = Visibility.Collapsed;
                 }
@@ -250,7 +256,7 @@ namespace Pawn_Shop.Views.AppData
             {
                 if (TextBlock_Title.Text == titles.Update || TextBlock_Title.Text == titles.Delete)
                 {
-                    PawnType selectedRow = (PawnType)e.AddedItems[0];
+                    var selectedRow = (PawnType)e.AddedItems[0];
                     TextBox_Name.Text = selectedRow.name;
                     TextBox_ShortName.Text = selectedRow.shortName;
                     TextBlock_TypeId.Text = selectedRow.id.ToString();

@@ -94,7 +94,7 @@ namespace Pawn_Shop
                         break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
-                        ContentFrame.Navigate(typeof(Views.AppData.PawnCategories));
+                        ContentFrame.Navigate(typeof(Views.AppData.PawnTypes));
                         break;
                     case "app_data_nrc":
                         sender.Header = "မှတ်ပုံတင်အချက်အလက်များ";

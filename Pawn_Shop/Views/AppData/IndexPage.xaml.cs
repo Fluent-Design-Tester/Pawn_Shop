@@ -34,7 +34,7 @@ namespace Pawn_Shop.Views.AppData
             switch (item.Tag.ToString())
             {
                 case "categories":
-                    ContentFrame.Navigate(typeof(PawnCategories));
+                    ContentFrame.Navigate(typeof(PawnTypes));
                     break;
                 case "nrc":
                     ContentFrame.Navigate(typeof(NRC));

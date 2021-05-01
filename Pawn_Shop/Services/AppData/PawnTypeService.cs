@@ -1,15 +1,12 @@
-﻿using Newtonsoft.Json;
-using Pawn_Shop.Dto;
-using System;
+﻿using Pawn_Shop.Dto;
+using Pawn_Shop.IServices.AppData;
 using System.Collections.ObjectModel;
-using Windows.Storage.Streams;
 using System.Threading.Tasks;
-using Windows.Web.Http;
 
 namespace Pawn_Shop.Services.AppData
 {
 
-    class PawnTypeService : Service
+    class PawnTypeService : Service, IPawnTypeService
     {
         public PawnTypeService(string uri) : base(uri)
         {
