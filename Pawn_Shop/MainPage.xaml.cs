@@ -88,6 +88,10 @@ namespace Pawn_Shop
                         sender.Header = "Referal Persons";
                         ContentFrame.Navigate(typeof(Views.AppData.ReferalPersons));
                         break;
+                    case "app_data_agents":
+                        sender.Header = "Agents";
+                        ContentFrame.Navigate(typeof(Views.AppData.Agents));
+                        break;
                     case "app_data_pawns_types":
                         sender.Header = "အပေါင်ပစ္စည်းအမျိုးအမည်များ";
                         ContentFrame.Navigate(typeof(Views.AppData.PawnCategories));

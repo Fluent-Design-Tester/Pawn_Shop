@@ -119,14 +119,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dto\Agent.cs" />
     <Compile Include="Dto\GoldPrice.cs" />
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\ReferalPerson.cs" />
+    <Compile Include="IServices\AppData\IAgentService.cs" />
     <Compile Include="IServices\AppData\IReferalPersonService.cs" />
     <Compile Include="IServices\UpdatePrices\IGoldPriceService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\AppData\AgentService.cs" />
     <Compile Include="Views\AcceptPawns\AcceptGold.xaml.cs">
       <DependentUpon>AcceptGold.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
     </Compile>
     <Compile Include="Views\AcceptPawns\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppData\Agents.xaml.cs">
+      <DependentUpon>Agents.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppData\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
@@ -220,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AcceptPawns\IndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AppData\Agents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

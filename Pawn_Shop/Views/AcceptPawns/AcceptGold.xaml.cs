@@ -92,13 +92,13 @@ namespace Pawn_Shop.Views.AcceptPawns
         {
             if (((ToggleSwitch)sender).IsOn)
             {
-                TextBox_MaximumEligibleAmount.Visibility = Visibility.Visible;
+                /*TextBox_MaximumEligibleAmount.Visibility = Visibility.Visible;
                 TextBox_MaximumEligibleAmount.Text = "";
-                TextBox_MaximumEligibleAmount.Focus(FocusState.Programmatic);
+                TextBox_MaximumEligibleAmount.Focus(FocusState.Programmatic);*/
             }
             else
             {
-                TextBox_MaximumEligibleAmount.Visibility = Visibility.Collapsed;
+                // TextBox_MaximumEligibleAmount.Visibility = Visibility.Collapsed;
             }
         }
 
