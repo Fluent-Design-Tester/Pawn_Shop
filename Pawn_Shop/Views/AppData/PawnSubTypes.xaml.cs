@@ -268,5 +268,10 @@ namespace Pawn_Shop.Views.AppData
         {
             return ((ComboBoxItem)ComboBox_Type.SelectedItem).Tag.ToString();
         }
+
+        private void DataGrid_LoadingRow(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex()).ToString();
+        }
     }
 }

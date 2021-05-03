@@ -135,6 +135,7 @@
                 GridLinesVisibility="All"
                 HeadersVisibility="Column"
                 IsReadOnly="True"
+                LoadingRow="DataGrid_LoadingRow"
                 MaxColumnWidth="400"
                 SelectionChanged="SelectionChanged_DataGrid"
                 SelectionMode="Single">
@@ -142,7 +143,7 @@
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding displayNo}"
-                        Header="No" />
+                        Header="#" />
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding name}"

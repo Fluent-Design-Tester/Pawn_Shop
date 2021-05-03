@@ -152,7 +152,7 @@
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding displayNo}"
-                        Header="No" />
+                        Header="#" />
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding name}"

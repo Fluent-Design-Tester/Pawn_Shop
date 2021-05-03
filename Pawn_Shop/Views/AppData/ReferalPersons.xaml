@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dto="using:Pawn_Shop.Dto"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=dto:ReferalPerson}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
@@ -48,7 +50,6 @@
             x:Name="Grid_Filter"
             Grid.Row="0"
             Grid.Column="0"
-            Margin="25,20,30,10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top">
             <Grid.RowDefinitions>
@@ -121,14 +122,15 @@
                 GridLinesVisibility="All"
                 HeadersVisibility="Column"
                 IsReadOnly="True"
+                LoadingRow="DataGrid_LoadingRow"
                 MaxColumnWidth="400"
                 SelectionChanged="SelectionChanged_DataGrid"
                 SelectionMode="Single">
                 <controls:DataGrid.Columns>
-                    <!-- <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding displayNo}"
-                    Header="No" />-->
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding displayNo}"
+                        Header="#" />
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding name}"

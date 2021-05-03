@@ -125,10 +125,10 @@
                 SelectionChanged="SelectionChanged_DataGrid"
                 SelectionMode="Single">
                 <controls:DataGrid.Columns>
-                    <!-- <controls:DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding displayNo}"
-                    Header="No" />-->
+                    <controls:DataGridTextColumn
+                        Width="Auto"
+                        Binding="{Binding displayNo}"
+                        Header="#" />
                     <controls:DataGridTextColumn
                         Width="Auto"
                         Binding="{Binding name}"

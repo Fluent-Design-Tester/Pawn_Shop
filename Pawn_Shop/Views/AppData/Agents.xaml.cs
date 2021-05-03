@@ -23,7 +23,7 @@ namespace Pawn_Shop.Views.AppData
     /**
      * TODO: <Agents.xaml.cs>
      *   { M: Mendatory, O: Optional, F: Finished }
-     * - [M] To add displayNo in data grid
+     * - [MF] To add displayNo in data grid
      * - [M] To validate inputs
      */
 
@@ -88,7 +88,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.IsEnabled = true;
                 TextBox_Phone.IsEnabled = true;
 
-                // TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
                 TextBlock_AgentId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_ShortName.Text = selectedRow.shortName;
@@ -119,7 +119,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.IsEnabled = false;
                 TextBox_Phone.IsEnabled = false;
 
-                // TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
                 TextBlock_AgentId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_ShortName.Text = selectedRow.shortName;
@@ -149,7 +149,7 @@ namespace Pawn_Shop.Views.AppData
                     TextBox_Phone.Text = selectedRow.phone;
 
                     TextBlock_AgentId.Text = selectedRow.id.ToString();
-                    // TextBox_No.Text = selectedRow.displayNo.ToString();
+                    TextBox_No.Text = selectedRow.displayNo.ToString();
                 }
             }
         }

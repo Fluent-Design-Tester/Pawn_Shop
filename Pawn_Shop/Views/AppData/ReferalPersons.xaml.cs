@@ -78,7 +78,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.IsEnabled = true;
                 TextBox_Phone.IsEnabled = true;
                 
-                // TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
                 TextBlock_ReferalPersonId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_ShortName.Text = selectedRow.shortName;
@@ -109,7 +109,7 @@ namespace Pawn_Shop.Views.AppData
                 TextBox_ShortName.IsEnabled = false;
                 TextBox_Phone.IsEnabled = false;
 
-                // TextBox_No.Text = selectedRow.displayNo.ToString();
+                TextBox_No.Text = selectedRow.displayNo.ToString();
                 TextBlock_ReferalPersonId.Text = selectedRow.id.ToString();
                 TextBox_Name.Text = selectedRow.name;
                 TextBox_ShortName.Text = selectedRow.shortName;
@@ -139,7 +139,7 @@ namespace Pawn_Shop.Views.AppData
                     TextBox_Phone.Text = selectedRow.phone;
 
                     TextBlock_ReferalPersonId.Text = selectedRow.id.ToString();
-                    // TextBox_No.Text = selectedRow.displayNo.ToString();
+                    TextBox_No.Text = selectedRow.displayNo.ToString();
                 }
             }
         }
@@ -267,6 +267,11 @@ namespace Pawn_Shop.Views.AppData
             TextBox_Phone.Text = "";
 
             TextBox_Name.Focus(FocusState.Programmatic);
+        }
+
+        private void DataGrid_LoadingRow(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex()).ToString();
         }
     }
 }

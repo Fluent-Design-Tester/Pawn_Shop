@@ -9,6 +9,7 @@ namespace Pawn_Shop.Dto
     class Agent
     {
         public int id { get; set; }
+        public int displayNo { get; set; }
         public string name { get; set; }
         public string shortName { get; set; }
         public string phone { get; set; }
