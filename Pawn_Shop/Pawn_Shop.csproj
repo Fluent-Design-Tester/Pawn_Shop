@@ -124,17 +124,22 @@
     <Compile Include="Dto\PawnSubType.cs" />
     <Compile Include="Dto\PawnType.cs" />
     <Compile Include="Dto\ReferalPerson.cs" />
+    <Compile Include="Dto\ShopPrice.cs" />
     <Compile Include="IServices\AppData\IAgentService.cs" />
     <Compile Include="IServices\AppData\INRCTownshipService.cs" />
     <Compile Include="IServices\AppData\IPawnSubTypeService.cs" />
     <Compile Include="IServices\AppData\IPawnTypeService.cs" />
     <Compile Include="IServices\AppData\IReferalPersonService.cs" />
     <Compile Include="IServices\UpdatePrices\IGoldPriceService.cs" />
+    <Compile Include="IServices\UpdatePrices\IShopPriceService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\AppData\AgentService.cs" />
     <Compile Include="Services\AppData\PawnSubTypeService.cs" />
+    <Compile Include="Services\UpdatePrices\ShopPriceService.cs" />
+    <Compile Include="Utilities\IUtilities\IShopPriceCalculator.cs" />
+    <Compile Include="Utilities\ShopPriceCalculator.cs" />
     <Compile Include="Views\AcceptPawns\AcceptGold.xaml.cs">
       <DependentUpon>AcceptGold.xaml</DependentUpon>
     </Compile>

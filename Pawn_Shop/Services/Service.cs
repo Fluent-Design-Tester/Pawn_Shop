@@ -42,6 +42,29 @@ namespace Pawn_Shop.Services
             }
         }
 
+        public async Task<T> GetOne<T>()
+        {
+            HttpClient httpClient = new HttpClient();
+            Uri requestUri = new Uri(baseUri);
+
+            HttpResponseMessage httpResponse = new HttpResponseMessage();
+
+            string httpResponseBody;
+            try
+            {
+                httpResponse = await httpClient.GetAsync(requestUri);
+                httpResponse.EnsureSuccessStatusCode();
+                httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<T>(httpResponseBody);
+            }
+            catch (Exception ex)
+            {
+                httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                return default;
+            }
+        }
+
         public async Task<bool> Save<T>(T obj)
         {
             HttpClient httpClient = new HttpClient();
