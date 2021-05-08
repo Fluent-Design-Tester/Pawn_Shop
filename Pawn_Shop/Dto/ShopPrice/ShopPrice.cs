@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pawn_Shop.Dto
+namespace Pawn_Shop.Dto.ShopPrice
 {
+    // Used in title bar in UpdateShopPrice Page
     class ShopPrice
     {
         public int id { get; set; }

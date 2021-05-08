@@ -1,4 +1,6 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.Dto.ShopPrice;
+using Pawn_Shop.Dto.ShopPrice.UpdateShopPrice;
 using Pawn_Shop.IServices.UpdatePrices;
 using Pawn_Shop.Services.UpdatePrices;
 using Pawn_Shop.Utilities;
@@ -6,6 +8,7 @@ using Pawn_Shop.Utilities.IUtilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -20,6 +23,7 @@ namespace Pawn_Shop.Views.UpdatePrices
     public sealed partial class UpdateShopPrice : Page
     {
         private readonly IShopPriceService shopPriceService = new ShopPriceService();
+        private readonly IUpdateShopPriceService updatingShopPriceService = new UpdateShopPriceService();
         private readonly IShopPriceCalculator shopPriceCalculator = new ShopPriceCalculator();
 
         private const int PERCENT = 100;
@@ -99,7 +103,7 @@ namespace Pawn_Shop.Views.UpdatePrices
                 TextBox_BPrice.Text = "";
                 TextBox_CPrice.Text = "";
             }
-        }       
+        }
 
         // [TextBox] Real Sale Price - A
         private void TextChanged_ARealSalePrice(object sender, TextChangedEventArgs e)
@@ -174,7 +178,7 @@ namespace Pawn_Shop.Views.UpdatePrices
         private void TextChanged_ReducingPurchasingValue(object sender, TextChangedEventArgs e)
         {
             string strReducingPurchasingValue = ((TextBox)sender).Text;
-            
+
             if (!"".Equals(strReducingPurchasingValue))
             {
                 string reducedType = _GetReducedPurchasingType();
@@ -457,7 +461,165 @@ namespace Pawn_Shop.Views.UpdatePrices
 
         private async void ButtonClick_Continue(object sender, RoutedEventArgs e)
         {
-            ContentDialogResult contentDialogResult = await ContentDialog_Confirm.ShowAsync();
+            // TODO: Refactor is needed !
+            // Extra Cost and Draft Prices
+            DialogTextBlock_ExtraCost.Text = TextBox_ExtraCost.Text;
+            DialogTextBlock_SDraftPrice.Text = TextBox_SDraftPrice.Text;
+            DialogTextBlock_ADraftPrice.Text = TextBox_ADraftPrice.Text;
+            DialogTextBlock_BDraftPrice.Text = TextBox_BDraftPrice.Text;
+            DialogTextBlock_CDraftPrice.Text = TextBox_CDraftPrice.Text;
+            // Real Price
+            DialogTextBlock_SPrice.Text = TextBox_SPrice.Text;
+            DialogTextBlock_APrice.Text = TextBox_APrice.Text;
+            DialogTextBlock_BPrice.Text = TextBox_BPrice.Text;
+            DialogTextBlock_CPrice.Text = TextBox_CPrice.Text;
+
+            // Purchase Price
+            Dialog_ReducedPurchasing.Text = TextBox_ReducedPurchasingValue.Text + ("percent".Equals(_GetReducedPurchasingType()) ? "%" : "");
+            Dialog_AReducedPurchasingPrice.Text = TextBox_AReducedPurchasingPrice.Text;
+            Dialog_BReducedPurchasingPrice.Text = TextBox_BReducedPurchasingPrice.Text;
+            Dialog_CReducedPurchasingPrice.Text = TextBox_CReducedPurchasingPrice.Text;
+            // Pawning Price
+            Dialog_ReducedPawning.Text = TextBox_ReducedPawningValue.Text + ("percent".Equals(_GetReducedPawningType()) ? "%" : "");
+            Dialog_AReducedPawningPrice.Text = TextBox_AReducedPawningPrice.Text;
+            Dialog_BReducedPawningPrice.Text = TextBox_BReducedPawningPrice.Text;
+            Dialog_CReducedPawningPrice.Text = TextBox_CReducedPawningPrice.Text;
+            // Down Purchasing Price
+            Dialog_ReducedDownPurchasingValue.Text = TextBox_ReducedDownPurchasingValue.Text + ("percent".Equals(_GetReducedDownPurchasingType()) ? "%" : "");
+            Dialog_AReducedDownPurchasingPrice.Text = TextBox_AReducedDownPurchasingPrice.Text;
+            Dialog_BReducedDownPurchasingPrice.Text = TextBox_BReducedDownPurchasingPrice.Text;
+            Dialog_CReducedDownPurchasingPrice.Text = TextBox_CReducedDownPurchasingPrice.Text;
+            // Down Sale Price
+            Dialog_ReducedDownSaleValue.Text = TextBox_ReducedDownSaleValue.Text + ("percent".Equals(_GetReducedDownSaleType()) ? "%" : "");
+            Dialog_AReducedDownSalePrice.Text = TextBox_AReducedDownSalePrice.Text;
+            Dialog_BReducedDownSalePrice.Text = TextBox_BReducedDownSalePrice.Text;
+            Dialog_CReducedDownSalePrice.Text = TextBox_CReducedDownSalePrice.Text;
+
+            ContentDialogResult contentDialogResult = await ContentDialog_Save.ShowAsync();
+
+            if ("Primary".Equals(contentDialogResult.ToString()))
+            {
+                decimal extraCost = Convert.ToDecimal(DialogTextBlock_ExtraCost.Text);
+                decimal SDraftPrice = Convert.ToDecimal(DialogTextBlock_SDraftPrice.Text);
+                decimal ADraftPrice = Convert.ToDecimal(DialogTextBlock_ADraftPrice.Text);
+                decimal BDraftPrice = Convert.ToDecimal(DialogTextBlock_BDraftPrice.Text);
+                decimal CDraftPrice = Convert.ToDecimal(DialogTextBlock_CDraftPrice.Text);
+                // Extra cost and Real Price
+                decimal SPrice = Convert.ToDecimal(DialogTextBlock_SPrice.Text);
+                decimal APrice = Convert.ToDecimal(DialogTextBlock_APrice.Text);
+                decimal BPrice = Convert.ToDecimal(DialogTextBlock_BPrice.Text);
+                decimal CPrice = Convert.ToDecimal(DialogTextBlock_CPrice.Text);
+                // Purchase Price            
+                var reducedPurchasing = _GetReducedTypeAndReducedValue(Dialog_ReducedPurchasing.Text);
+                string reducedPurchasingType = reducedPurchasing.type;
+                decimal reducedPurchasingValue = reducedPurchasing.value;
+                decimal AReducedPurchasingPrice = Convert.ToDecimal(Dialog_AReducedPurchasingPrice.Text);
+                decimal BReducedPurchasingPrice = Convert.ToDecimal(Dialog_BReducedPurchasingPrice.Text);
+                decimal CReducedPurchasingPrice = Convert.ToDecimal(Dialog_CReducedPurchasingPrice.Text);
+                // Pawning Price
+                var reducedPawning = _GetReducedTypeAndReducedValue(Dialog_ReducedPawning.Text);
+                string reducedPawningType = reducedPawning.type;
+                decimal reducedPawningValue = reducedPawning.value;
+                decimal AReducedPawningPrice = Convert.ToDecimal(Dialog_AReducedPawningPrice.Text);
+                decimal BReducedPawningPrice = Convert.ToDecimal(Dialog_BReducedPawningPrice.Text);
+                decimal CReducedPawningPrice = Convert.ToDecimal(Dialog_CReducedPawningPrice.Text);
+                // Down Purchasing Price
+                var reducedDownPurchasing = _GetReducedTypeAndReducedValue(Dialog_ReducedDownPurchasingValue.Text);
+                string reducedDownPurchasingType = reducedDownPurchasing.type;
+                decimal reducedDownPurchasingValue = reducedDownPurchasing.value;
+                decimal AReducedDownPurchasingPrice = Convert.ToDecimal(Dialog_AReducedDownPurchasingPrice.Text);
+                decimal BReducedDownPurchasingPrice = Convert.ToDecimal(Dialog_BReducedDownPurchasingPrice.Text);
+                decimal CReducedDownPurchasingPrice = Convert.ToDecimal(Dialog_CReducedDownPurchasingPrice.Text);
+                // Down Sale Price
+                var reducedDownSale = _GetReducedTypeAndReducedValue(Dialog_ReducedDownSaleValue.Text);
+                string reducedDownSaleType = reducedDownSale.type;
+                decimal reducedDownSaleValue = reducedDownSale.value;
+                decimal AReducedDownSalePrice = Convert.ToDecimal(Dialog_ReducedDownSaleValue.Text);
+                decimal BReducedDownSalePrice = Convert.ToDecimal(Dialog_ReducedDownSaleValue.Text);
+                decimal CReducedDownSalePrice = Convert.ToDecimal(Dialog_ReducedDownSaleValue.Text);
+
+                var updatingShopPrice = new UpdatingShopPrice
+                {
+                    extraPrice = extraCost,
+                    htdGoldPrice = SDraftPrice,
+                    htdTypeAPrice = ADraftPrice,
+                    htdTypeBPrice = BDraftPrice,
+                    htdTypeCPrice = CDraftPrice,
+                    htdRealSalePriceRequest = new RealSalePrice
+                    {
+                        rsPrice = SPrice,
+                        rsTypeAPrice = APrice,
+                        rsTypeBPrice = BPrice,
+                        rsTypeCPrice = CPrice
+                    },
+                    htdPurchasePriceRequest = new PurchasingPrice
+                    {
+                        purchasePriceType = reducedPurchasingType,
+                        purchaseValue = reducedPurchasingValue,
+                        purcahseTypeAPrice = AReducedPurchasingPrice,
+                        purchaseTypeBPrice = BReducedPurchasingPrice,
+                        purcahseTypeCPrice = CReducedPurchasingPrice
+                    },
+                    htdPawnPriceRequest = new PawningPrice
+                    {
+                        pawnPriceType = reducedPawningType,
+                        pawnValue = reducedPawningValue,
+                        pawnTypeAPrice = AReducedPawningPrice,
+                        pawnTypeBPrice = BReducedPawningPrice,
+                        pawnTypeCPrice = CReducedPawningPrice
+                    },
+                    downPurchasePriceRequest = new DownPurchasingPrice
+                    {
+                        downPurchasePriceType = reducedDownPurchasingType,
+                        downPurchaseValue = reducedDownPurchasingValue,
+                        downPurcahseTypeAPrice = AReducedDownPurchasingPrice,
+                        downPurchaseTypeBPrice = BReducedDownPurchasingPrice,
+                        downPurcahseTypeCPrice = CReducedDownPurchasingPrice
+                    },
+                    downSalePriceRequest = new DownSalePrice
+                    {
+                        downSalePriceType = reducedDownSaleType,
+                        downSaleValue = reducedDownSaleValue,
+                        downSaleTypeAPrice = AReducedDownSalePrice,
+                        downSaleTypeBPrice = BReducedDownSalePrice,
+                        downSaleTypeCPrice = CReducedDownSalePrice
+                    }
+                };
+
+                bool isSaved = await updatingShopPriceService.Save(updatingShopPrice);
+
+                if (isSaved)
+                {
+                    InAppNotification.Show("Successfully Saved!", 2000);
+                }
+                else
+                {
+                    InAppNotification.Show("Error! Something Went Wrong.", 4000);
+                }
+            }
+        }
+
+        private async void ButtonClick_Clear(object sender, RoutedEventArgs e)
+        {
+            // ...
+        }
+
+        private dynamic _GetReducedTypeAndReducedValue(string text)
+        {
+            dynamic result = new ExpandoObject();
+
+            if (text.Contains("%"))
+            {
+                result.type = "percent";
+                result.value = Convert.ToDecimal(text.Trim('%'));
+            }
+            else
+            {
+                result.type = "amount";
+                result.value = Convert.ToDecimal(text);
+            }
+
+            return result;
         }
 
         private string _GetReducedPurchasingType()

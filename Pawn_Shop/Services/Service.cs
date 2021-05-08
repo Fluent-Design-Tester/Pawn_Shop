@@ -42,10 +42,10 @@ namespace Pawn_Shop.Services
             }
         }
 
-        public async Task<T> GetOne<T>()
+        public async Task<T> GetOne<T>(string url = "")
         {
             HttpClient httpClient = new HttpClient();
-            Uri requestUri = new Uri(baseUri);
+            Uri requestUri = new Uri(baseUri + url);
 
             HttpResponseMessage httpResponse = new HttpResponseMessage();
 

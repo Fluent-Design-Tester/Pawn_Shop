@@ -1,4 +1,5 @@
-﻿using Pawn_Shop.IServices.UpdatePrices;
+﻿using Pawn_Shop.Dto.ShopPrice.UpdateShopPrice;
+using Pawn_Shop.IServices.UpdatePrices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +19,7 @@ namespace Pawn_Shop.Services.UpdatePrices
 
         public async Task<ShopPrice> GetLatestGoldPrice<ShopPrice>()
         {
-            return await GetOne<ShopPrice>();
+            return await GetOne<ShopPrice>("/latest");
         }
     }
 }

@@ -130,6 +130,7 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <TextBox
+                            x:Name="TextBox_ExtraCost"
                             Grid.Column="0"
                             Margin="0,20,0,0"
                             HorizontalAlignment="Stretch"
@@ -527,7 +528,10 @@
                                     Glyph="&#xEA62;" />
                             </StackPanel>
                         </Button>
-                        <Button Margin="0,0,10,0" Style="{StaticResource ButtonRevealStyle}">
+                        <Button
+                            Margin="0,0,10,0"
+                            Click="ButtonClick_Clear"
+                            Style="{StaticResource ButtonRevealStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon
                                     VerticalAlignment="Center"
@@ -564,7 +568,7 @@
         <ContentDialog
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            x:Name="ContentDialog_Confirm"
+            x:Name="ContentDialog_Save"
             Title="Please check your work!"
             CloseButtonText="Back"
             DefaultButton="Primary"
@@ -615,11 +619,12 @@
                                 Text="Cost" />
 
                             <TextBlock
+                                x:Name="DialogTextBlock_ExtraCost"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
                                 Foreground="Green"
-                                Text="5000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -628,9 +633,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_SDraftPrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1350000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -639,9 +645,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_ADraftPrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -650,9 +657,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_BDraftPrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -661,9 +669,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_CDraftPrice"
                                 Grid.Row="5"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
@@ -702,10 +711,11 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_SPrice"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
-                                Text="1350000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -714,9 +724,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_APrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -725,9 +736,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_BPrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -736,9 +748,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="DialogTextBlock_CPrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
@@ -774,6 +787,7 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_ReducedPurchasing"
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
@@ -787,9 +801,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_AReducedPurchasingPrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -798,9 +813,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_BReducedPurchasingPrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -809,9 +825,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_CReducedPurchasingPrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
@@ -845,6 +862,7 @@
                                 Text="လျှော့" />
 
                             <TextBlock
+                                x:Name="Dialog_ReducedPawning"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
@@ -858,9 +876,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_AReducedPawningPrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -869,9 +888,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_BReducedPawningPrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -880,9 +900,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_CReducedPawningPrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
@@ -921,11 +942,12 @@
                                 Text="လျှော့" />
 
                             <TextBlock
+                                x:Name="Dialog_ReducedDownPurchasingValue"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
                                 Foreground="Red"
-                                Text="12000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -934,9 +956,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_AReducedDownPurchasingPrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -945,9 +968,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_BReducedDownPurchasingPrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -956,9 +980,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_CReducedDownPurchasingPrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
@@ -996,11 +1021,12 @@
                                 Text="လျှော့" />
 
                             <TextBlock
+                                x:Name="Dialog_ReducedDownSaleValue"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,10,0,0"
                                 Foreground="Red"
-                                Text="5000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -1009,9 +1035,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_AReducedDownSalePrice"
                                 Grid.Row="2"
                                 Grid.Column="1"
-                                Text="1210000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -1020,9 +1047,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_BReducedDownSalePrice"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Text="1180000" />
+                                Text="" />
                             <!--  /Row  -->
 
                             <!--  Row  -->
@@ -1031,9 +1059,10 @@
                             </TextBlock>
 
                             <TextBlock
+                                x:Name="Dialog_CReducedDownSalePrice"
                                 Grid.Row="4"
                                 Grid.Column="1"
-                                Text="1050000" />
+                                Text="" />
                             <!--  /Row  -->
                         </Grid>
                     </StackPanel>
