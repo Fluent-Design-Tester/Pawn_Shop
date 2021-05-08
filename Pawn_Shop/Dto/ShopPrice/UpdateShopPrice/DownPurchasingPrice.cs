@@ -10,6 +10,7 @@ namespace Pawn_Shop.Dto.ShopPrice.UpdateShopPrice
     {
         public string downPurchasePriceType { get; set; }
         public decimal downPurchaseValue { get; set; }
+        public decimal downPurcahseTypeSPrice { get; set; }
         public decimal downPurcahseTypeAPrice { get; set; }
         public decimal downPurchaseTypeBPrice { get; set; }
         public decimal downPurcahseTypeCPrice { get; set; }
