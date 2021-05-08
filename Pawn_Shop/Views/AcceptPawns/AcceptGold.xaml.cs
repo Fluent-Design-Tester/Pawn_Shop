@@ -29,12 +29,12 @@ namespace Pawn_Shop.Views.AcceptPawns
         {
             this.InitializeComponent();
 
-            _loadPawnTypes();
+            // _loadPawnTypes();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Views.AcceptPawns.IndexPage));
+            this.Frame.Navigate(typeof(IndexPage));
         }
 
         private void SelectionChanged_NRCRegion(object sender, SelectionChangedEventArgs e)
@@ -53,39 +53,39 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void SelectionChanged_NRCTownship(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox_NRCType.IsEnabled = true;
+            // ComboBox_NRCType.IsEnabled = true;
         }
 
         private void SelectionChanged_NRCType(object sender, SelectionChangedEventArgs e)
         {
-            TextBox_NRCNumber.IsEnabled = true;
+            // TextBox_NRCNumber.IsEnabled = true;
         }
 
         private void TextChanged_GoldYwae(object sender, TextChangedEventArgs e)
         {
-            TextBox_CurrentValue.Visibility = Visibility.Visible;
-            _calculateCurrentMarketValue();
+           /* TextBox_CurrentValue.Visibility = Visibility.Visible;
+            _calculateCurrentMarketValue();*/
         }
 
         private void TextChanged_GoldPae(object sender, TextChangedEventArgs e)
         {
-            TextBox_CurrentValue.Visibility = Visibility.Visible;
-            _calculateCurrentMarketValue();
+           /* TextBox_CurrentValue.Visibility = Visibility.Visible;
+            _calculateCurrentMarketValue();*/
         }
 
         private void TextChanged_GoldKyat(object sender, TextChangedEventArgs e)
-        {
+        {/*
             TextBox_CurrentValue.Visibility = Visibility.Visible;
-            _calculateCurrentMarketValue();
+            _calculateCurrentMarketValue();*/
         }
 
         private void TextChanged_TakenAmount(object sender, TextChangedEventArgs e)
         {
-            string takenAmount = TextBox_TakenAmount.Text;
+            /*string takenAmount = TextBox_TakenAmount.Text;
 
             string moneyInMM = MMMoneyConverter.ConvertToMoneyInMM(takenAmount);
             TextBox_TakenAmountMM.Visibility = Visibility.Visible;
-            TextBox_TakenAmountMM.Text = moneyInMM;
+            TextBox_TakenAmountMM.Text = moneyInMM;*/
         }
 
         private void Toggled_IsLatePawnMoney(object sender, RoutedEventArgs e)
@@ -104,12 +104,12 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void SelectionChanged_ExpiredDurationInMonth(object sender, SelectionChangedEventArgs e)
         {
-            int expiredDurationInMonth = _getSelectedExpiredDurationInMonth();
+            /*int expiredDurationInMonth = _getSelectedExpiredDurationInMonth();
 
             DateTime expiredDate = DateTime.Today.AddMonths(expiredDurationInMonth);
 
             TextBox_ExpiredDate.Visibility = Visibility.Visible;
-            TextBox_ExpiredDate.Text = expiredDate.ToShortDateString();
+            TextBox_ExpiredDate.Text = expiredDate.ToShortDateString();*/
         }
 
         private void _loadPawnTypes()
@@ -125,29 +125,96 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private int _getSelectedNRCRegionId()
         {
-            return ComboBox_NRCRegion.SelectedIndex + 1;
+            // return ComboBox_NRCRegion.SelectedIndex + 1;
+            return 1;
         }
 
         private int _getSelectedExpiredDurationInMonth()
         {
-            return ComboBox_ExpiredDurationInMonth.SelectedIndex + 2;
+            // return ComboBox_ExpiredDurationInMonth.SelectedIndex + 2;
+            return 1;
         }
 
         private void _calculateCurrentMarketValue()
         {
-            double currentMarketValuePerKyat = Convert.ToDouble(0);
+           /* double currentMarketValuePerKyat = Convert.ToDouble(0);
             string strKyat = TextBox_GoldKyat.Text.ToString();
             string strPae = TextBox_GoldPae.Text.ToString();
             string strYwae = TextBox_GoldYwae.Text.ToString();
 
             double result = GoldCalculator.CalculateCurrentMarketValue(currentMarketValuePerKyat, strKyat, strPae, strYwae);
 
-            TextBox_CurrentValue.Text = result.ToString();
+            TextBox_CurrentValue.Text = result.ToString();*/
         }
 
         private async void ButtonClick_Continue(object sender, RoutedEventArgs e)
         {
-            ContentDialogResult contentDialogResult = await ContentDialog_AcceptGold.ShowAsync();
+            // ContentDialogResult contentDialogResult = await ContentDialog_AcceptGold.ShowAsync();
+        }
+
+        private void Toggled_VouncherType(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Toggled_ReferalPerson(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Toggled_Agent(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Toggled_AgentTakeFee(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Toggled_AgentFeePayBy(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonClick_MorePawns(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelectionChanged_PawnType(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Toggled_KPYorGram(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextChanged_GramAmount(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ButtonClick_Convert(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SelectionChanged_InterestRate(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void SelectionChanged_LendingMonths(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void SelectionChanged_NoOfMonthsForPrePayInterest(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

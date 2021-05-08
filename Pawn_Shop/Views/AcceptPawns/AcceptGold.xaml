@@ -14,6 +14,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+
         <ContentDialog
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -77,6 +78,7 @@
                     </StackPanel>
 
                     <StackPanel
+                        Grid.Row="0"
                         Grid.Column="1"
                         Margin="10,20,0,0"
                         HorizontalAlignment="Stretch">
@@ -340,10 +342,10 @@
                                 TextWrapping="WrapWholeWords" />
                         </Grid>
                     </StackPanel>
-
                 </Grid>
             </ScrollViewer>
         </ContentDialog>
+
 
         <Grid Grid.Row="0" Margin="25,0,0,10">
             <Grid.RowDefinitions>
@@ -643,8 +645,9 @@
                                 Background="SeaShell"
                                 CornerRadius="10">
                                 <TextBlock
+                                    x:Name="TextBlock_Today"
                                     CharacterSpacing="30"
-                                    Text="01-05-2021  (Sat)"
+                                    Text=""
                                     TextAlignment="Center" />
                             </Border>
 
@@ -655,6 +658,7 @@
                                 Background="WhiteSmoke"
                                 CornerRadius="10">
                                 <TextBlock
+                                    x:Name="TextBlock_VoucherNo"
                                     CharacterSpacing="30"
                                     Text="202105010001"
                                     TextAlignment="Center" />
@@ -668,13 +672,16 @@
                             </Grid.ColumnDefinitions>
 
                             <ToggleSwitch
+                                x:Name="ToggleSwitch_VoucherType"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
                                 IsOn="False"
                                 OffContent="အသစ်"
-                                OnContent="အဟောင်း" />
+                                OnContent="အဟောင်း"
+                                Toggled="Toggled_VouncherType" />
 
                             <TextBox
+                                x:Name="TextBox_OldVoucherNo"
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
@@ -710,6 +717,25 @@
                                 Grid.Column="0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Top"
+                                Text="နေရပ်အုပ်စု" />
+                            <ComboBox
+                                x:Name="ComboBox_AddressGroup"
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                PlaceholderText="ရွေးပါ" />
+                        </Grid>
+
+                        <Grid Margin="0,15,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
                                 Text="နေရပ်" />
                             <TextBox
                                 Name="TextBox_Address"
@@ -718,8 +744,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 AcceptsReturn="True"
-                                AutomationProperties.Name="multi-line TextBox"
-                                TextWrapping="WrapWholeWords" />
+                                AutomationProperties.Name="multi-line TextBox" />
                         </Grid>
 
                         <Grid Margin="0,15,0,0">
@@ -748,20 +773,20 @@
                                         HorizontalAlignment="Stretch"
                                         PlaceholderText="R"
                                         SelectionChanged="SelectionChanged_NRCRegion">
-                                        <x:String>၁</x:String>
-                                        <x:String>၂</x:String>
-                                        <x:String>၃</x:String>
-                                        <x:String>၄</x:String>
-                                        <x:String>၅</x:String>
-                                        <x:String>၆</x:String>
-                                        <x:String>၇</x:String>
-                                        <x:String>၈</x:String>
-                                        <x:String>၉</x:String>
-                                        <x:String>၁၀</x:String>
-                                        <x:String>၁၁</x:String>
-                                        <x:String>၁၂</x:String>
-                                        <x:String>၁၃</x:String>
-                                        <x:String>၁၄</x:String>
+                                        <ComboBoxItem Content="၁" Tag="1" />
+                                        <ComboBoxItem Content="၂" Tag="2" />
+                                        <ComboBoxItem Content="၃" Tag="3" />
+                                        <ComboBoxItem Content="၄" Tag="4" />
+                                        <ComboBoxItem Content="၅" Tag="5" />
+                                        <ComboBoxItem Content="၆" Tag="6" />
+                                        <ComboBoxItem Content="၇" Tag="7" />
+                                        <ComboBoxItem Content="၈" Tag="8" />
+                                        <ComboBoxItem Content="၉" Tag="9" />
+                                        <ComboBoxItem Content="၁၀" Tag="10" />
+                                        <ComboBoxItem Content="၁၁" Tag="11" />
+                                        <ComboBoxItem Content="၁၂" Tag="12" />
+                                        <ComboBoxItem Content="၁၃" Tag="13" />
+                                        <ComboBoxItem Content="၁၄" Tag="14" />
                                     </ComboBox>
                                     <TextBlock
                                         Grid.Column="1"
@@ -784,10 +809,10 @@
                                         IsEnabled="False"
                                         PlaceholderText="Type"
                                         SelectionChanged="SelectionChanged_NRCType">
-                                        <x:String>နိုင်</x:String>
-                                        <x:String>အိုင်</x:String>
-                                        <x:String>ထိုင်</x:String>
-                                        <x:String>တိုင်</x:String>
+                                        <ComboBoxItem Content="N" Tag="1" />
+                                        <ComboBoxItem Content="Y" Tag="2" />
+                                        <ComboBoxItem Content="M" Tag="3" />
+                                        <ComboBoxItem Content="S" Tag="4" />
                                     </ComboBox>
                                 </Grid>
                                 <TextBox
@@ -823,12 +848,14 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBox
+                                        x:Name="TextBox_Phone1"
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Center"
                                         PlaceholderText="Phone (1)" />
                                     <TextBox
+                                        x:Name="TextBox_Phone2"
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Margin="5,0,0,0"
@@ -836,6 +863,7 @@
                                         VerticalAlignment="Center"
                                         PlaceholderText="Phone (2)" />
                                     <TextBox
+                                        x:Name="TextBox_Phone3"
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         Margin="0,5,0,0"
@@ -843,6 +871,7 @@
                                         VerticalAlignment="Center"
                                         PlaceholderText="Phone (3)" />
                                     <TextBox
+                                        x:Name="TextBox_Phone4"
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Margin="5,5,0,0"
@@ -867,14 +896,17 @@
                             </Grid.ColumnDefinitions>
 
                             <ToggleSwitch
+                                x:Name="ToggleSwitch_ReferalPerson"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
                                 Header="Referal Person"
                                 IsOn="False"
                                 OffContent="No"
-                                OnContent="Yes" />
+                                OnContent="Yes"
+                                Toggled="Toggled_ReferalPerson" />
 
                             <ComboBox
+                                x:Name="ComboBox_ReferalPerson"
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
@@ -889,13 +921,15 @@
                             </Grid.ColumnDefinitions>
 
                             <ToggleSwitch
+                                x:Name="ToggleSwitch_Agent"
                                 Grid.Column="0"
                                 Margin="0,0,0,0"
                                 VerticalAlignment="Top"
                                 Header="Agent"
                                 IsOn="False"
                                 OffContent="No"
-                                OnContent="Yes" />
+                                OnContent="Yes"
+                                Toggled="Toggled_Agent" />
 
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
@@ -904,6 +938,7 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <ComboBox
+                                    x:Name="ComboBox_Agent"
                                     Grid.Row="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Center"
@@ -911,13 +946,15 @@
                                     Visibility="Visible" />
 
                                 <ToggleSwitch
+                                    x:Name="ToggleSwitch_AgentTakeFee"
                                     Grid.Row="1"
                                     Margin="0,10,0,0"
                                     VerticalAlignment="Center"
                                     Header="Take Fee?"
                                     IsOn="False"
                                     OffContent="No"
-                                    OnContent="Yes" />
+                                    OnContent="Yes"
+                                    Toggled="Toggled_AgentTakeFee" />
 
                                 <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
@@ -925,14 +962,17 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <ToggleSwitch
+                                        x:Name="ToggleSwitch_AgentFeePayBy"
                                         Grid.Column="0"
                                         Margin="0,10,0,0"
                                         VerticalAlignment="Top"
                                         Header="Pay by"
                                         IsOn="False"
                                         OffContent="Customer"
-                                        OnContent="Shop" />
+                                        OnContent="Shop"
+                                        Toggled="Toggled_AgentFeePayBy" />
                                     <TextBox
+                                        x:Name="TextBox_AgentFeeAmount"
                                         Grid.Column="1"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Bottom"
@@ -961,8 +1001,10 @@
                         </Grid.ColumnDefinitions>
 
                         <Button
+                            x:Name="ButtonClick_More"
                             Grid.Column="0"
                             BorderThickness="1"
+                            Click="ButtonClick_MorePawns"
                             CornerRadius="10"
                             Style="{StaticResource TextBlockButtonStyle}">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -980,6 +1022,7 @@
                         <TextBlock Grid.Column="3" Text="အခုရေ" />
                     </Grid>
 
+                    <!--  Pawn Type and Sub Types  -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -992,18 +1035,21 @@
                             Name="ComboBox_PawnType"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
-                            PlaceholderText="ရွေး" />
+                            PlaceholderText="ရွေးပါ"
+                            SelectionChanged="SelectionChanged_PawnType" />
                         <ComboBox
+                            x:Name="ComboBox_PawnSubType"
                             Grid.Column="2"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Stretch"
-                            PlaceholderText="ရွေး" />
+                            PlaceholderText="ရွေးပါ" />
                         <TextBox
                             Name="TextBox_PawnCount"
                             Grid.Column="3"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Stretch" />
                     </Grid>
+                    <!--  / Pawn Type and Sub Type  -->
 
                     <Grid Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
@@ -1089,27 +1135,31 @@
                         </Grid.ColumnDefinitions>
 
                         <ToggleSwitch
+                            x:Name="ToggleSwitch_KPYorGram"
                             Grid.Column="0"
                             Margin="0,0,0,0"
                             VerticalAlignment="Bottom"
                             IsOn="False"
                             OffContent="KPY"
-                            OnContent="Gm" />
+                            OnContent="Gm"
+                            Toggled="Toggled_KPYorGram" />
 
                         <TextBox
-                            Name="TextBox_Gram"
+                            x:Name="TextBox_GramAmount"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             PlaceholderText="Gram"
+                            TextChanged="TextChanged_GramAmount"
                             Visibility="Visible" />
 
                         <Button
-                            Name="Button_CalculateToKPY"
+                            x:Name="Button_Convert"
                             Grid.Column="2"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Bottom"
+                            Click="ButtonClick_Convert"
                             Style="{StaticResource ButtonRevealStyle}"
                             Visibility="Visible">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -1139,7 +1189,7 @@
                             Text="Total (wt)" />
 
                         <TextBox
-                            Name="TextBox_WholeKyat"
+                            x:Name="TextBox_TotalWeightInKyat"
                             Grid.Column="1"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1147,7 +1197,7 @@
                             PlaceholderText="K" />
 
                         <TextBox
-                            Name="TextBox_WholePae"
+                            x:Name="TextBox_TotalWeightInPae"
                             Grid.Column="2"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1155,7 +1205,7 @@
                             PlaceholderText="P" />
 
                         <TextBox
-                            Name="TextBox_WholeYwae"
+                            x:Name="TextBox_TotalWeightInYwae"
                             Grid.Column="3"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1179,7 +1229,7 @@
                             Text="Other (wt)" />
 
                         <TextBox
-                            Name="TextBox_StoneKyat"
+                            x:Name="TextBox_OtherWeightInKyat"
                             Grid.Column="1"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1187,7 +1237,7 @@
                             PlaceholderText="K" />
 
                         <TextBox
-                            Name="TextBox_StonePae"
+                            x:Name="TextBox_OtherWeightInPae"
                             Grid.Column="2"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1195,7 +1245,7 @@
                             PlaceholderText="P" />
 
                         <TextBox
-                            Name="TextBox_StoneYwae"
+                            x:Name="TextBox_OtherWeightInYwae"
                             Grid.Column="3"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1219,7 +1269,7 @@
                             Text="Net (wt)" />
 
                         <TextBox
-                            Name="TextBox_GoldKyat"
+                            x:Name="TextBox_NetWeightInKyat"
                             Grid.Column="1"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1227,7 +1277,7 @@
                             PlaceholderText="K" />
 
                         <TextBox
-                            Name="TextBox_GoldPae"
+                            x:Name="TextBox_NetWeightInPae"
                             Grid.Column="2"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1235,7 +1285,7 @@
                             PlaceholderText="P" />
 
                         <TextBox
-                            Name="TextBox_GoldYwae"
+                            x:Name="TextBox_NetWeightInYwae"
                             Grid.Column="3"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1258,6 +1308,7 @@
                             Text="အရည်" />
 
                         <ComboBox
+                            x:Name="ComboBox_GoldQuality"
                             Grid.Column="1"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1270,6 +1321,7 @@
                         </ComboBox>
 
                         <TextBox
+                            x:Name="TextBox_GoldQualityNote"
                             Grid.Column="2"
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
@@ -1290,6 +1342,7 @@
                             CornerRadius="10"
                             Opacity="0.5">
                             <TextBlock
+                                x:Name="TextBlock_PurchasePrice"
                                 CharacterSpacing="30"
                                 Text="1,200,000"
                                 TextAlignment="Center" />
@@ -1303,6 +1356,7 @@
                             CornerRadius="10"
                             Opacity="0.5">
                             <TextBlock
+                                x:Name="TextBlock_PawnPrice"
                                 CharacterSpacing="30"
                                 Text="1,000,000"
                                 TextAlignment="Center" />
@@ -1317,7 +1371,7 @@
                         Fill="LightGray" />
 
                     <TextBox
-                        Name="TextBox_CurrentValue"
+                        Name="TextBox_CurrentMarketValue"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
@@ -1337,7 +1391,7 @@
                             VerticalAlignment="Top"
                             Text="ပေးငွေ" />
                         <TextBox
-                            Name="TextBox_TakenAmount"
+                            x:Name="TextBox_LendingPrice"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
@@ -1356,7 +1410,7 @@
                             VerticalAlignment="Top"
                             Text="ပေးငွေ (စာသားဖြင့်)" />
                         <TextBox
-                            Name="TextBox_TakenAmountMM"
+                            x:Name="TextBox_LendingPriceInText"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center" />
@@ -1375,11 +1429,12 @@
                             Text="အတိုးနှုန်း" />
 
                         <ComboBox
-                            Name="ComboBox_InterestRate"
+                            x:Name="ComboBox_InterestRate"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            PlaceholderText="ရွေးပါ">
+                            PlaceholderText="ရွေးပါ"
+                            SelectionChanged="SelectionChanged_InterestRate">
                             <x:String>2</x:String>
                             <x:String>3</x:String>
                             <x:String>4</x:String>
@@ -1406,12 +1461,12 @@
                             Text="အတိုးကာလ" />
 
                         <ComboBox
-                            Name="ComboBox_ExpiredDurationInMonth"
+                            x:Name="ComboBox_LendingMonths"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             PlaceholderText="ရွေးပါ"
-                            SelectionChanged="SelectionChanged_ExpiredDurationInMonth">
+                            SelectionChanged="SelectionChanged_LendingMonths">
                             <x:String>2</x:String>
                             <x:String>3</x:String>
                             <x:String>4</x:String>
@@ -1420,7 +1475,7 @@
                         </ComboBox>
 
                         <TextBox
-                            Name="TextBox_ExpiredDate"
+                            x:Name="TextBox_ExpiredDate"
                             Grid.Column="2"
                             Margin="5,0,0,0"
                             HorizontalAlignment="Stretch"
@@ -1433,7 +1488,8 @@
                     <Grid Margin="0,15,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
@@ -1441,10 +1497,21 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             Text="အတိုးကြိုပေးငွေ" />
-                        <TextBox
+
+                        <ComboBox
+                            x:Name="ComboBox_NoOfMonthsForPrePayInterest"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Top"
+                            PlaceholderText="ရွေးပါ"
+                            SelectionChanged="SelectionChanged_NoOfMonthsForPrePayInterest" />
+                        <TextBox
+                            x:Name="TextBox_PrePayInterestAmount"
+                            Grid.Column="2"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            IsEnabled="False" />
                     </Grid>
 
                     <Grid Margin="0,15,0,0">
@@ -1460,7 +1527,7 @@
                             Text="မှတ်ချက် (၁)" />
 
                         <TextBox
-                            Name="TextBox_Remark"
+                            x:Name="TextBox_Remark1"
                             Grid.Column="2"
                             Height="60"
                             Margin="0,0,0,0"
@@ -1482,6 +1549,7 @@
                             Text="မှတ်ချက် (၂)" />
 
                         <TextBox
+                            x:Name="TextBox_Remark2"
                             Grid.Column="2"
                             Height="60"
                             Margin="0,0,0,0"
@@ -1535,77 +1603,6 @@
 
 
 
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <!--  Triggered when the window width >=1366 effective pixels.  -->
-                <VisualState x:Name="VisualState_Extra_Large">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1366" />
-                    </VisualState.StateTriggers>
 
-                    <VisualState.Setters>
-                        <Setter Target="Third_Column.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-
-                <!--  Triggered when the window width >=1010 effective pixels.  -->
-                <VisualState x:Name="VisualState_Large">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1010" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters />
-                </VisualState>
-
-                <!--  Triggered when the window width >=800 effective pixels.  -->
-                <VisualState x:Name="VisualState_Medium">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <Setter Target="Pawn_Information.Margin" Value="0, 0, 100, 0" />
-                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
-                        <Setter Target="Third_Column.Background" Value="Red" />
-                    </VisualState.Setters>
-                </VisualState>
-
-                <!--  Triggered when the window width >=490 effective pixels.  -->
-                <VisualState x:Name="VisualState_Small">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="490" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <!--  Repositioning  -->
-                        <Setter Target="Personal_Information.(Grid.Row)" Value="0" />
-                        <Setter Target="Personal_Information.(Grid.Column)" Value="0" />
-                        <Setter Target="Personal_Information.(Grid.ColumnSpan)" Value="2" />
-
-                        <Setter Target="Pawn_Information.(Grid.Row)" Value="1" />
-                        <Setter Target="Pawn_Information.(Grid.Column)" Value="0" />
-                        <Setter Target="Pawn_Information.(Grid.ColumnSpan)" Value="2" />
-
-                        <Setter Target="Pawn_Information.Margin" Value="0, 50, 100, 0" />
-
-                        <!--  Header  -->
-                        <Setter Target="Header_Column_1.(Grid.Row)" Value="0" />
-                        <Setter Target="Header_Column_1.(Grid.Column)" Value="0" />
-                        <Setter Target="Header_Column_1.(Grid.ColumnSpan)" Value="2" />
-
-                        <!--
-                        <Setter Target="Header_Column_2.(Grid.Row)" Value="1" />
-                        <Setter Target="Header_Column_2.(Grid.Column)" Value="0" />
-                        <Setter Target="Header_Column_2.(Grid.ColumnSpan)" Value="2" />
-
-                        <Setter Target="Header_Column_2.Margin" Value="0,10, 0,0" />
-                        -->
-
-                        <!--  Hide third column  -->
-                        <Setter Target="Third_Column.Visibility" Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
