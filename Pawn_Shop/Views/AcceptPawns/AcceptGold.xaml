@@ -1277,7 +1277,8 @@
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            PlaceholderText="K" />
+                            PlaceholderText="K"
+                            TextChanged="TextChanged_GoldKyat" />
 
                         <TextBox
                             x:Name="TextBox_NetWeightInPae"
@@ -1285,7 +1286,8 @@
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            PlaceholderText="P" />
+                            PlaceholderText="P"
+                            TextChanged="TextChanged_GoldPae" />
 
                         <TextBox
                             x:Name="TextBox_NetWeightInYwae"
@@ -1293,7 +1295,8 @@
                             Margin="5,5,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            PlaceholderText="Y" />
+                            PlaceholderText="Y"
+                            TextChanged="TextChanged_GoldYwae" />
                     </Grid>
 
                     <Grid Margin="0,10,0,0">
@@ -1316,7 +1319,8 @@
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            PlaceholderText="Choose">
+                            PlaceholderText="Choose"
+                            SelectionChanged="SelectionChanged_GoldQuality">
                             <ComboBoxItem Content="$" />
                             <ComboBoxItem Content="A" />
                             <ComboBoxItem Content="B" />
@@ -1341,14 +1345,20 @@
                         <Border
                             Grid.Column="0"
                             Padding="5"
-                            Background="Orange"
-                            CornerRadius="10"
-                            Opacity="0.5">
-                            <TextBlock
-                                x:Name="TextBlock_PurchasePrice"
-                                CharacterSpacing="30"
-                                Text="1,200,000"
-                                TextAlignment="Center" />
+                            Background="Wheat"
+                            CornerRadius="10">
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,0,15,0"
+                                    FontFamily="Pyidaungsu"
+                                    Foreground="Black"
+                                    Text="Purchase Price:" />
+                                <TextBlock
+                                    x:Name="TextBlock_PurchasePriceOnWeightAndQuality"
+                                    CharacterSpacing="30"
+                                    Text=". . . . ."
+                                    TextAlignment="Center" />
+                            </StackPanel>
                         </Border>
 
                         <Border
@@ -1356,13 +1366,19 @@
                             Margin="10,0,0,0"
                             Padding="5"
                             Background="DeepSkyBlue"
-                            CornerRadius="10"
-                            Opacity="0.5">
-                            <TextBlock
-                                x:Name="TextBlock_PawnPrice"
-                                CharacterSpacing="30"
-                                Text="1,000,000"
-                                TextAlignment="Center" />
+                            CornerRadius="10">
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,0,15,0"
+                                    FontFamily="Pyidaungsu"
+                                    Foreground="Black"
+                                    Text="Pawn Price:" />
+                                <TextBlock
+                                    x:Name="TextBlock_PawnPriceOnWeightAndQuality"
+                                    CharacterSpacing="30"
+                                    Text=". . . . ."
+                                    TextAlignment="Center" />
+                            </StackPanel>
                         </Border>
                     </Grid>
 
@@ -1372,15 +1388,6 @@
                         Height="0.1"
                         Margin="0,20,0,0"
                         Fill="LightGray" />
-
-                    <TextBox
-                        Name="TextBox_CurrentMarketValue"
-                        Margin="0,20,0,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        Header="ကာလတန်ဖိုး"
-                        IsEnabled="False"
-                        Visibility="Collapsed" />
 
                     <Grid Margin="0,15,0,0">
                         <Grid.ColumnDefinitions>
