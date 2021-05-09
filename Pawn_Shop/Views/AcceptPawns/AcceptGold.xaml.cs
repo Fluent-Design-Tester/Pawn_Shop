@@ -267,12 +267,22 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void TextChanged_GramAmount(object sender, TextChangedEventArgs e)
         {
-
+            
         }
 
         private void ButtonClick_Convert(object sender, RoutedEventArgs e)
         {
+            string strGramAmount = TextBox_GramAmount.Text;
 
+            if (!"".Equals(strGramAmount))
+            {
+                double gram = Convert.ToDouble(TextBox_GramAmount.Text);
+
+                var weightInKPY = goldCalculator.ConvertFromGramToKPY(gram);
+                TextBox_TotalWeightInKyat.Text = weightInKPY["kyat"].ToString();
+                TextBox_TotalWeightInPae.Text = weightInKPY["pae"].ToString();
+                TextBox_TotalWeightInYwae.Text = weightInKPY["ywae"].ToString();
+            }
         }
 
         private void SelectionChanged_InterestRate(object sender, SelectionChangedEventArgs e)

@@ -19,5 +19,23 @@ namespace Pawn_Shop.Utilities
 
             return kyat + pae + ywae;
         }
+
+        public Dictionary<string, double> ConvertFromGramToKPY(double gram)
+        {
+            var weightInKPY = new Dictionary<string, double>();
+
+            double kyat = Math.Truncate(gram / 16.6);
+
+            double _pae = ((gram / 16.6) - kyat) * 16;
+            double pae = Math.Truncate(_pae);
+
+            double ywae = Math.Round((_pae - pae) * 8, 1);
+
+            weightInKPY["kyat"] = kyat;
+            weightInKPY["pae"] = pae;
+            weightInKPY["ywae"] = ywae;
+
+            return weightInKPY;
+        }
     }
 }
