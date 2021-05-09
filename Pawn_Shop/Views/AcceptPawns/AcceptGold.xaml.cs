@@ -45,7 +45,7 @@ namespace Pawn_Shop.Views.AcceptPawns
             this.InitializeComponent();
 
             // set today date
-            TextBlock_Today.Text = DateTime.Now.ToString("dd-MM-yy (ddd)");
+            TextBlock_Today.Text = DateTime.Now.ToString("dd-MM-yyyy (ddd)");
 
             // set estimated coming vouncher no
             TextBlock_VoucherNo.Text = "20211212_001";
@@ -301,7 +301,15 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void SelectionChanged_LendingMonths(object sender, SelectionChangedEventArgs e)
         {
+            string months = ((ComboBox)sender).SelectedValue.ToString();
 
+            if (!"".Equals(months))
+            {
+                DateTime expiredDate = DateTime.Today.AddMonths(Convert.ToInt32(months));
+
+                TextBox_ExpiredDate.Visibility = Visibility.Visible;
+                TextBox_ExpiredDate.Text = expiredDate.ToString("dd-MM-yyyy (ddd)");
+            }
         }
 
         private void SelectionChanged_NoOfMonthsForPrePayInterest(object sender, SelectionChangedEventArgs e)
