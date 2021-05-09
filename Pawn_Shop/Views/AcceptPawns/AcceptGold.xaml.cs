@@ -154,22 +154,50 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void Toggled_VouncherType(object sender, RoutedEventArgs e)
         {
-
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                TextBox_OldVoucherNo.Visibility = Visibility.Visible;
+            } 
+            else
+            {
+                TextBox_OldVoucherNo.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Toggled_ReferalPerson(object sender, RoutedEventArgs e)
         {
-
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                ComboBox_ReferalPerson.Visibility = Visibility.Visible;
+            } 
+            else
+            {
+                ComboBox_ReferalPerson.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Toggled_Agent(object sender, RoutedEventArgs e)
         {
-
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                Grid_Agent.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Grid_Agent.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Toggled_AgentTakeFee(object sender, RoutedEventArgs e)
         {
-
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                Grid_AgentFeePayment.Visibility = Visibility.Visible;
+            } 
+            else
+            {
+                Grid_AgentFeePayment.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Toggled_AgentFeePayBy(object sender, RoutedEventArgs e)
@@ -189,7 +217,16 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void Toggled_KPYorGram(object sender, RoutedEventArgs e)
         {
-
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                TextBox_GramAmount.Visibility = Visibility.Visible;
+                Button_Convert.Visibility = Visibility.Visible;
+            } 
+            else
+            {
+                TextBox_GramAmount.Visibility = Visibility.Collapsed;
+                Button_Convert.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void TextChanged_GramAmount(object sender, TextChangedEventArgs e)

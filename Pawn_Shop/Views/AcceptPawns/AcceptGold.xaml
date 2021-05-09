@@ -14,7 +14,6 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-
         <ContentDialog
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -345,7 +344,6 @@
                 </Grid>
             </ScrollViewer>
         </ContentDialog>
-
 
         <Grid Grid.Row="0" Margin="25,0,0,10">
             <Grid.RowDefinitions>
@@ -686,7 +684,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 PlaceholderText="ဘောင်ချာနံပါတ်အဟောင်း ထည့်ပါ"
-                                Visibility="Visible" />
+                                Visibility="Collapsed" />
                         </Grid>
 
                         <Grid Margin="0,15,0,0">
@@ -911,7 +909,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 PlaceholderText="ရွေးပါ"
-                                Visibility="Visible" />
+                                Visibility="Collapsed" />
                         </Grid>
 
                         <Grid Margin="0,5,0,0">
@@ -931,7 +929,10 @@
                                 OnContent="Yes"
                                 Toggled="Toggled_Agent" />
 
-                            <Grid Grid.Column="1">
+                            <Grid
+                                x:Name="Grid_Agent"
+                                Grid.Column="1"
+                                Visibility="Collapsed">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
@@ -942,8 +943,7 @@
                                     Grid.Row="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Center"
-                                    PlaceholderText="ရွေးပါ"
-                                    Visibility="Visible" />
+                                    PlaceholderText="ရွေးပါ" />
 
                                 <ToggleSwitch
                                     x:Name="ToggleSwitch_AgentTakeFee"
@@ -956,7 +956,10 @@
                                     OnContent="Yes"
                                     Toggled="Toggled_AgentTakeFee" />
 
-                                <Grid Grid.Row="2">
+                                <Grid
+                                    x:Name="Grid_AgentFeePayment"
+                                    Grid.Row="2"
+                                    Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*" />
                                         <ColumnDefinition Width="*" />
@@ -1151,7 +1154,7 @@
                             VerticalAlignment="Center"
                             PlaceholderText="Gram"
                             TextChanged="TextChanged_GramAmount"
-                            Visibility="Visible" />
+                            Visibility="Collapsed" />
 
                         <Button
                             x:Name="Button_Convert"
@@ -1161,7 +1164,7 @@
                             VerticalAlignment="Bottom"
                             Click="ButtonClick_Convert"
                             Style="{StaticResource ButtonRevealStyle}"
-                            Visibility="Visible">
+                            Visibility="Collapsed">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                                 <TextBlock Margin="0,0,5,0" VerticalAlignment="Center">Convert</TextBlock>
                                 <FontIcon
@@ -1498,11 +1501,13 @@
                             VerticalAlignment="Top"
                             Text="အတိုးကြိုပေးငွေ" />
 
+                        <!--  To enable only when lending price and interest rate has been choosen  -->
                         <ComboBox
                             x:Name="ComboBox_NoOfMonthsForPrePayInterest"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
+                            IsEnabled="True"
                             PlaceholderText="ရွေးပါ"
                             SelectionChanged="SelectionChanged_NoOfMonthsForPrePayInterest" />
                         <TextBox
