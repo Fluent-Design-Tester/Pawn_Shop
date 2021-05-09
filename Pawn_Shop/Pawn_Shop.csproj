@@ -147,6 +147,7 @@
     <Compile Include="Services\UpdatePrices\ShopPriceService.cs" />
     <Compile Include="Services\UpdatePrices\UpdateShopPriceService.cs" />
     <Compile Include="Utilities\IUtilities\IGoldCalculator.cs" />
+    <Compile Include="Utilities\IUtilities\IMMMoneyConverter.cs" />
     <Compile Include="Utilities\IUtilities\IShopPriceCalculator.cs" />
     <Compile Include="Utilities\ShopPriceCalculator.cs" />
     <Compile Include="Views\AcceptPawns\AcceptGold.xaml.cs">

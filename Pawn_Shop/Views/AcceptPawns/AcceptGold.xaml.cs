@@ -38,6 +38,8 @@ namespace Pawn_Shop.Views.AcceptPawns
             { 3, "C" }
         };
 
+        private readonly IMMMoneyConverter mMMoneyConverter = new MMMoneyConverter();
+
         public AcceptGold()
         {
             this.InitializeComponent();
@@ -103,13 +105,20 @@ namespace Pawn_Shop.Views.AcceptPawns
             _UpdateGoldPricesBasedOnGoldNetWeight();
         }
 
-        private void TextChanged_TakenAmount(object sender, TextChangedEventArgs e)
+        private void TextChanged_LendingAmount(object sender, TextChangedEventArgs e)
         {
-            /*string takenAmount = TextBox_TakenAmount.Text;
+            string takenAmount = TextBox_LendingAmount.Text;
 
-            string moneyInMM = MMMoneyConverter.ConvertToMoneyInMM(takenAmount);
-            TextBox_TakenAmountMM.Visibility = Visibility.Visible;
-            TextBox_TakenAmountMM.Text = moneyInMM;*/
+            if (!"".Equals(takenAmount))
+            {
+                string moneyInMM = mMMoneyConverter.Convert(takenAmount);
+                TextBox_LendingAmountInText.Visibility = Visibility.Visible;
+                TextBox_LendingAmountInText.Text = moneyInMM;
+            }
+            else
+            {
+                TextBox_LendingAmountInText.Text = "";
+            }
         }
 
         private void Toggled_IsLatePawnMoney(object sender, RoutedEventArgs e)

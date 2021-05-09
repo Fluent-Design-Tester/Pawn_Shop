@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pawn_Shop.Utilities.IUtilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pawn_Shop.Utilities
 {
-    class MMMoneyConverter
+    class MMMoneyConverter : IMMMoneyConverter
     {
-        private static readonly Dictionary<char, string> numbers = new Dictionary<char, string>
+        private readonly Dictionary<char, string> numbersInMM = new Dictionary<char, string>
             {
                 { '0', "သုည" },
                 { '1', "တစ်" },
@@ -22,7 +23,7 @@ namespace Pawn_Shop.Utilities
                 { '9', "ကိုး" }
             };
 
-        private static readonly Dictionary<int, string> units = new Dictionary<int, string>
+        private readonly Dictionary<int, string> units = new Dictionary<int, string>
             {
                 { 1, "" },
                 { 2, "ဆယ်" },
@@ -36,7 +37,7 @@ namespace Pawn_Shop.Utilities
         /**
          * Money converter from En to Mm (supports up to 9999999)
          */
-        public static string ConvertToMoneyInMM(string moneyInEn)
+        public string Convert(string moneyInEn)
         {
             var moneyInEnCharArray = moneyInEn.ToCharArray();
             int index = moneyInEnCharArray.Length;
@@ -56,15 +57,15 @@ namespace Pawn_Shop.Utilities
             return result;
         }
 
-        private static string calculate(char[] moneyInEn, int index)
+        private string calculate(char[] moneyInEn, int index)
         {
             string result = "";
             foreach (char c in moneyInEn)
             {
                 if (!'0'.Equals(c))
                 {
-                    if (index == 1) result += numbers[c];
-                    else result += numbers[c] + units[index];
+                    if (index == 1) result += numbersInMM[c];
+                    else result += numbersInMM[c] + units[index];
                 }
                 index--;
             }

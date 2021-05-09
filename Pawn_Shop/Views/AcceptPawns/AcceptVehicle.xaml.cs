@@ -1,4 +1,5 @@
 ﻿using Pawn_Shop.Utilities;
+using Pawn_Shop.Utilities.IUtilities;
 using System;
 using System.Diagnostics;
 using Windows.UI.Xaml;
@@ -12,6 +13,8 @@ namespace Pawn_Shop.Views.AcceptPawns
 {
     public sealed partial class AcceptVehicle : Page
     {
+        private readonly IMMMoneyConverter mMMoneyConverter = new MMMoneyConverter();
+
         public AcceptVehicle()
         {
             this.InitializeComponent();
@@ -73,7 +76,7 @@ namespace Pawn_Shop.Views.AcceptPawns
         {
             string takenAmount = TextBox_TakenAmount.Text;
 
-            string moneyInMM = MMMoneyConverter.ConvertToMoneyInMM(takenAmount);
+            string moneyInMM = mMMoneyConverter.Convert(takenAmount);
             TextBox_TakenAmountMM.Visibility = Visibility.Visible;
             TextBox_TakenAmountMM.Text = moneyInMM;
         }

@@ -1401,11 +1401,11 @@
                             VerticalAlignment="Top"
                             Text="ပေးငွေ" />
                         <TextBox
-                            x:Name="TextBox_LendingPrice"
+                            x:Name="TextBox_LendingAmount"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            TextChanged="TextChanged_TakenAmount" />
+                            TextChanged="TextChanged_LendingAmount" />
                     </Grid>
 
                     <Grid Margin="0,15,0,0">
@@ -1420,7 +1420,7 @@
                             VerticalAlignment="Top"
                             Text="ပေးငွေ (စာသားဖြင့်)" />
                         <TextBox
-                            x:Name="TextBox_LendingPriceInText"
+                            x:Name="TextBox_LendingAmountInText"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center" />
