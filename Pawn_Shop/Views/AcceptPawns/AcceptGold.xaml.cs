@@ -301,20 +301,43 @@ namespace Pawn_Shop.Views.AcceptPawns
 
         private void SelectionChanged_LendingMonths(object sender, SelectionChangedEventArgs e)
         {
-            string months = ((ComboBox)sender).SelectedValue.ToString();
+            string strMonths = ((ComboBox)sender).SelectedValue.ToString();
 
-            if (!"".Equals(months))
+            if (!"".Equals(strMonths))
             {
-                DateTime expiredDate = DateTime.Today.AddMonths(Convert.ToInt32(months));
+                int months = Convert.ToInt32(strMonths);
+
+                DateTime expiredDate = DateTime.Today.AddMonths(months);
 
                 TextBox_ExpiredDate.Visibility = Visibility.Visible;
                 TextBox_ExpiredDate.Text = expiredDate.ToString("dd-MM-yyyy (ddd)");
+
+                // set months to အတိုးကြိုပေးငွေ combobox
+                ComboBox_NoOfMonthsForPrePayInterest.Items.Clear();
+                for (int i = 1; i < months; i++)
+                {
+                    ComboBox_NoOfMonthsForPrePayInterest.Items.Add(new ComboBoxItem { Tag = i, Content = i });
+                }
             }
         }
 
         private void SelectionChanged_NoOfMonthsForPrePayInterest(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Toggled_PrePayInterestExists(object sender, RoutedEventArgs e)
+        {
+            if (((ToggleSwitch)sender).IsOn)
+            {
+                ComboBox_NoOfMonthsForPrePayInterest.Visibility = Visibility.Visible;
+                TextBox_PrePayInterestAmount.Visibility = Visibility.Visible;
+            } 
+            else
+            {
+                ComboBox_NoOfMonthsForPrePayInterest.Visibility = Visibility.Collapsed;
+                TextBox_PrePayInterestAmount.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void _UpdateGoldPricesBasedOnGoldNetWeight()

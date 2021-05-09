@@ -1505,8 +1505,7 @@
                     <Grid Margin="0,15,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
@@ -1516,21 +1515,44 @@
                             Text="အတိုးကြိုပေးငွေ" />
 
                         <!--  To enable only when lending price and interest rate has been choosen  -->
-                        <ComboBox
-                            x:Name="ComboBox_NoOfMonthsForPrePayInterest"
-                            Grid.Column="1"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
-                            IsEnabled="True"
-                            PlaceholderText="ရွေးပါ"
-                            SelectionChanged="SelectionChanged_NoOfMonthsForPrePayInterest" />
-                        <TextBox
-                            x:Name="TextBox_PrePayInterestAmount"
-                            Grid.Column="2"
-                            Margin="5,0,0,0"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"
-                            IsEnabled="False" />
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <ToggleSwitch
+                                x:Name="ToggleSwitch_PrePayInterest"
+                                Grid.Row="0"
+                                OffContent="No"
+                                OnContent="Yes"
+                                Toggled="Toggled_PrePayInterestExists" />
+
+                            <ComboBox
+                                x:Name="ComboBox_NoOfMonthsForPrePayInterest"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                IsEnabled="True"
+                                PlaceholderText="ရွေးပါ"
+                                SelectionChanged="SelectionChanged_NoOfMonthsForPrePayInterest"
+                                Visibility="Collapsed" />
+                            <TextBox
+                                x:Name="TextBox_PrePayInterestAmount"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="5,0,0,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                IsEnabled="False"
+                                Visibility="Collapsed" />
+
+                        </Grid>
                     </Grid>
 
                     <Grid Margin="0,15,0,0">
