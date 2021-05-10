@@ -1,6 +1,9 @@
 ﻿using Pawn_Shop.Dto;
+using Pawn_Shop.Dto.AcceptGold;
 using Pawn_Shop.IServices.AppData;
+using Pawn_Shop.IServices.UpdatePrices;
 using Pawn_Shop.Services.AppData;
+using Pawn_Shop.Services.UpdatePrices;
 using Pawn_Shop.Utilities;
 using Pawn_Shop.Utilities.IUtilities;
 using System;
@@ -24,6 +27,7 @@ namespace Pawn_Shop.Views.AcceptPawns
 {
     public sealed partial class AcceptGold : Page
     {
+        private readonly IUpdateShopPriceService updateShopPriceService = new UpdateShopPriceService();
         private readonly INRCTownshipService nrcTownshipService = new NRCTownshipService();
         private readonly IReferalPersonService referalPersonService = new ReferalPersonService();
         private readonly IAgentService agentService = new AgentService();
@@ -44,6 +48,9 @@ namespace Pawn_Shop.Views.AcceptPawns
         {
             this.InitializeComponent();
 
+            // set latest updated date of shop price
+            _LoadLatestShopPrices();
+
             // set today date
             TextBlock_Today.Text = DateTime.Now.ToString("dd-MM-yyyy (ddd)");
 
@@ -51,6 +58,49 @@ namespace Pawn_Shop.Views.AcceptPawns
             TextBlock_VoucherNo.Text = "20211212_001";
 
             // _loadPawnTypes();
+        }
+
+        private async void _LoadLatestShopPrices()
+        {
+            var result = await updateShopPriceService.GetLatestShopPrices<LatestShopPrices>();
+
+            // Real sale prices
+            decimal SSalePrice = result.htdRealSalePriceResponse.rsPrice;
+            decimal ASalePrice = result.htdRealSalePriceResponse.rsTypeAPrice;
+            decimal BSalePrice = result.htdRealSalePriceResponse.rsTypeBPrice;
+            decimal CSalePrice = result.htdRealSalePriceResponse.rsTypeCPrice;
+
+            // Purchase Prices
+            decimal SPurchasePrice = result.htdPurchasePriceResponse.purchaseTypeSPrice;
+            decimal APurchasePrice = result.htdPurchasePriceResponse.purcahseTypeAPrice;
+            decimal BPurchasePrice = result.htdPurchasePriceResponse.purchaseTypeBPrice;
+            decimal CPurchasePrice = result.htdPurchasePriceResponse.purcahseTypeCPrice;
+
+            // Pawn Price
+            decimal SPawnPrice = result.htdPawnPriceResponse.pawnTypeSPrice;
+            decimal APawnPrice = result.htdPawnPriceResponse.pawnTypeAPrice;
+            decimal BPawnPrice = result.htdPawnPriceResponse.pawnTypeBPrice;
+            decimal CPawnPrice = result.htdPawnPriceResponse.pawnTypeCPrice;
+
+            TextBlock_SSalePrice.Text = String.Format("{0:N}", SSalePrice);
+            TextBlock_ASalePrice.Text = String.Format("{0:N}", ASalePrice);
+            TextBlock_BSalePrice.Text = String.Format("{0:N}", BSalePrice);
+            TextBlock_CSalePrice.Text = String.Format("{0:N}", CSalePrice);
+            TextBlock_SPurchasePrice.Text = String.Format("{0:N}", SPurchasePrice);
+            TextBlock_APurchasePrice.Text = String.Format("{0:N}", APurchasePrice);
+            TextBlock_BPurchasePrice.Text = String.Format("{0:N}", BPurchasePrice);
+            TextBlock_CPurchasePrice.Text = String.Format("{0:N}", CPurchasePrice);
+            TextBlock_SPawnPrice.Text = String.Format("{0:N}", SPawnPrice);
+            TextBlock_APawnPrice.Text = String.Format("{0:N}", APawnPrice);
+            TextBlock_BPawnPrice.Text = String.Format("{0:N}", BPawnPrice);
+            TextBlock_CPawnPrice.Text = String.Format("{0:N}", CPawnPrice);
+        }
+
+        private void ButtonClick_RefreshLatestShopPrice(object sender, RoutedEventArgs e)
+        {
+            _LoadLatestShopPrices();
+            
+            InAppNotification.Show("Successfully Updated!", 2000);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

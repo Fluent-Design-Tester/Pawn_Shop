@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dto\AcceptGold\LatestShopPrices.cs" />
     <Compile Include="Dto\Agent.cs" />
     <Compile Include="Dto\GoldPrice.cs" />
     <Compile Include="Dto\PawnSubType.cs" />

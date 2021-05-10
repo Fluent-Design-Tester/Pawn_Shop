@@ -17,10 +17,8 @@ namespace Pawn_Shop.Services
             this.baseUri += uri;
         }
 
-        public async Task<ObservableCollection<T>> GetAll<T>(ObservableCollection<T> list, string path = "")
+        public async Task<ObservableCollection<T>> GetAll<T>(ObservableCollection<T> list = null, string path = "")
         {
-            Debug.WriteLine(path);
-
             HttpClient httpClient = new HttpClient();
             Uri requestUri = new Uri(baseUri + path);
 
@@ -42,10 +40,10 @@ namespace Pawn_Shop.Services
             }
         }
 
-        public async Task<T> GetOne<T>(string url = "")
+        public async Task<T> GetOne<T>(string path = "")
         {
             HttpClient httpClient = new HttpClient();
-            Uri requestUri = new Uri(baseUri + url);
+            Uri requestUri = new Uri(baseUri + path);
 
             HttpResponseMessage httpResponse = new HttpResponseMessage();
 

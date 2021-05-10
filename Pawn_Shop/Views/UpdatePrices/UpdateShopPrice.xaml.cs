@@ -651,7 +651,7 @@ namespace Pawn_Shop.Views.UpdatePrices
                     {
                         purchasePriceType = reducedPurchasingType,
                         purchaseValue = reducedPurchasingValue,
-                        purcahseTypeSPrice = SReducedPurchasingPrice,
+                        purchaseTypeSPrice = SReducedPurchasingPrice,
                         purcahseTypeAPrice = AReducedPurchasingPrice,
                         purchaseTypeBPrice = BReducedPurchasingPrice,
                         purcahseTypeCPrice = CReducedPurchasingPrice

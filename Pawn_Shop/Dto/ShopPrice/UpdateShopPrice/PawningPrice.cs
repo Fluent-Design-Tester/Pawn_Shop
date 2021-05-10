@@ -8,6 +8,7 @@ namespace Pawn_Shop.Dto.ShopPrice.UpdateShopPrice
 {
     class PawningPrice
     {
+        public int? id { get; set; }
         public string pawnPriceType { get; set; }
         public decimal pawnValue { get; set; }
         public decimal pawnTypeSPrice { get; set; }
